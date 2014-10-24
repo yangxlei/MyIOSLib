@@ -14,7 +14,7 @@ enum _task_status
 {
     TASK_STATUS_WAIT,
     TASK_STATUS_DOING,
-    TASK_STATUS_FINISHED
+    TASK_STATUS_FINISH
 }TASKSTATUS;
 
 @class TaskItem;
@@ -41,7 +41,7 @@ enum _task_status
 /** 当前任务ID */
 @property (nonatomic, assign) int taskId;
 
-/** 当前任务状态 */
+/** 当前任务状态, 由 TaskQueue 更改 */
 @property (nonatomic, assign) int taskStatus;
 
 /** 结果返回码， 只有任务执行完成才能有值 */

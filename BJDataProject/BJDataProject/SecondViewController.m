@@ -8,19 +8,41 @@
 
 #import "SecondViewController.h"
 #import "BJSimpleData.h"
+#import "TaskQueue.h"
+#import "TestTaskItem.h"
+#import "TestTaskItem2.h"
 
-@interface SecondViewController ()
+@interface SecondViewController ()<TaskQueueDelegate, TaskItemDelegate>
 {
     BJData  *_data;
+    TaskQueue *taskQueue;
 }
 
 @end
 
 @implementation SecondViewController
 
-- (void)dealloc
+- (void)taskWillStart:(TaskItem *)taskItem
 {
+    NSLog(@"taskWillStart  %@", NSStringFromClass([taskItem class]));
 }
+
+-(void)taskDidStart:(TaskItem *)taskItem
+{
+
+    NSLog(@"taskDidStart %@", NSStringFromClass([taskItem class]));
+}
+
+- (void)taskDidFinished:(TaskItem *)taskItem
+{
+    NSLog(@"taskDidFinished %@", NSStringFromClass([taskItem class]));
+}
+
+- (void)taskQueueFinished:(TaskQueue *)taskQueue param:(id)param error:(int)error
+{
+    NSLog(@"taskQueueFinished %@ , error %d", param, error);
+}
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -46,6 +68,18 @@
 - (void)buttonAction:(id)sender
 {
     [_data invokeDelegateWithError:ERROR_SUCCESSFULL ope:1 error_message:@"成功" params:nil];
+    
+    taskQueue = [[TaskQueue alloc] init];
+    TestTaskItem *item = [[TestTaskItem alloc] init];
+    item.delegate = self;
+    [taskQueue addTaskItem:item];
+    
+    TestTaskItem2 *item2 = [[TestTaskItem2 alloc] init];
+    item2.delegate = self;
+    [taskQueue addTaskItem:item2];
+    
+    taskQueue.delegate = self;
+    [taskQueue start:@"helloTask"];
 }
 
 - (void)didReceiveMemoryWarning

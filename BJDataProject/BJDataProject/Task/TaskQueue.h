@@ -12,9 +12,9 @@
 @protocol TaskQueueDelegate <NSObject>
 
 /**
-    任务队列执行完成, 只有在所有任务都成功执行完成才会调用
+    任务队列执行完成调用
  */
-- (void)taskQueueFinished:(TaskQueue *)taskQueue param:(id)param;
+- (void)taskQueueFinished:(TaskQueue *)taskQueue param:(id)param error:(int)error;
 
 @end
 
@@ -27,6 +27,7 @@
 
 @property (nonatomic, weak) id<TaskQueueDelegate> delegate;
 @property (nonatomic, strong) id param;
+@property (nonatomic, assign, readonly) int resultError;
 
 /**
  某个任务执行完成，由 TaskItem 调用
@@ -40,5 +41,10 @@
  */
 - (void)start:(id)param;
 
-- (void)CancelQueue;
+- (void)cancelQueue;
+
+/**
+    停止并清除队列所有状态，参数
+ */
+- (void)cleanQueue;
 @end

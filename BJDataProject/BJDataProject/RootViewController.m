@@ -9,10 +9,13 @@
 #import "RootViewController.h"
 #import "SecondViewController.h"
 #import "BJUserAccount.h"
+#import "TaskQueue.h"
+#import "TestTaskItem.h"
 
-@interface RootViewController ()<BJDataDelegate>
+@interface RootViewController ()<BJDataDelegate, TaskItemDelegate, TaskQueueDelegate>
 {
     BJUserAccount *_account;
+    TaskQueue *taskQueue;
 }
 
 @end
@@ -28,6 +31,22 @@
     return self;
 }
 
+- (void)taskWillStart:(TaskItem *)taskItem
+{
+}
+
+- (void)taskDidStart:(TaskItem *)taskItem
+{
+}
+
+- (void)taskDidFinished:(TaskItem *)taskItem
+{
+}
+
+- (void)taskQueueFinished:(TaskQueue *)taskQueue param:(id)param error:(int)error
+{
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -39,18 +58,42 @@
     button.frame = CGRectMake(50, 50, 100, 50);
     [button addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
     
+    
+    button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setBackgroundColor:[UIColor redColor]];
+    [button setTitle:@"跳转2" forState:UIControlStateNormal];
+    [self.view addSubview:button];
+    button.frame = CGRectMake(50, 150, 100, 50);
+    [button addTarget:self action:@selector(buttonAction2:) forControlEvents:UIControlEventTouchUpInside];
+    
     _account = [[BJUserAccount alloc] initWithDomain:USER_DOMAIN_MAIN];
     [_account addDelegate:self];
     
 }
+
+- (void)buttonAction2:(id)sender
+{
+    SecondViewController *second = [[SecondViewController alloc] init];
+    [self.navigationController pushViewController:second animated:YES];
+}
+
+
 
 - (void)buttonAction:(id)sender
 {
 //    SecondViewController *second = [[SecondViewController alloc] init];
 //    [self.navigationController pushViewController:second animated:YES];
     
-    [_account loginWithPerson:11 token:@"auth_token"];
+//    [_account loginWithPerson:11 token:@"auth_token"];
 //    [_account logout];
+    
+    taskQueue = [[TaskQueue alloc] init];
+    TestTaskItem *item = [[TestTaskItem alloc] init];
+    item.delegate = self;
+    
+    [taskQueue addTaskItem:item];
+    taskQueue.delegate = self;
+    [taskQueue start:@"helloTask"];
 }
 
 - (void)didReceiveMemoryWarning

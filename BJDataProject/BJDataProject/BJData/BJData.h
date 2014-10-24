@@ -14,17 +14,11 @@ enum _error_code
     ERROR_NETWORK= -1,
     ERROR_UNKNOW = -100,
     
+    ERROR_REQUEST_FAIL = 0,
     ERROR_SUCCESSFULL = 1,
     ERROR_CANCEL = 2,
     ERROR_OAUTH_LOGIN = 100,
     
-    ERROR_BLACK = 99,
-    ERROR_OAUTH_TOKEN_BROKEN = 98,
-    ERROR_NEED_REFRESH_OAUTH_TOKEN = 100115,
-    ERROR_VALIDATE_CODE_EMPTY = 900002,
-    ERROR_VALIDATE_CODE_WRONG = 900003,
-    ERROR_LOCATION_DISABLE = 900004,
-    ERROR_LOCATION_UPDATE_ERROR_SYSTEM = 900005,
     
 }BJDATA_ERROR_CODE;
 
@@ -44,14 +38,11 @@ enum _ope_code
     OPERATION_GET_MORE = 2,
 }BJDATA_OPERATION_CODE;
 
-@class BJUserAccount;
 @interface BJData : NSObject
 {
     NSMutableArray __strong *_delegates;
     BOOL                    bIsCallbacking;
 }
-
-@property (nonatomic, weak) BJUserAccount *account;
 
 /**
  保存数据到缓存

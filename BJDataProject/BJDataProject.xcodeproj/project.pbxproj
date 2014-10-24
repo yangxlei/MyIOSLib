@@ -7,9 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6EF9211C9E5CB9A5E0A13F3A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7097B1DE5796EA0143CC13F3 /* libPods.a */; };
 		955BEBB719F23D3100C04F90 /* BJUserAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 955BEBB619F23D3100C04F90 /* BJUserAccount.m */; };
 		955BEC0019FA81F800C04F90 /* TaskQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 955BEBFF19FA81F800C04F90 /* TaskQueue.m */; };
 		955BEC3819FA87DC00C04F90 /* TaskItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 955BEC3719FA87DC00C04F90 /* TaskItem.m */; };
+		955BEC3B19FAB44500C04F90 /* TestTaskItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 955BEC3A19FAB44500C04F90 /* TestTaskItem.m */; };
+		955BEC3E19FAC41C00C04F90 /* TestTaskItem2.m in Sources */ = {isa = PBXBuildFile; fileRef = 955BEC3D19FAC41C00C04F90 /* TestTaskItem2.m */; };
 		958FE99F19BA143200E33260 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 958FE99E19BA143200E33260 /* Foundation.framework */; };
 		958FE9A119BA143200E33260 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 958FE9A019BA143200E33260 /* CoreGraphics.framework */; };
 		958FE9A319BA143200E33260 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 958FE9A219BA143200E33260 /* UIKit.framework */; };
@@ -26,7 +29,6 @@
 		958FE9C819BA143200E33260 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 958FE9C619BA143200E33260 /* InfoPlist.strings */; };
 		958FE9CA19BA143200E33260 /* BJDataProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 958FE9C919BA143200E33260 /* BJDataProjectTests.m */; };
 		958FE9D719BA14D200E33260 /* BJData.m in Sources */ = {isa = PBXBuildFile; fileRef = 958FE9D619BA14D200E33260 /* BJData.m */; };
-		958FE9DA19BA17B600E33260 /* BJDataFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 958FE9D919BA17B600E33260 /* BJDataFactory.m */; };
 		95AE53B519C932E70008ED0B /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AE53B419C932E70008ED0B /* RootViewController.m */; };
 		95AE53B819C9343D0008ED0B /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AE53B719C9343D0008ED0B /* SecondViewController.m */; };
 		95AE53BB19CC06C30008ED0B /* BJSimpleData.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AE53BA19CC06C30008ED0B /* BJSimpleData.m */; };
@@ -44,12 +46,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6A97C76823B628E0CD0E1C31 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		7097B1DE5796EA0143CC13F3 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		955BEBB519F23D3100C04F90 /* BJUserAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BJUserAccount.h; sourceTree = "<group>"; };
 		955BEBB619F23D3100C04F90 /* BJUserAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BJUserAccount.m; sourceTree = "<group>"; };
 		955BEBFE19FA81F800C04F90 /* TaskQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskQueue.h; sourceTree = "<group>"; };
 		955BEBFF19FA81F800C04F90 /* TaskQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskQueue.m; sourceTree = "<group>"; };
 		955BEC3619FA87DC00C04F90 /* TaskItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskItem.h; sourceTree = "<group>"; };
 		955BEC3719FA87DC00C04F90 /* TaskItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskItem.m; sourceTree = "<group>"; };
+		955BEC3919FAB44500C04F90 /* TestTaskItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestTaskItem.h; sourceTree = "<group>"; };
+		955BEC3A19FAB44500C04F90 /* TestTaskItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestTaskItem.m; sourceTree = "<group>"; };
+		955BEC3C19FAC41C00C04F90 /* TestTaskItem2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestTaskItem2.h; sourceTree = "<group>"; };
+		955BEC3D19FAC41C00C04F90 /* TestTaskItem2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestTaskItem2.m; sourceTree = "<group>"; };
 		958FE99B19BA143200E33260 /* BJDataProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BJDataProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		958FE99E19BA143200E33260 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		958FE9A019BA143200E33260 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -70,8 +78,6 @@
 		958FE9C919BA143200E33260 /* BJDataProjectTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BJDataProjectTests.m; sourceTree = "<group>"; };
 		958FE9D519BA14D200E33260 /* BJData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BJData.h; sourceTree = "<group>"; };
 		958FE9D619BA14D200E33260 /* BJData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BJData.m; sourceTree = "<group>"; };
-		958FE9D819BA17B600E33260 /* BJDataFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BJDataFactory.h; sourceTree = "<group>"; };
-		958FE9D919BA17B600E33260 /* BJDataFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BJDataFactory.m; sourceTree = "<group>"; };
 		958FEA1C19C351F800E33260 /* BJDataDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BJDataDelegate.h; sourceTree = "<group>"; };
 		95AE53B319C932E70008ED0B /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		95AE53B419C932E70008ED0B /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
@@ -81,6 +87,7 @@
 		95AE53BA19CC06C30008ED0B /* BJSimpleData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BJSimpleData.m; sourceTree = "<group>"; };
 		95AE53BC19CC08D10008ED0B /* BJProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BJProfile.h; sourceTree = "<group>"; };
 		95AE53BD19CC08D10008ED0B /* BJProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BJProfile.m; sourceTree = "<group>"; };
+		F1CF413BC49C42B81EF313CC /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +99,7 @@
 				958FE9A519BA143200E33260 /* CoreData.framework in Frameworks */,
 				958FE9A319BA143200E33260 /* UIKit.framework in Frameworks */,
 				958FE99F19BA143200E33260 /* Foundation.framework in Frameworks */,
+				6EF9211C9E5CB9A5E0A13F3A /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,6 +117,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8635F3B8C0EFB8C0EF6DAB8E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6A97C76823B628E0CD0E1C31 /* Pods.debug.xcconfig */,
+				F1CF413BC49C42B81EF313CC /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		955BEBFD19FA80A600C04F90 /* Task */ = {
 			isa = PBXGroup;
 			children = (
@@ -127,6 +144,7 @@
 				958FE9C319BA143200E33260 /* BJDataProjectTests */,
 				958FE99D19BA143200E33260 /* Frameworks */,
 				958FE99C19BA143200E33260 /* Products */,
+				8635F3B8C0EFB8C0EF6DAB8E /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -147,6 +165,7 @@
 				958FE9A219BA143200E33260 /* UIKit.framework */,
 				958FE9A419BA143200E33260 /* CoreData.framework */,
 				958FE9BC19BA143200E33260 /* XCTest.framework */,
+				7097B1DE5796EA0143CC13F3 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -165,6 +184,10 @@
 				95AE53B419C932E70008ED0B /* RootViewController.m */,
 				95AE53B619C9343D0008ED0B /* SecondViewController.h */,
 				95AE53B719C9343D0008ED0B /* SecondViewController.m */,
+				955BEC3919FAB44500C04F90 /* TestTaskItem.h */,
+				955BEC3A19FAB44500C04F90 /* TestTaskItem.m */,
+				955BEC3C19FAC41C00C04F90 /* TestTaskItem2.h */,
+				955BEC3D19FAC41C00C04F90 /* TestTaskItem2.m */,
 			);
 			path = BJDataProject;
 			sourceTree = "<group>";
@@ -203,8 +226,6 @@
 			children = (
 				958FE9D519BA14D200E33260 /* BJData.h */,
 				958FE9D619BA14D200E33260 /* BJData.m */,
-				958FE9D819BA17B600E33260 /* BJDataFactory.h */,
-				958FE9D919BA17B600E33260 /* BJDataFactory.m */,
 				958FEA1C19C351F800E33260 /* BJDataDelegate.h */,
 				95AE53B919CC06C30008ED0B /* BJSimpleData.h */,
 				95AE53BA19CC06C30008ED0B /* BJSimpleData.m */,
@@ -223,9 +244,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 958FE9CD19BA143200E33260 /* Build configuration list for PBXNativeTarget "BJDataProject" */;
 			buildPhases = (
+				F5F0B92988AFBBD3F52738A9 /* Check Pods Manifest.lock */,
 				958FE99719BA143200E33260 /* Sources */,
 				958FE99819BA143200E33260 /* Frameworks */,
 				958FE99919BA143200E33260 /* Resources */,
+				6891B11358F60E72D865C3EB /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -306,6 +329,39 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		6891B11358F60E72D865C3EB /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F5F0B92988AFBBD3F52738A9 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		958FE99719BA143200E33260 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -314,7 +370,8 @@
 				958FE9B119BA143200E33260 /* AppDelegate.m in Sources */,
 				95AE53BB19CC06C30008ED0B /* BJSimpleData.m in Sources */,
 				955BEBB719F23D3100C04F90 /* BJUserAccount.m in Sources */,
-				958FE9DA19BA17B600E33260 /* BJDataFactory.m in Sources */,
+				955BEC3E19FAC41C00C04F90 /* TestTaskItem2.m in Sources */,
+				955BEC3B19FAB44500C04F90 /* TestTaskItem.m in Sources */,
 				95AE53B519C932E70008ED0B /* RootViewController.m in Sources */,
 				955BEC0019FA81F800C04F90 /* TaskQueue.m in Sources */,
 				95AE53B819C9343D0008ED0B /* SecondViewController.m in Sources */,
@@ -436,6 +493,7 @@
 		};
 		958FE9CE19BA143200E33260 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6A97C76823B628E0CD0E1C31 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -449,6 +507,7 @@
 		};
 		958FE9CF19BA143200E33260 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F1CF413BC49C42B81EF313CC /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
