@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		955BEBB719F23D3100C04F90 /* BJUserAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 955BEBB619F23D3100C04F90 /* BJUserAccount.m */; };
+		955BEC0019FA81F800C04F90 /* TaskQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 955BEBFF19FA81F800C04F90 /* TaskQueue.m */; };
+		955BEC3819FA87DC00C04F90 /* TaskItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 955BEC3719FA87DC00C04F90 /* TaskItem.m */; };
 		958FE99F19BA143200E33260 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 958FE99E19BA143200E33260 /* Foundation.framework */; };
 		958FE9A119BA143200E33260 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 958FE9A019BA143200E33260 /* CoreGraphics.framework */; };
 		958FE9A319BA143200E33260 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 958FE9A219BA143200E33260 /* UIKit.framework */; };
@@ -44,6 +46,10 @@
 /* Begin PBXFileReference section */
 		955BEBB519F23D3100C04F90 /* BJUserAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BJUserAccount.h; sourceTree = "<group>"; };
 		955BEBB619F23D3100C04F90 /* BJUserAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BJUserAccount.m; sourceTree = "<group>"; };
+		955BEBFE19FA81F800C04F90 /* TaskQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskQueue.h; sourceTree = "<group>"; };
+		955BEBFF19FA81F800C04F90 /* TaskQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskQueue.m; sourceTree = "<group>"; };
+		955BEC3619FA87DC00C04F90 /* TaskItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskItem.h; sourceTree = "<group>"; };
+		955BEC3719FA87DC00C04F90 /* TaskItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskItem.m; sourceTree = "<group>"; };
 		958FE99B19BA143200E33260 /* BJDataProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BJDataProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		958FE99E19BA143200E33260 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		958FE9A019BA143200E33260 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -103,6 +109,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		955BEBFD19FA80A600C04F90 /* Task */ = {
+			isa = PBXGroup;
+			children = (
+				955BEBFE19FA81F800C04F90 /* TaskQueue.h */,
+				955BEBFF19FA81F800C04F90 /* TaskQueue.m */,
+				955BEC3619FA87DC00C04F90 /* TaskItem.h */,
+				955BEC3719FA87DC00C04F90 /* TaskItem.m */,
+			);
+			path = Task;
+			sourceTree = "<group>";
+		};
 		958FE99219BA143200E33260 = {
 			isa = PBXGroup;
 			children = (
@@ -137,6 +154,7 @@
 		958FE9A619BA143200E33260 /* BJDataProject */ = {
 			isa = PBXGroup;
 			children = (
+				955BEBFD19FA80A600C04F90 /* Task */,
 				958FE9D319BA144E00E33260 /* BJData */,
 				958FE9AF19BA143200E33260 /* AppDelegate.h */,
 				958FE9B019BA143200E33260 /* AppDelegate.m */,
@@ -298,7 +316,9 @@
 				955BEBB719F23D3100C04F90 /* BJUserAccount.m in Sources */,
 				958FE9DA19BA17B600E33260 /* BJDataFactory.m in Sources */,
 				95AE53B519C932E70008ED0B /* RootViewController.m in Sources */,
+				955BEC0019FA81F800C04F90 /* TaskQueue.m in Sources */,
 				95AE53B819C9343D0008ED0B /* SecondViewController.m in Sources */,
+				955BEC3819FA87DC00C04F90 /* TaskItem.m in Sources */,
 				958FE9D719BA14D200E33260 /* BJData.m in Sources */,
 				95AE53BE19CC08D10008ED0B /* BJProfile.m in Sources */,
 				958FE9AD19BA143200E33260 /* main.m in Sources */,
