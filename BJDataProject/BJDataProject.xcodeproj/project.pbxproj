@@ -13,7 +13,8 @@
 		955BEC3819FA87DC00C04F90 /* TaskItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 955BEC3719FA87DC00C04F90 /* TaskItem.m */; };
 		955BEC3B19FAB44500C04F90 /* TestTaskItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 955BEC3A19FAB44500C04F90 /* TestTaskItem.m */; };
 		955BEC3E19FAC41C00C04F90 /* TestTaskItem2.m in Sources */ = {isa = PBXBuildFile; fileRef = 955BEC3D19FAC41C00C04F90 /* TestTaskItem2.m */; };
-		955BEC4219FB4A2800C04F90 /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 955BEC4119FB4A2800C04F90 /* APIManager.m */; };
+		955BEC4619FB517F00C04F90 /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 955BEC4519FB517F00C04F90 /* APIManager.m */; };
+		955BEC4A19FB51B500C04F90 /* JsonUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 955BEC4919FB51B500C04F90 /* JsonUtils.m */; };
 		958FE99F19BA143200E33260 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 958FE99E19BA143200E33260 /* Foundation.framework */; };
 		958FE9A119BA143200E33260 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 958FE9A019BA143200E33260 /* CoreGraphics.framework */; };
 		958FE9A319BA143200E33260 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 958FE9A219BA143200E33260 /* UIKit.framework */; };
@@ -59,8 +60,10 @@
 		955BEC3A19FAB44500C04F90 /* TestTaskItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestTaskItem.m; sourceTree = "<group>"; };
 		955BEC3C19FAC41C00C04F90 /* TestTaskItem2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestTaskItem2.h; sourceTree = "<group>"; };
 		955BEC3D19FAC41C00C04F90 /* TestTaskItem2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestTaskItem2.m; sourceTree = "<group>"; };
-		955BEC4019FB4A2800C04F90 /* APIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIManager.h; sourceTree = "<group>"; };
-		955BEC4119FB4A2800C04F90 /* APIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIManager.m; sourceTree = "<group>"; };
+		955BEC4419FB517F00C04F90 /* APIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIManager.h; sourceTree = "<group>"; };
+		955BEC4519FB517F00C04F90 /* APIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIManager.m; sourceTree = "<group>"; };
+		955BEC4819FB51B500C04F90 /* JsonUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsonUtils.h; sourceTree = "<group>"; };
+		955BEC4919FB51B500C04F90 /* JsonUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JsonUtils.m; sourceTree = "<group>"; };
 		958FE99B19BA143200E33260 /* BJDataProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BJDataProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		958FE99E19BA143200E33260 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		958FE9A019BA143200E33260 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -140,13 +143,22 @@
 			path = Task;
 			sourceTree = "<group>";
 		};
-		955BEC3F19FB45B600C04F90 /* network */ = {
+		955BEC4319FB517F00C04F90 /* network */ = {
 			isa = PBXGroup;
 			children = (
-				955BEC4019FB4A2800C04F90 /* APIManager.h */,
-				955BEC4119FB4A2800C04F90 /* APIManager.m */,
+				955BEC4419FB517F00C04F90 /* APIManager.h */,
+				955BEC4519FB517F00C04F90 /* APIManager.m */,
 			);
 			path = network;
+			sourceTree = "<group>";
+		};
+		955BEC4719FB518D00C04F90 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				955BEC4819FB51B500C04F90 /* JsonUtils.h */,
+				955BEC4919FB51B500C04F90 /* JsonUtils.m */,
+			);
+			path = utils;
 			sourceTree = "<group>";
 		};
 		958FE99219BA143200E33260 = {
@@ -185,7 +197,8 @@
 		958FE9A619BA143200E33260 /* BJDataProject */ = {
 			isa = PBXGroup;
 			children = (
-				955BEC3F19FB45B600C04F90 /* network */,
+				955BEC4719FB518D00C04F90 /* utils */,
+				955BEC4319FB517F00C04F90 /* network */,
 				955BEBFD19FA80A600C04F90 /* Task */,
 				958FE9D319BA144E00E33260 /* BJData */,
 				958FE9AF19BA143200E33260 /* AppDelegate.h */,
@@ -384,9 +397,9 @@
 				95AE53BB19CC06C30008ED0B /* BJSimpleData.m in Sources */,
 				955BEBB719F23D3100C04F90 /* BJUserAccount.m in Sources */,
 				955BEC3E19FAC41C00C04F90 /* TestTaskItem2.m in Sources */,
-				955BEC4219FB4A2800C04F90 /* APIManager.m in Sources */,
 				955BEC3B19FAB44500C04F90 /* TestTaskItem.m in Sources */,
 				95AE53B519C932E70008ED0B /* RootViewController.m in Sources */,
+				955BEC4A19FB51B500C04F90 /* JsonUtils.m in Sources */,
 				955BEC0019FA81F800C04F90 /* TaskQueue.m in Sources */,
 				95AE53B819C9343D0008ED0B /* SecondViewController.m in Sources */,
 				955BEC3819FA87DC00C04F90 /* TaskItem.m in Sources */,
@@ -394,6 +407,7 @@
 				95AE53BE19CC08D10008ED0B /* BJProfile.m in Sources */,
 				958FE9AD19BA143200E33260 /* main.m in Sources */,
 				958FE9B419BA143200E33260 /* BJDataProject.xcdatamodeld in Sources */,
+				955BEC4619FB517F00C04F90 /* APIManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
