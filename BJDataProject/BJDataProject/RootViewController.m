@@ -11,6 +11,7 @@
 #import "BJUserAccount.h"
 #import "TaskQueue.h"
 #import "TestTaskItem.h"
+#import "JsonUtils.h"
 
 @interface RootViewController ()<BJDataDelegate, TaskItemDelegate, TaskQueueDelegate>
 {
@@ -81,19 +82,27 @@
 
 - (void)buttonAction:(id)sender
 {
+    
+    NSString *str = @"{\"aaa\":\"bbb\", \"ccc\":1, \"list\":[{\"name\":\"yl\", \"age\":23}]}";
+    NSDictionary *dic = [str jsonValue];
+    NSLog(@"%@", dic);
+    NSArray *list = [dic valueForKey:@"list"];
+    NSDictionary *item = [list objectAtIndex:0];
+    NSLog(@"age : %d", [item intValueForkey:@"age"]);
+    
 //    SecondViewController *second = [[SecondViewController alloc] init];
 //    [self.navigationController pushViewController:second animated:YES];
     
 //    [_account loginWithPerson:11 token:@"auth_token"];
 //    [_account logout];
     
-    taskQueue = [[TaskQueue alloc] init];
-    TestTaskItem *item = [[TestTaskItem alloc] init];
-    item.delegate = self;
-    
-    [taskQueue addTaskItem:item];
-    taskQueue.delegate = self;
-    [taskQueue start:@"helloTask"];
+//    taskQueue = [[TaskQueue alloc] init];
+//    TestTaskItem *item = [[TestTaskItem alloc] init];
+//    item.delegate = self;
+//    
+//    [taskQueue addTaskItem:item];
+//    taskQueue.delegate = self;
+//    [taskQueue start:@"helloTask"];
 }
 
 - (void)didReceiveMemoryWarning
