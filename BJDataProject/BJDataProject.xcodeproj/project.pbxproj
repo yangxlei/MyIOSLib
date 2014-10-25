@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2538CB6F19FBA7C70099ED2C /* HTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2538CB6C19FBA7C70099ED2C /* HTTPRequest.m */; };
+		2538CB7019FBA7C70099ED2C /* HTTPResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 2538CB6E19FBA7C70099ED2C /* HTTPResult.m */; };
 		6EF9211C9E5CB9A5E0A13F3A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7097B1DE5796EA0143CC13F3 /* libPods.a */; };
 		9517608D19FB93FF00D1B241 /* BJPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 9517608C19FB93FF00D1B241 /* BJPerson.m */; };
 		9517609019FB987D00D1B241 /* APITask.m in Sources */ = {isa = PBXBuildFile; fileRef = 9517608F19FB987D00D1B241 /* APITask.m */; };
@@ -50,6 +52,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2538CB6B19FBA7C70099ED2C /* HTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPRequest.h; sourceTree = "<group>"; };
+		2538CB6C19FBA7C70099ED2C /* HTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPRequest.m; sourceTree = "<group>"; };
+		2538CB6D19FBA7C70099ED2C /* HTTPResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPResult.h; sourceTree = "<group>"; };
+		2538CB6E19FBA7C70099ED2C /* HTTPResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPResult.m; sourceTree = "<group>"; };
 		6A97C76823B628E0CD0E1C31 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		7097B1DE5796EA0143CC13F3 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9517608B19FB93FF00D1B241 /* BJPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BJPerson.h; sourceTree = "<group>"; };
@@ -154,6 +160,10 @@
 		955BEC4319FB517F00C04F90 /* network */ = {
 			isa = PBXGroup;
 			children = (
+				2538CB6B19FBA7C70099ED2C /* HTTPRequest.h */,
+				2538CB6C19FBA7C70099ED2C /* HTTPRequest.m */,
+				2538CB6D19FBA7C70099ED2C /* HTTPResult.h */,
+				2538CB6E19FBA7C70099ED2C /* HTTPResult.m */,
 				955BEC4419FB517F00C04F90 /* APIManager.h */,
 				955BEC4519FB517F00C04F90 /* APIManager.m */,
 			);
@@ -410,6 +420,7 @@
 				955BEBB719F23D3100C04F90 /* BJUserAccount.m in Sources */,
 				955BEC3E19FAC41C00C04F90 /* TestTaskItem2.m in Sources */,
 				955BEC3B19FAB44500C04F90 /* TestTaskItem.m in Sources */,
+				2538CB6F19FBA7C70099ED2C /* HTTPRequest.m in Sources */,
 				95AE53B519C932E70008ED0B /* RootViewController.m in Sources */,
 				955BEC4A19FB51B500C04F90 /* JsonUtils.m in Sources */,
 				9517608D19FB93FF00D1B241 /* BJPerson.m in Sources */,
@@ -417,6 +428,7 @@
 				95AE53B819C9343D0008ED0B /* SecondViewController.m in Sources */,
 				955BEC3819FA87DC00C04F90 /* TaskItem.m in Sources */,
 				958FE9D719BA14D200E33260 /* BJData.m in Sources */,
+				2538CB7019FBA7C70099ED2C /* HTTPResult.m in Sources */,
 				958FE9AD19BA143200E33260 /* main.m in Sources */,
 				958FE9B419BA143200E33260 /* BJDataProject.xcdatamodeld in Sources */,
 				955BEC4619FB517F00C04F90 /* APIManager.m in Sources */,
