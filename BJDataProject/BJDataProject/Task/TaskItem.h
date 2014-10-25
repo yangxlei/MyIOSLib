@@ -64,5 +64,5 @@ enum _task_status
 /**
     任务完成，在本类中调用
  */
-- (void)TaskCompleted:(int)error;
+- (void)TaskCompleted:(int)error result:(id)result;
 @end

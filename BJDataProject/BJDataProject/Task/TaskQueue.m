@@ -36,7 +36,7 @@
     return self;
 }
 
-- (void)ATaskItemFinished:(TaskItem *)item error:(int)error
+- (void)ATaskItemFinished:(TaskItem *)item error:(int)error result:(id)result
 {
     if (item.taskStatus == TASK_STATUS_DOING)
     {
@@ -48,6 +48,7 @@
         if (error == ERROR_SUCCESSFULL)
         {
             item.taskStatus = TASK_STATUS_FINISH;
+            _result = result;
         }
         
         if (item.taskStatus == TASK_STATUS_FINISH)
@@ -61,6 +62,7 @@
             {
                 [_delegate taskQueueFinished:self param:_param error:error];
                 _param = nil;
+                _result = nil;
             }
         }
     }
@@ -121,6 +123,7 @@
        if ([_delegate respondsToSelector:@selector(taskQueueFinished:param:error:)])
        {
            [_delegate taskQueueFinished:self param:_param error:ERROR_SUCCESSFULL];
+           _result = nil;
        }
        _param = nil;
    }
@@ -140,6 +143,7 @@
     {
         b_start = NO;
         _param = nil;
+        _result = nil;
         for (TaskItem *item in _queue)
         {
             if (item.taskStatus == TASK_STATUS_DOING)
@@ -168,6 +172,8 @@
         item.taskQueue = nil;
     }
     _delegate = nil;
+    _param = nil;
+    _result = nil;
 }
 
 @end

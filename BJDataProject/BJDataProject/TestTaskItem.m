@@ -25,11 +25,11 @@
          NSData *data = (NSData *)resultObj;
          
          NSLog(@"%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-         [tempSelf TaskCompleted:ERROR_SUCCESSFULL];
+         [tempSelf TaskCompleted:ERROR_SUCCESSFULL result:data];
      
      }failure:^(AFHTTPRequestOperation *op, NSError *error)
      {
-         [tempSelf TaskCompleted:ERROR_REQUEST_FAIL];
+         [tempSelf TaskCompleted:ERROR_REQUEST_FAIL result:nil];
      }];
     
     [operation start];

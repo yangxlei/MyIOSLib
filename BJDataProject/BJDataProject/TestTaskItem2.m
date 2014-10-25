@@ -17,7 +17,7 @@
             sleep(3);
             NSLog(@"*************DOTask2 Background ********************");
             dispatch_async(dispatch_get_main_queue(), ^(void){
-                [tempSelf TaskCompleted:1];
+                [tempSelf TaskCompleted:1 result:nil];
             });
         });
     return 2;

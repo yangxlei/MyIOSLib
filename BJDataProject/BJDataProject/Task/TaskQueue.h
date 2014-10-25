@@ -28,11 +28,12 @@
 @property (nonatomic, weak) id<TaskQueueDelegate> delegate;
 @property (nonatomic, strong) id param;
 @property (nonatomic, assign, readonly) int resultError;
+@property (nonatomic, strong, readonly) id result; //最新完成任务的结果
 
 /**
  某个任务执行完成，由 TaskItem 调用
  */
-- (void)ATaskItemFinished:(TaskItem *)taskItem error:(int)error;
+- (void)ATaskItemFinished:(TaskItem *)taskItem error:(int)error result:(id)result;
 
 - (void)addTaskItem:(TaskItem *)taskItem;
 

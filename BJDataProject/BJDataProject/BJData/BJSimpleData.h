@@ -7,7 +7,28 @@
 //
 
 #import "BJData.h"
+#import "TaskQueue.h"
 
-@interface BJSimpleData : BJData
+@interface BJSimpleData : BJData<TaskQueueDelegate>
+
+/**
+  当前 BJData 的 json 数据
+ */
+@property (nonatomic, strong) NSMutableDictionary *data;
+
+/**
+    开启刷新数据操作
+ */
+- (void)refresh;
+
+/**
+ *  取消刷新操作
+ */
+- (void)cancelRefresh;
+
+/**
+    执行刷新，由子类实现; 具体怎么刷新由子类决定，父类只执行一个刷新操作的队列 
+ */
+- (void)doRefreshOperation:(TaskQueue *)taskQueue;
 
 @end

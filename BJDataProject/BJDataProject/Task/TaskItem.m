@@ -20,11 +20,11 @@
 }
 
 
-- (void)TaskCompleted:(int)error
+- (void)TaskCompleted:(int)error result:(id)result
 {
     _resultError = error;
     
-    [_taskQueue ATaskItemFinished:self error:_resultError];
+    [_taskQueue ATaskItemFinished:self error:_resultError result:result];
     _delegate = nil;
     _taskQueue = nil;
 }

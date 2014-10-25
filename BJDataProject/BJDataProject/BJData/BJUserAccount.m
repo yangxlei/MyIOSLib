@@ -7,6 +7,7 @@
 //
 
 #import "BJUserAccount.h"
+#import "BJFileManager.h"
 
 @interface BJUserAccount()
 {
@@ -59,9 +60,7 @@
     
     if ([self getCacheKey])
     {
-        NSString *dir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-        NSString *filepath = [NSString stringWithFormat:@"%@/%@", dir, [self getCacheKey]];
-        [[NSFileManager defaultManager] removeItemAtPath:filepath error:nil];
+       [BJFileManager deleteCacheFile:[self getCacheKey]];
     }
     
     //广播， 当前账户退出登陆
@@ -78,8 +77,8 @@
     //主账户的数据才做缓存
     if([_domain isEqualToString:USER_DOMAIN_MAIN])
     {
-        NSString *dir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-        NSString *filepath = [NSString stringWithFormat:@"%@/%@", dir, [self getCacheKey]];
+
+        NSString *filepath = [BJFileManager getCacheFilePath:[self getCacheKey]];
         NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:filepath];
         _hostUrl = [dictionary valueForKey:@"host_url"];
         _appKey = [dictionary valueForKey:@"app_key"];
@@ -105,11 +104,9 @@
 
 - (void)saveCache
 {
-    NSString *cacheKey = [self getCacheKey];
-    if (! cacheKey) return;
+    NSString *filepath = [BJFileManager getCacheFilePath:[self getCacheKey]];
+    if (filepath == nil) return;
     
-    NSString *dir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *filepath = [NSString stringWithFormat:@"%@/%@", dir, cacheKey];
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithLongLong:_personId],@"person_id", _authToken,@"auth_token",_hostUrl,@"host_url", _appKey,@"app_key", nil];
     [dic writeToFile:filepath atomically:YES];
     

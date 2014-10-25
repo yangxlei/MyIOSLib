@@ -29,6 +29,18 @@
     return nil;
 }
 
++ (id)newJsonObject:(BOOL)array
+{
+    if (array)
+    {
+        return (id)[[NSMutableArray alloc] init];
+    }
+    else
+    {
+        return (id)[[NSMutableDictionary alloc] init];
+    }
+}
+
 + (id)decode:(NSData *)data
 {
     NSError *error = nil;
@@ -57,34 +69,104 @@
 
 @implementation NSDictionary(JsonObject)
 
-- (int)intValueForkey:(NSString *)key
+- (int)intValueForkey:(NSString *)key default:(int)_default
 {
     id value = [self valueForKey:key];
+    if (value == nil)
+    {
+        return _default;
+    }
     return [value intValue];
 }
 
-- (long long)longLongValueForKey:(NSString *)key
+- (long long)longLongValueForKey:(NSString *)key defalut:(long long)_default
 {
     id value = [self valueForKey:key];
+    if (value == nil)
+    {
+        return _default;
+    }
     return [value longLongValue];
 }
 
-- (BOOL)boolValueForKey:(NSString *)key
+- (BOOL)boolValueForKey:(NSString *)key default:(BOOL)_default
 {
     id value = [self valueForKey:key];
+    if (value == nil)
+    {
+        return _default;
+    }
     return [value boolValue];
 }
 
-- (float)floatValueForKey:(NSString *)key
+- (float)floatValueForKey:(NSString *)key default:(float)_default
 {
     id value = [self valueForKey:key];
+    if (value == nil)
+    {
+        return _default;
+    }
     return [value floatValue];
 }
 
-- (double)doubleValueForKey:(NSString *)key
+- (double)doubleValueForKey:(NSString *)key default:(double)_default
 {
     id value = [self valueForKey:key];
+    if (value == nil)
+    {
+        return _default;
+    }
     return [value doubleValue];
+}
+
+- (void)setIntValue:(int)value forKey:(NSString *)key
+{
+    if ([self isKindOfClass:[NSMutableDictionary class]])
+    {
+        [self setValue:[NSNumber numberWithInt:value] forKey:key];
+    }
+}
+
+- (void)setLongLongValue:(long long)value forKey:(NSString *)key
+{
+    if ([self isKindOfClass:[NSMutableDictionary class]])
+    {
+        [self setValue:[NSNumber numberWithLongLong:value] forKey:key];
+    }
+}
+
+- (void)setBoolValue:(long long)value forKey:(NSString *)key
+{
+    if ([self isKindOfClass:[NSMutableDictionary class]])
+    {
+        [self setValue:[NSNumber numberWithBool:value] forKey:key];
+    }
+}
+
+- (void)setFloatValue:(float)value forKey:(NSString *)key
+{
+    if ([self isKindOfClass:[NSMutableDictionary class]])
+    {
+        [self setValue:[NSNumber numberWithFloat:value] forKey:key];
+    }
+}
+
+- (void)setDoubleValue:(double)value forKey:(NSString *)key
+{
+    if ([self isKindOfClass:[NSMutableDictionary class]])
+    {
+        [self setValue:[NSNumber numberWithDouble:value] forKey:key];
+    }
+}
+
+- (NSString *)getError
+{
+    NSString *message = [self valueForKey:@"message"];
+    if (message == nil)
+    {
+        return @"现在连不上网络，请稍后重试";
+    }
+    return message;
 }
 
 @end
