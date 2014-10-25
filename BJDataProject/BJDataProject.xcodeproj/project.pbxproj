@@ -137,6 +137,13 @@
 			path = Task;
 			sourceTree = "<group>";
 		};
+		955BEC3F19FB45B600C04F90 /* network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = network;
+			sourceTree = "<group>";
+		};
 		958FE99219BA143200E33260 = {
 			isa = PBXGroup;
 			children = (
@@ -173,6 +180,7 @@
 		958FE9A619BA143200E33260 /* BJDataProject */ = {
 			isa = PBXGroup;
 			children = (
+				955BEC3F19FB45B600C04F90 /* network */,
 				955BEBFD19FA80A600C04F90 /* Task */,
 				958FE9D319BA144E00E33260 /* BJData */,
 				958FE9AF19BA143200E33260 /* AppDelegate.h */,
