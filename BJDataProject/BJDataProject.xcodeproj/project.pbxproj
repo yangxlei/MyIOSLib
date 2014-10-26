@@ -10,6 +10,7 @@
 		6EF9211C9E5CB9A5E0A13F3A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7097B1DE5796EA0143CC13F3 /* libPods.a */; };
 		9517608D19FB93FF00D1B241 /* BJPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 9517608C19FB93FF00D1B241 /* BJPerson.m */; };
 		9517609019FB987D00D1B241 /* APITask.m in Sources */ = {isa = PBXBuildFile; fileRef = 9517608F19FB987D00D1B241 /* APITask.m */; };
+		9517609319FB9C5400D1B241 /* BJSimpleCacheData.m in Sources */ = {isa = PBXBuildFile; fileRef = 9517609219FB9C5400D1B241 /* BJSimpleCacheData.m */; };
 		955BEBB719F23D3100C04F90 /* BJUserAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 955BEBB619F23D3100C04F90 /* BJUserAccount.m */; };
 		955BEC0019FA81F800C04F90 /* TaskQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 955BEBFF19FA81F800C04F90 /* TaskQueue.m */; };
 		955BEC3819FA87DC00C04F90 /* TaskItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 955BEC3719FA87DC00C04F90 /* TaskItem.m */; };
@@ -56,6 +57,8 @@
 		9517608C19FB93FF00D1B241 /* BJPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BJPerson.m; sourceTree = "<group>"; };
 		9517608E19FB987D00D1B241 /* APITask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APITask.h; sourceTree = "<group>"; };
 		9517608F19FB987D00D1B241 /* APITask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APITask.m; sourceTree = "<group>"; };
+		9517609119FB9C5400D1B241 /* BJSimpleCacheData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BJSimpleCacheData.h; sourceTree = "<group>"; };
+		9517609219FB9C5400D1B241 /* BJSimpleCacheData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BJSimpleCacheData.m; sourceTree = "<group>"; };
 		955BEBB519F23D3100C04F90 /* BJUserAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BJUserAccount.h; sourceTree = "<group>"; };
 		955BEBB619F23D3100C04F90 /* BJUserAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BJUserAccount.m; sourceTree = "<group>"; };
 		955BEBFE19FA81F800C04F90 /* TaskQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskQueue.h; sourceTree = "<group>"; };
@@ -269,6 +272,8 @@
 				955BEBB619F23D3100C04F90 /* BJUserAccount.m */,
 				9517608B19FB93FF00D1B241 /* BJPerson.h */,
 				9517608C19FB93FF00D1B241 /* BJPerson.m */,
+				9517609119FB9C5400D1B241 /* BJSimpleCacheData.h */,
+				9517609219FB9C5400D1B241 /* BJSimpleCacheData.m */,
 			);
 			path = BJData;
 			sourceTree = "<group>";
@@ -419,6 +424,7 @@
 				958FE9D719BA14D200E33260 /* BJData.m in Sources */,
 				958FE9AD19BA143200E33260 /* main.m in Sources */,
 				958FE9B419BA143200E33260 /* BJDataProject.xcdatamodeld in Sources */,
+				9517609319FB9C5400D1B241 /* BJSimpleCacheData.m in Sources */,
 				955BEC4619FB517F00C04F90 /* APIManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

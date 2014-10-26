@@ -11,6 +11,7 @@
 #import "BJUserAccount.h"
 #import "TaskQueue.h"
 #import "TestTaskItem.h"
+#import "JsonUtils.h"
 
 @interface RootViewController ()<BJDataDelegate, TaskItemDelegate, TaskQueueDelegate>
 {
@@ -81,13 +82,21 @@
 - (void)buttonAction:(id)sender
 {
     
-//    NSString *str = @"{\"aaa\":\"bbb\", \"ccc\":1, \"list\":[{\"name\":\"yl\", \"age\":23}]}";
-//    NSDictionary *dic = [str jsonValue];
-//    NSLog(@"%@", dic);
+    NSString *str = @"{\"aaa\":\"bbb\", \"ccc\":1, \"list\":[{\"name\":\"yl\", \"age\":23}], \"result\":{\"ext\":\"hehe\"}}";
+    NSDictionary *dic = [str jsonValue];
+    [dic setIntValue:1 forKey:@"sex"];
+    [dic removeValueForKey:@"aaa"];
+    NSArray *list = [dic arrayValueForKey:@"list"];
+//    [list addObject:[str jsonValue]];
+    [list removeObjectAt:0];
+    
+    NSDictionary *result = [dic dictionaryValueForKey:@"result"];
+    [result setDoubleValue:4.6 forKey:@"money"];
+    NSLog(@"%@", dic);
 //    NSArray *list = [dic valueForKey:@"list"];
 //    NSDictionary *item = [list objectAtIndex:0];
 //    NSLog(@"age : %d", [item intValueForkey:@"age" default:0]);
-//    
+//
 //    SecondViewController *second = [[SecondViewController alloc] init];
 //    [self.navigationController pushViewController:second animated:YES];
     

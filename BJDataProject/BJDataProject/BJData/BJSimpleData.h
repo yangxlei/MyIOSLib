@@ -9,6 +9,9 @@
 #import "BJData.h"
 #import "TaskQueue.h"
 
+/**
+ *  使用 Dictionary 的数据类型w 
+ */
 @interface BJSimpleData : BJData<TaskQueueDelegate>
 
 /**

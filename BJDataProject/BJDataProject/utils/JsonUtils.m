@@ -46,7 +46,20 @@
     NSError *error = nil;
     id object = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
     if (object != nil && error == nil)
-        return object;
+    {
+        if ([object isKindOfClass:[NSDictionary class]])
+        {
+            return [[NSMutableDictionary alloc] initWithDictionary:object];
+        }
+        else if ([object isKindOfClass:[NSArray class]])
+        {
+            return [[NSMutableArray alloc] initWithArray:object];
+        }
+        else
+        {
+            return object;
+        }
+    }
     return nil;
 }
 
@@ -61,7 +74,18 @@
     id result = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
     if (result != nil && error == nil)
     {
-        return result;
+        if ([result isKindOfClass:[NSDictionary class]])
+        {
+            return [[NSMutableDictionary alloc] initWithDictionary:result];
+        }
+        else if ([result isKindOfClass:[NSArray class]])
+        {
+            return [[NSMutableArray alloc] initWithArray:result];
+        }
+        else
+        {
+            return result;
+        }
     }
     return nil;
 }
@@ -69,54 +93,91 @@
 
 @implementation NSDictionary(JsonObject)
 
-- (int)intValueForkey:(NSString *)key default:(int)_default
+- (int)intValueForkey:(NSString *)key defaultValue:(int)defalutValue
 {
     id value = [self valueForKey:key];
     if (value == nil)
     {
-        return _default;
+        return defalutValue;
     }
     return [value intValue];
 }
 
-- (long long)longLongValueForKey:(NSString *)key defalut:(long long)_default
+- (long long)longLongValueForKey:(NSString *)key defalutValue:(long long)defalutValue
 {
     id value = [self valueForKey:key];
     if (value == nil)
     {
-        return _default;
+        return defalutValue;
     }
     return [value longLongValue];
 }
 
-- (BOOL)boolValueForKey:(NSString *)key default:(BOOL)_default
+- (BOOL)boolValueForKey:(NSString *)key defalutValue:(BOOL)defalutValue
 {
     id value = [self valueForKey:key];
     if (value == nil)
     {
-        return _default;
+        return defalutValue;
     }
     return [value boolValue];
 }
 
-- (float)floatValueForKey:(NSString *)key default:(float)_default
+- (float)floatValueForKey:(NSString *)key defalutValue:(float)defalutValue
 {
     id value = [self valueForKey:key];
     if (value == nil)
     {
-        return _default;
+        return defalutValue;
     }
     return [value floatValue];
 }
 
-- (double)doubleValueForKey:(NSString *)key default:(double)_default
+- (double)doubleValueForKey:(NSString *)key defalutValue:(double)defalutValue
 {
     id value = [self valueForKey:key];
     if (value == nil)
     {
-        return _default;
+        return defalutValue;
     }
     return [value doubleValue];
+}
+
+- (NSString *)stringValueForKey:(NSString *)key defaultValue:(NSString *)defaultValue
+{
+    id value = [self valueForKey:key];
+    if (value == nil)
+    {
+        return defaultValue;
+    }
+    
+    return value;
+}
+
+- (NSDictionary *)dictionaryValueForKey:(NSString *)key
+{
+    id value = [self valueForKey:key];
+    if (value == nil)
+        return nil;
+    
+    if (![value isKindOfClass:[NSDictionary class]])
+        return nil;
+    
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] initWithDictionary:value];
+    [self setValue:dic forKey:key];
+    
+    return dic;
+}
+
+- (NSArray *)arrayValueForKey:(NSString *)key
+{
+    id value = [self valueForKey:key];
+    if (value == nil)
+        return nil;
+   
+    NSMutableArray *array = [[NSMutableArray alloc] initWithArray:value];
+    [self setValue:array forKey:key];
+    return array;
 }
 
 - (void)setIntValue:(int)value forKey:(NSString *)key
@@ -155,7 +216,15 @@
 {
     if ([self isKindOfClass:[NSMutableDictionary class]])
     {
-        [self setValue:[NSNumber numberWithDouble:value] forKey:key];
+        [(NSMutableDictionary*)self setValue:[NSNumber numberWithDouble:value] forKey:key];
+    }
+}
+
+- (void)removeValueForKey:(NSString *)key
+{
+    if ([self isKindOfClass:[NSMutableDictionary class]])
+    {
+        [(NSMutableDictionary *)self removeObjectForKey:key];
     }
 }
 
@@ -167,6 +236,34 @@
         return @"现在连不上网络，请稍后重试";
     }
     return message;
+}
+
+@end
+
+@implementation NSArray(JsonObject)
+
+- (void)addObject:(id)object
+{
+    if ([self isKindOfClass:[NSMutableArray class]])
+    {
+        [(NSMutableArray*)self insertObject:object atIndex:[self count]];
+    }
+}
+
+- (void)insertobjectHead:(id)object
+{
+    if ([self isKindOfClass:[NSMutableArray class]])
+    {
+        [(NSMutableArray*)self insertObject:object atIndex:0];
+    }
+}
+
+- (void)removeObjectAt:(NSInteger)index
+{
+    if ([self isKindOfClass:[NSMutableArray class]])
+    {
+        [(NSMutableArray*)self removeObjectAtIndex:index];
+    }
 }
 
 @end

@@ -23,8 +23,8 @@
 
 enum _account_ope
 {
-    ACCOUNT_LOGIN,
-    ACCOUNT_LOGOUT
+    ACCOUNT_LOGIN = 11,
+    ACCOUNT_LOGOUT = 12,
 }ACCOUNT_OPERATION;
 
 @interface BJUserAccount : BJData

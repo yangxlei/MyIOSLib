@@ -39,11 +39,14 @@
 
 @interface NSDictionary(JsonObject)
 
-- (int)intValueForkey:(NSString *)key default:(int)_default;
-- (long long)longLongValueForKey:(NSString *)key defalut:(long long)_default;
-- (BOOL)boolValueForKey:(NSString *)key default:(BOOL)_default;
-- (float)floatValueForKey:(NSString *)key default:(float)_default;
-- (double)doubleValueForKey:(NSString *)key default:(double)_default;
+- (int)intValueForkey:(NSString *)key defaultValue:(int)defalutValue;
+- (long long)longLongValueForKey:(NSString *)key defalutValue:(long long)defalutValue;
+- (BOOL)boolValueForKey:(NSString *)key defalutValue:(BOOL)defalutValue;
+- (float)floatValueForKey:(NSString *)key defalutValue:(float)defalutValue;
+- (double)doubleValueForKey:(NSString *)key defalutValue:(double)defalutValue;
+- (NSString *)stringValueForKey:(NSString *)key defaultValue:(NSString *)defaultValue;
+- (NSDictionary *)dictionaryValueForKey:(NSString *)key;
+- (NSArray *)arrayValueForKey:(NSString *)key;
 
 - (void)setIntValue:(int)value forKey:(NSString *)key;
 - (void)setLongLongValue:(long long)value forKey:(NSString *)key;
@@ -51,7 +54,15 @@
 - (void)setFloatValue:(float)value forKey:(NSString *)key;
 - (void)setDoubleValue:(double)value forKey:(NSString *)key;
 
+- (void)removeValueForKey:(NSString *)key;
+
 
 - (NSString *)getError;
 
+@end
+
+@interface NSArray(JsonObject)
+- (void)addObject:(id)object;
+- (void)insertobjectHead:(id)object;
+- (void)removeObjectAt:(NSInteger)index;
 @end
