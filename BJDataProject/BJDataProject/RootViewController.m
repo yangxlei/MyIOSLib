@@ -92,6 +92,7 @@
     
     NSDictionary *result = [dic dictionaryValueForKey:@"result"];
     [result setDoubleValue:4.6 forKey:@"money"];
+    [result setValue:@"haha" forKey:@"ext"];
     NSLog(@"%@", dic);
 //    NSArray *list = [dic valueForKey:@"list"];
 //    NSDictionary *item = [list objectAtIndex:0];

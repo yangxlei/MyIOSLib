@@ -13,6 +13,9 @@
  *  使用 Dictionary 的数据类型w 
  */
 @interface BJSimpleData : BJData<TaskQueueDelegate>
+{
+    TaskQueue *_taskQueue;
+}
 
 /**
   当前 BJData 的 json 数据

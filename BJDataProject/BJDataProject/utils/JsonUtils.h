@@ -23,6 +23,14 @@
  */
 + (id)decode:(NSData *)data;
 
+/**
+ *  用于创建 JSON 对象或数组
+ *  建议，应用中所有用到 Dictionary 或者 array 的地方都使用这个函数调用
+ *
+ *  @param array bool，是否要创建数组
+ *
+ *  @return
+ */
 + (id)newJsonObject:(BOOL)array;
 
 

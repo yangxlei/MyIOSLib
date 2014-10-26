@@ -13,6 +13,8 @@
 		9517608D19FB93FF00D1B241 /* BJPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 9517608C19FB93FF00D1B241 /* BJPerson.m */; };
 		9517609019FB987D00D1B241 /* APITask.m in Sources */ = {isa = PBXBuildFile; fileRef = 9517608F19FB987D00D1B241 /* APITask.m */; };
 		9517609319FB9C5400D1B241 /* BJSimpleCacheData.m in Sources */ = {isa = PBXBuildFile; fileRef = 9517609219FB9C5400D1B241 /* BJSimpleCacheData.m */; };
+		951760C419FD33A800D1B241 /* TimeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 951760C119FD33A800D1B241 /* TimeUtils.m */; };
+		951760C519FD33A800D1B241 /* CTime.c in Sources */ = {isa = PBXBuildFile; fileRef = 951760C219FD33A800D1B241 /* CTime.c */; };
 		955BEBB719F23D3100C04F90 /* BJUserAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 955BEBB619F23D3100C04F90 /* BJUserAccount.m */; };
 		955BEC0019FA81F800C04F90 /* TaskQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 955BEBFF19FA81F800C04F90 /* TaskQueue.m */; };
 		955BEC3819FA87DC00C04F90 /* TaskItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 955BEC3719FA87DC00C04F90 /* TaskItem.m */; };
@@ -65,6 +67,10 @@
 		9517608F19FB987D00D1B241 /* APITask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APITask.m; sourceTree = "<group>"; };
 		9517609119FB9C5400D1B241 /* BJSimpleCacheData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BJSimpleCacheData.h; sourceTree = "<group>"; };
 		9517609219FB9C5400D1B241 /* BJSimpleCacheData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BJSimpleCacheData.m; sourceTree = "<group>"; };
+		951760C019FD33A800D1B241 /* TimeUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeUtils.h; sourceTree = "<group>"; };
+		951760C119FD33A800D1B241 /* TimeUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeUtils.m; sourceTree = "<group>"; };
+		951760C219FD33A800D1B241 /* CTime.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CTime.c; sourceTree = "<group>"; };
+		951760C319FD33A800D1B241 /* CTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTime.h; sourceTree = "<group>"; };
 		955BEBB519F23D3100C04F90 /* BJUserAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BJUserAccount.h; sourceTree = "<group>"; };
 		955BEBB619F23D3100C04F90 /* BJUserAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BJUserAccount.m; sourceTree = "<group>"; };
 		955BEBFE19FA81F800C04F90 /* TaskQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskQueue.h; sourceTree = "<group>"; };
@@ -176,6 +182,10 @@
 		955BEC4719FB518D00C04F90 /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				951760C019FD33A800D1B241 /* TimeUtils.h */,
+				951760C119FD33A800D1B241 /* TimeUtils.m */,
+				951760C219FD33A800D1B241 /* CTime.c */,
+				951760C319FD33A800D1B241 /* CTime.h */,
 				955BEC4819FB51B500C04F90 /* JsonUtils.h */,
 				955BEC4919FB51B500C04F90 /* JsonUtils.m */,
 				955BEC4B19FB711A00C04F90 /* BJFileManager.h */,
@@ -425,6 +435,7 @@
 				955BEBB719F23D3100C04F90 /* BJUserAccount.m in Sources */,
 				955BEC3E19FAC41C00C04F90 /* TestTaskItem2.m in Sources */,
 				955BEC3B19FAB44500C04F90 /* TestTaskItem.m in Sources */,
+				951760C419FD33A800D1B241 /* TimeUtils.m in Sources */,
 				2538CB6F19FBA7C70099ED2C /* HTTPRequest.m in Sources */,
 				95AE53B519C932E70008ED0B /* RootViewController.m in Sources */,
 				955BEC4A19FB51B500C04F90 /* JsonUtils.m in Sources */,
@@ -437,6 +448,7 @@
 				958FE9AD19BA143200E33260 /* main.m in Sources */,
 				958FE9B419BA143200E33260 /* BJDataProject.xcdatamodeld in Sources */,
 				9517609319FB9C5400D1B241 /* BJSimpleCacheData.m in Sources */,
+				951760C519FD33A800D1B241 /* CTime.c in Sources */,
 				955BEC4619FB517F00C04F90 /* APIManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

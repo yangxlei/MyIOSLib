@@ -11,9 +11,6 @@
 #import "JsonUtils.h"
 
 @interface BJSimpleData()
-{
-    TaskQueue *_taskQueue;
-}
 
 @end
 
