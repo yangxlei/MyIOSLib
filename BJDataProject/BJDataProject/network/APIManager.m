@@ -7,23 +7,15 @@
 //
 
 #import "APIManager.h"
+#import "HTTPRequest.h"
+#import "HTTPResult.h"
 
-/************** APIItem *************************/
-/**
-    内部类，用于描述个请求
- */
-@interface APIItem : NSObject
-
-@end
-
-@implementation APIItem
-
-
-@end
 /***************************************/
 
 
 
 @implementation APIManager
+
+
 
 @end
