@@ -144,6 +144,7 @@
     item.progressCallback = progressCallback;
     item.finishCallback = finishCallback;
     //TODO httpRequst, api sign
+    item.url = [self signatureApiWithGet:api account:item.account];
     return item.taskID;
 }
 
