@@ -220,14 +220,9 @@
     if ([self jsonTypeForKey:key] == JSON_VALUE_NIL)
         return nil;
     
-//    if (([self jsonTypeForKey:key] != JSON_VALUE_NSDictaionary))
-//    {
-//        NSAssert(0, @"%s key对应的类型不是NSDictionary的",__func__);
-//        return nil;
-//    }
-    
     if (! [value isKindOfClass:[NSDictionary class]])
     {
+        NSAssert(0, @"%s key对应的类型不是NSDictionary的",__func__);
         return nil;
     }
     
@@ -243,11 +238,11 @@
     if ([self jsonTypeForKey:key] == JSON_VALUE_NIL)
         return nil;
     
-    if ([self jsonTypeForKey:key] != JSON_VALUE_NSArray)
-    {
+    if (![value isKindOfClass:[NSArray class]]) {
         NSAssert(0, @"%s key对应的类型不是NSArray的",__func__);
         return nil;
     }
+    
     NSMutableArray *array = [[NSMutableArray alloc] initWithArray:value];
     [self setValue:array forKey:key];
     return array;
