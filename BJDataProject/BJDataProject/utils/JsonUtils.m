@@ -125,7 +125,7 @@
     if ([self jsonTypeForKey:key] == JSON_VALUE_NSString ||
         [self jsonTypeForKey:key] == JSON_VALUE_NSNumber)
     {
-        NSAssert(1, @"%s,key对应的值不是NSString或者NSNumber类型",__func__);
+        NSAssert(0, @"%s,key对应的值不是NSString或者NSNumber类型",__func__);
         return NO;
     }
     else
@@ -248,7 +248,7 @@
         [self setValue:[NSNumber numberWithInt:value] forKey:key];
     }
     else
-        NSAssert(1, @"%s 当前类不是NSMutableDictionary类型的",__func__);
+        NSAssert(0, @"%s 当前类不是NSMutableDictionary类型的",__func__);
 }
 
 - (void)setLongLongValue:(long long)value forKey:(NSString *)key
@@ -258,7 +258,7 @@
         [self setValue:[NSNumber numberWithLongLong:value] forKey:key];
     }
     else
-        NSAssert(1, @"%s 当前类不是NSMutableDictionary类型的",__func__);
+        NSAssert(0, @"%s 当前类不是NSMutableDictionary类型的",__func__);
 }
 
 - (void)setBoolValue:(long long)value forKey:(NSString *)key
@@ -268,7 +268,7 @@
         [self setValue:[NSNumber numberWithBool:value] forKey:key];
     }
     else
-        NSAssert(1, @"%s 当前类不是NSMutableDictionary类型的",__func__);
+        NSAssert(0, @"%s 当前类不是NSMutableDictionary类型的",__func__);
 }
 
 - (void)setFloatValue:(float)value forKey:(NSString *)key
@@ -278,7 +278,7 @@
         [self setValue:[NSNumber numberWithFloat:value] forKey:key];
     }
     else
-        NSAssert(1, @"%s 当前类不是NSMutableDictionary类型的",__func__);
+        NSAssert(0, @"%s 当前类不是NSMutableDictionary类型的",__func__);
 }
 
 - (void)setDoubleValue:(double)value forKey:(NSString *)key
@@ -288,7 +288,7 @@
         [(NSMutableDictionary*)self setValue:[NSNumber numberWithDouble:value] forKey:key];
     }
     else
-        NSAssert(1, @"%s 当前类不是NSMutableDictionary类型的",__func__);
+        NSAssert(0, @"%s 当前类不是NSMutableDictionary类型的",__func__);
 }
 
 - (JsonValueType)jsonTypeForKey:(NSString *)key
@@ -320,11 +320,14 @@
         [(NSMutableDictionary *)self removeObjectForKey:key];
     }
     else
-        NSAssert(1, @"%s 当前类不是NSMutableDictionary类型的",__func__);
+        NSAssert(0, @"%s 当前类不是NSMutableDictionary类型的",__func__);
 }
 
 - (void)addObject:(id)object forKey:(NSString *)key
 {
+    if (!object) {
+        return;
+    }
     id value = [self arrayValueForKey:key];
     if (value) {
         [value addObject:object];
@@ -338,6 +341,9 @@
 
 - (void)insertObjectHead:(id)object forKey:(NSString *)key
 {
+    if (!object) {
+        return;
+    }
     id value = [self arrayValueForKey:key];
     if (value) {
         [value insertObject:object atIndex:0];
@@ -352,7 +358,7 @@
 - (void)removeObjectAt:(NSInteger)index forKey:(NSString *)key
 {
     id value = [self arrayValueForKey:key];
-    if (value) {
+    if (value && [value count]>index) {
         [value removeObjectAtIndex:index];
     }
     else
