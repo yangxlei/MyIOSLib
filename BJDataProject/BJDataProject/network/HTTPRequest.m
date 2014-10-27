@@ -55,7 +55,7 @@ static int REQUSET_TIME_OUT = 10;
     NSAssert([NSRunLoop mainRunLoop]==[NSRunLoop currentRunLoop], @"AFNetWork 不是在主线程返回，修改此处");//临时测试，看看是不是在主线程，如果不在，切换到主线程
     self.isFinish = YES;
     if (self.resultCallback && !self.isCancel) {
-        HTTPResult *result = [[HTTPResult alloc] initWithResult:self response:responseObject error:Nil];
+        HTTPResult *result = [[HTTPResult alloc] initWithRequest:self response:responseObject error:Nil];
         self.resultCallback(self, result);
     }
 }
@@ -65,7 +65,7 @@ static int REQUSET_TIME_OUT = 10;
     NSAssert([NSRunLoop mainRunLoop]==[NSRunLoop currentRunLoop], @"AFNetWork 不是在主线程返回，修改此处");
     self.isFinish = YES;
     if (self.resultCallback && !self.isCancel) {
-        HTTPResult *result = [[HTTPResult alloc] initWithResult:self response:nil error:error];
+        HTTPResult *result = [[HTTPResult alloc] initWithRequest:self response:nil error:error];
         self.resultCallback(self, result);
     }
 }
