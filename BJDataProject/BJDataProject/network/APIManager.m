@@ -119,7 +119,30 @@
 
 - (void)cancelRequest:(NSInteger)taskId
 {
+    __weak typeof(self) tempSelf = self;
+    [_waitConnectionQueue enumerateObjectsUsingBlock:^(APIItem *apiItem, NSUInteger idx, BOOL *stop) {
+       if (apiItem.taskID == taskId)
+       {
+           [apiItem.httpRequest cancelRequest];
+           [tempSelf cleanApiItem:apiItem];
+           // 待测试
+           [_waitConnectionQueue removeObject:apiItem];
+           [tempSelf updateAPIItemInQueue];
+          *stop = YES;
+       }
+    }];
     
+    [_connectionQueue enumerateObjectsUsingBlock:^(APIItem *apiItem, NSUInteger idx, BOOL *stop) {
+        if (apiItem.taskID == taskId)
+        {
+            [apiItem.httpRequest cancelRequest];
+            [tempSelf cleanApiItem:apiItem];
+            // 待测试
+            [_connectionQueue removeObject:apiItem];
+            [tempSelf updateAPIItemInQueue];
+            *stop = YES;
+        }
+    }];
 }
 
 /**
@@ -387,7 +410,7 @@
             apiItem.finishCallback(apiItem.httpRequest, result);
             [tempSelf cleanApiItem:apiItem];
             // 待测试
-            [_waitConnectionQueue removeObject:apiItem];
+            [_connectionQueue removeObject:apiItem];
         }
     }];
 }
