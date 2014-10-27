@@ -243,7 +243,7 @@
 
 - (void)setIntValue:(int)value forKey:(NSString *)key
 {
-    if ([self jsonTypeForKey:key] == JSON_Value_NSMutableDictionary)
+    if ([self isKindOfClass:[NSMutableDictionary class]])
     {
         [self setValue:[NSNumber numberWithInt:value] forKey:key];
     }
@@ -253,7 +253,7 @@
 
 - (void)setLongLongValue:(long long)value forKey:(NSString *)key
 {
-    if ([self jsonTypeForKey:key] == JSON_Value_NSMutableDictionary)
+    if ([self isKindOfClass:[NSMutableDictionary class]])
     {
         [self setValue:[NSNumber numberWithLongLong:value] forKey:key];
     }
@@ -263,7 +263,7 @@
 
 - (void)setBoolValue:(long long)value forKey:(NSString *)key
 {
-    if ([self jsonTypeForKey:key] == JSON_Value_NSMutableDictionary)
+    if ([self isKindOfClass:[NSMutableDictionary class]])
     {
         [self setValue:[NSNumber numberWithBool:value] forKey:key];
     }
@@ -273,7 +273,7 @@
 
 - (void)setFloatValue:(float)value forKey:(NSString *)key
 {
-    if ([self jsonTypeForKey:key] == JSON_Value_NSMutableDictionary)
+    if ([self isKindOfClass:[NSMutableDictionary class]])
     {
         [self setValue:[NSNumber numberWithFloat:value] forKey:key];
     }
@@ -283,7 +283,7 @@
 
 - (void)setDoubleValue:(double)value forKey:(NSString *)key
 {
-    if ([self jsonTypeForKey:key] == JSON_Value_NSMutableDictionary)
+    if ([self isKindOfClass:[NSMutableDictionary class]])
     {
         [(NSMutableDictionary*)self setValue:[NSNumber numberWithDouble:value] forKey:key];
     }
@@ -309,13 +309,13 @@
         return JSON_VALUE_NSDictaionary;
     else if ([value isKindOfClass:[NSNumber class]])
         return JSON_VALUE_NSNumber;
-    
-    return JSON_VALUE_NIL;
+    else
+        return JSON_VALUE_NIL;
 }
 
 - (void)removeValueForKey:(NSString *)key
 {
-    if ([self jsonTypeForKey:key] == JSON_Value_NSMutableDictionary)
+    if ([self isKindOfClass:[NSMutableDictionary class]])
     {
         [(NSMutableDictionary *)self removeObjectForKey:key];
     }
