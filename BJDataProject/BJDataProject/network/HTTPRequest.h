@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <AFNetworking.h>
-
+#import "APIManager.h"
 /************** HTTPRequest *************************/
 /**
  内部类，用于描述个请求
@@ -23,7 +23,6 @@ REQUSET_ITEM_TYPE;
 
 @class HTTPRequest;
 @class HTTPResult;
-typedef void (^HTTPRequestResult)(HTTPRequest *request,HTTPResult *result);
 
 @interface HTTPRequest : NSObject
 @property (assign, readonly, nonatomic)NSUInteger taskID;
@@ -46,8 +45,8 @@ typedef void (^HTTPRequestResult)(HTTPRequest *request,HTTPResult *result);
 @property (assign, nonatomic)BOOL isFinish;
 
 - (instancetype)initWithUrl:(NSString *)url
-                       type:(REQUSET_ITEM_TYPE)type
-                   callback:(HTTPRequestResult)result;
-- (void)starRequest:(HTTPRequestResult)callback; 
+                       type:(REQUSET_ITEM_TYPE)type;
+- (void)startRequest:(apiRequestFinishCallback)callback;
+- (void)startRequest:(apiRequestFinishCallback)callback progress:(apiRequestProgressCallback)proCallback;
 - (void)cancelRequest;
 @end
