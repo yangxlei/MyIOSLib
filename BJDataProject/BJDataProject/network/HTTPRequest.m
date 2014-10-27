@@ -55,7 +55,7 @@ static int REQUSET_TIME_OUT = 10;
     NSAssert([NSRunLoop mainRunLoop]==[NSRunLoop currentRunLoop], @"AFNetWork 不是在主线程返回，修改此处");//临时测试，看看是不是在主线程，如果不在，切换到主线程
     self.isFinish = YES;
     if (self.resultCallback && !self.isCancel) {
-        HTTPResult *result = [[HTTPResult alloc] initWithResult:self response:responseObject error:Nil];
+        HTTPResult *result = [[HTTPResult alloc] initWithRequest:self response:responseObject error:Nil];
         self.resultCallback(self, result);
     }
 }
@@ -65,7 +65,7 @@ static int REQUSET_TIME_OUT = 10;
     NSAssert([NSRunLoop mainRunLoop]==[NSRunLoop currentRunLoop], @"AFNetWork 不是在主线程返回，修改此处");
     self.isFinish = YES;
     if (self.resultCallback && !self.isCancel) {
-        HTTPResult *result = [[HTTPResult alloc] initWithResult:self response:nil error:error];
+        HTTPResult *result = [[HTTPResult alloc] initWithRequest:self response:nil error:error];
         self.resultCallback(self, result);
     }
 }
@@ -83,6 +83,7 @@ static int REQUSET_TIME_OUT = 10;
 
 - (void)startRequest:(apiRequestFinishCallback)callback
 {
+    NSLog(@"发起请求 url:%@,taskID:%d,parameter:%@",self.url,(int)self.taskID,self.parameters);
     __weak HTTPRequest *theModel = self;
     self.resultCallback = callback;
     AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:@""]];
@@ -98,8 +99,6 @@ static int REQUSET_TIME_OUT = 10;
             client.parameterEncoding = AFFormURLParameterEncoding;
             if (!self.forms) {
                 request = [client requestWithMethod:@"POST" path:self.url parameters:self.parameters];
-                [request addValue:@"text/html" forHTTPHeaderField:@"Content-Type"];
-                [request addValue:@"gzip" forHTTPHeaderField:@"Content-Encoding"];
             }
             else
                 request = [client multipartFormRequestWithMethod:@"POST" path:self.url parameters:self.parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
@@ -112,10 +111,12 @@ static int REQUSET_TIME_OUT = 10;
     }
     
     if (request) {//使用jsonOre请求数据，返回解析好的json数据
+        [request addValue:@"gzip" forHTTPHeaderField:@"Content-Encoding"];
         request.timeoutInterval = self.timeout;
-        self.requestOper = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-            [theModel requestHandleSuc:JSON];
-        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+        self.requestOper = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+        [self.requestOper setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+            [theModel requestHandleSuc:responseObject];
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             [theModel requestHandleError:error];
         }];
         
@@ -143,8 +144,6 @@ static int REQUSET_TIME_OUT = 10;
                     break;
             }
         }
-
-        [client enqueueHTTPRequestOperation:self.requestOper];
     }
 }
 
@@ -156,6 +155,7 @@ static int REQUSET_TIME_OUT = 10;
 
 - (void)cancelRequest
 {
+    self.isFinish = YES;
     if (self.requestOper) {
         [self.requestOper cancel];
     }

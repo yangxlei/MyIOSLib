@@ -394,7 +394,7 @@
     [_waitConnectionQueue enumerateObjectsUsingBlock:^(APIItem *apiItem, NSUInteger idx, BOOL *stop) {
         if (apiItem.account == account)
         {
-            HTTPResult *result = [[HTTPResult alloc] initWithResult:apiItem.httpRequest code:ERROR_CANCEL];
+            HTTPResult *result = [[HTTPResult alloc] initWithRequest:apiItem.httpRequest code:ERROR_CANCEL];
             [apiItem.httpRequest cancelRequest];
             apiItem.finishCallback(apiItem.httpRequest, result);
             [tempSelf cleanApiItem:apiItem];
@@ -406,7 +406,7 @@
     [_connectionQueue enumerateObjectsUsingBlock:^(APIItem *apiItem, NSUInteger idx, BOOL *stop) {
         if (apiItem.account == account)
         {
-            HTTPResult *result = [[HTTPResult alloc] initWithResult:apiItem.httpRequest code:ERROR_CANCEL];
+            HTTPResult *result = [[HTTPResult alloc] initWithRequest:apiItem.httpRequest code:ERROR_CANCEL];
             [apiItem.httpRequest cancelRequest];
             apiItem.finishCallback(apiItem.httpRequest, result);
             [tempSelf cleanApiItem:apiItem];
