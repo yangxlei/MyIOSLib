@@ -18,9 +18,9 @@
 @property (strong, readonly, nonatomic)NSString *reason;
 @property (strong, readonly ,nonatomic)NSDictionary *parameters;
 
-- (instancetype)initWithResult:(HTTPRequest *)request
+- (instancetype)initWithRequest:(HTTPRequest *)request
                       response:(id)responseObject
                          error:(NSError *)error;
 
-- (instancetype)initWithResult:(HTTPRequest *)request code:(BJDATA_ERROR_CODE)code;
+- (instancetype)initWithRequest:(HTTPRequest *)request code:(BJDATA_ERROR_CODE)code;
 @end

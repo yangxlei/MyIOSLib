@@ -13,7 +13,7 @@
 
 @implementation HTTPResult
 
-- (instancetype)initWithResult:(HTTPRequest *)request
+- (instancetype)initWithRequest:(HTTPRequest *)request
                       response:(id)responseObject
                          error:(NSError *)error
 {
@@ -42,7 +42,7 @@
     return self;
 }
 
-- (instancetype)initWithResult:(HTTPRequest *)request code:(BJDATA_ERROR_CODE)code
+- (instancetype)initWithRequest:(HTTPRequest *)request code:(BJDATA_ERROR_CODE)code
 {
     self = [super init];
     if (self)
