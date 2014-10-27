@@ -12,7 +12,6 @@
 #include "MD5.h"
 #include "CTime.h"
 #import "HTTPRequest.h"
-#import "HTTPResult.h"
 #import "JsonUtils.h"
 
 @interface APIItem : NSObject
@@ -77,7 +76,7 @@
     return self;
 }
 
-- (NSInteger)requestWithGetAPI:(NSString *)api
+- (NSInteger)requestAPIWithGet:(NSString *)api
                       callback:(apiRequestFinishCallback)callback
 {
     return [self createAPIItemWithGet:api
@@ -85,7 +84,7 @@
                        finishCallback:callback];
 }
 
-- (NSInteger)requestWithPostAPI:(NSString *)api
+- (NSInteger)requestAPIWithPost:(NSString *)api
                        postBody:(NSDictionary *)postBody
                        callback:(apiRequestFinishCallback)callback
 {

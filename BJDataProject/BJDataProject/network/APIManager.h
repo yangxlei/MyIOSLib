@@ -7,10 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "HTTPResult.h"
 
 #import "Common.h"
+
 @class HTTPRequest;
-@class HTTPResult;
 
 typedef void (^apiRequestFinishCallback)(HTTPRequest *request,HTTPResult *result);
 typedef void (^apiRequestProgressCallback)(HTTPRequest *request, long long current, long long total);
@@ -44,7 +45,7 @@ typedef void (^apiRequestProgressCallback)(HTTPRequest *request, long long curre
  *
  *  @return 当前请求任务 ID, 在外部可用于主动取消本次请求
  */
-- (NSInteger)requestWithGetAPI:(NSString *)api
+- (NSInteger)requestAPIWithGet:(NSString *)api
                       callback:(apiRequestFinishCallback)callback;
 
 /**
@@ -56,7 +57,7 @@ typedef void (^apiRequestProgressCallback)(HTTPRequest *request, long long curre
  *
  *  @return 当前请求任务 ID, 在外部可用于主动取消本次请求
  */
-- (NSInteger)requestWithPostAPI:(NSString *)api
+- (NSInteger)requestAPIWithPost:(NSString *)api
                        postBody:(NSDictionary *)postBody
                        callback:(apiRequestFinishCallback)callback;
 

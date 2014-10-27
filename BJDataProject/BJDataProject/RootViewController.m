@@ -84,10 +84,14 @@
 
 - (void)buttonAction:(id)sender
 {
-    
-    NSInteger taskId = [[APIManager shareInstance] requestWithGetAPI:@"/teacher_center/info" callback:^(HTTPRequest *request, HTTPResult *result) {
-        NSLog(@"%@", result);
+    NSDictionary *param = [NSDictionary dictionaryWithObjectsAndKeys:@"18611579546",@"value", @"123456", @"password", nil];
+    NSInteger taskId = [[APIManager shareInstance] requestAPIWithPost:@"/auth/teacherLogin" postBody:param callback:^(HTTPRequest *request, HTTPResult *result) {
+        NSDictionary *_result = [result.data dictionaryValueForKey:@"result"];
+        NSString *token = [_result stringValueForKey:@"auth_token" defaultValue:nil];
+        NSDictionary *person = [_result dictionaryValueForKey:@"person"];
+        [[[Common shareInstance] getMainAccount] loginWithPerson:[person longLongValueForKey:@"id" defalutValue:0] token:token];
     }];
+    NSLog(@"task:%d", (int)taskId);
 //    [[APIManager shareInstance] cancelRequest:taskId];
 //    NSString *api = @"/teacher_center/info?&name=xxx&age=22";
 //    
