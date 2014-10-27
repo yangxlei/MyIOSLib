@@ -87,6 +87,7 @@ typedef enum {
 /**
  *  给一个key对应的数组添加对象,添加到数组的最后面
  *  如果对应的值不是NSMutableArray 类型，则自动转换NSMutableArray
+ *  如果对应的值为空，则自动创建NSMutableArray对象
  *
  *  @param object 要添加的对象
  *  @param key    数组对应的key
@@ -95,14 +96,16 @@ typedef enum {
 /**
  *  给一个key对应的数组添加对象,添加到数组的最前面
  *  如果对应的值不是NSMutableArray 类型，则自动转换NSMutableArray
+ *  如果对应的值为空，则自动创建NSMutableArray对象
  *
  *  @param object 要添加的对象
  *  @param key    数组对应的key
  */
 - (void)insertObjectHead:(id)object forKey:(NSString *)key;
 /**
- *  给一个key对应的数组添加对象，如果对应的值不是NSMutableArray 类型
- *  则自动转换为NSMutableArray
+ *  给一个key对应的数组添加对象
+ *  如果对应的值不是NSMutableArray 类型 则自动转换为NSMutableArray
+ *  如果对应的值为空，则自动创建NSMutableArray对象
  *
  *  @param index 要删除的数组下标
  *  @param key   数组对应的key
