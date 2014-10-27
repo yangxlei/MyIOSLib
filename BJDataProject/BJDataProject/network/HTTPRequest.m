@@ -15,7 +15,8 @@ static int REQUSET_TIME_OUT = 10;
 
 @interface HTTPRequest ()
 @property (strong, nonatomic)AFHTTPRequestOperation *requestOper;
-@property (copy, nonatomic)HTTPRequestResult resultCallback;
+@property (copy, nonatomic)apiRequestFinishCallback resultCallback;
+@property (copy, nonatomic)apiRequestProgressCallback progressCallback;
 @property (assign, nonatomic)BOOL isCancel;
 @end
 
@@ -23,13 +24,11 @@ static int REQUSET_TIME_OUT = 10;
 
 - (instancetype)initWithUrl:(NSString *)url
                        type:(REQUSET_ITEM_TYPE)type
-                   callback:(HTTPRequestResult)result
 {
     self = [super init];
     if (self) {
         _url = url;
         _type = type;
-        _resultCallback = result;
         _timeout = REQUSET_TIME_OUT;
         REQUSET_TASK_ID++;
         if (REQUSET_TASK_ID == NSUIntegerMax) {
@@ -82,13 +81,13 @@ static int REQUSET_TIME_OUT = 10;
     }
 }
 
-- (void)starRequest:(HTTPRequestResult)callback
+- (void)startRequest:(apiRequestFinishCallback)callback
 {
     __weak HTTPRequest *theModel = self;
-    
+    self.resultCallback = callback;
     AFHTTPClient *client = [[AFHTTPClient alloc] init];
     NSMutableURLRequest *request = nil;
-    switch (self.type) {
+    switch (self.type) {//获取对应的request
         case REQUSET_ITEM_TYPE_GET:
         {
             request = [client requestWithMethod:@"GET" path:self.url parameters:self.parameters];
@@ -110,14 +109,47 @@ static int REQUSET_TIME_OUT = 10;
             break;
     }
     
-    if (request) {
+    if (request) {//使用jsonOre请求数据，返回解析好的json数据
+        request.timeoutInterval = self.timeout;
         self.requestOper = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
             [theModel requestHandleSuc:JSON];
         } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
             [theModel requestHandleError:error];
         }];
+        
+        if (self.progressCallback) {//如果是上传和下载，添加进度
+            switch (self.type) {
+                case REQUSET_ITEM_TYPE_GET:
+                {
+                    [self.requestOper setDownloadProgressBlock:^(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead) {
+                        if (theModel && !theModel.isCancel) {
+                            theModel.progressCallback(theModel, totalBytesRead,totalBytesExpectedToRead);
+                        }
+                    }];
+                    break;
+                }
+                case REQUSET_ITEM_TYPE_POST_FORM:
+                {
+                    [self.requestOper setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
+                        if (theModel && !theModel.isCancel) {
+                            theModel.progressCallback(theModel, totalBytesWritten,totalBytesExpectedToWrite);
+                        }
+                    }];
+                    break;
+                }
+                default:
+                    break;
+            }
+        }
+
         [client enqueueHTTPRequestOperation:self.requestOper];
     }
+}
+
+- (void)startRequest:(apiRequestFinishCallback)callback progress:(apiRequestProgressCallback)proCallback
+{
+    self.progressCallback = proCallback;
+    [self startRequest:callback];
 }
 
 - (void)cancelRequest

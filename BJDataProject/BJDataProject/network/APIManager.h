@@ -7,13 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "HTTPRequest.h"
-#import "HTTPResult.h"
-#import "Common.h"
 
+#import "Common.h"
+@class HTTPRequest;
+@class HTTPResult;
 
 typedef void (^apiRequestFinishCallback)(HTTPRequest *request,HTTPResult *result);
-typedef void (^apiRequestProgressCallback)(HTTPRequest *request, NSInteger current, NSInteger total);
+typedef void (^apiRequestProgressCallback)(HTTPRequest *request, long long current, long long total);
 
 /**
     接口管理器，所有接口请求

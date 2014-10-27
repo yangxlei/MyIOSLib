@@ -11,6 +11,8 @@
 #include <string.h>
 #include "MD5.h"
 #include "CTime.h"
+#import "HTTPRequest.h"
+#import "HTTPResult.h"
 
 @interface APIItem : NSObject
 
