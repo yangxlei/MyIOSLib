@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
-enum _error_code
+typedef enum _error_code
 {
     ERROR_NETWORK= -1,
     ERROR_UNKNOW = -100,
@@ -19,10 +19,13 @@ enum _error_code
     ERROR_CANCEL = 2,
     ERROR_OAUTH_LOGIN = 100,
     
+    ERROR_ANOTHER_LOGIN = 1003,
+    ERROR_OAUTH_TOKEN_BROKEN = 1004,
+    ERROR_NEED_REFRESH_OAUTH_TOKEN = 1005,
     
 }BJDATA_ERROR_CODE;
 
-enum _status_code
+typedef enum _status_code
 {
     STATUS_NO_CONNECT_AND_NO_DATA = 0,
     STATUS_NETWORK_ERROR_AND_NO_DATA = 1,
@@ -32,7 +35,7 @@ enum _status_code
     STATUS_NO_PERMISSION = 5,
 }BJDATA_STATUS_CODE;
 
-enum _ope_code
+typedef enum _ope_code
 {
     OPERATION_REFRESH = 1,
     OPERATION_GET_MORE = 2,

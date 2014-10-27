@@ -68,7 +68,7 @@
 
 - (BOOL)isLogin
 {
-    return (_personId != 0 && [_authToken length] > 0);
+    return (_authToken != nil && [_authToken length] > 0);
 }
 
 - (void)loadCache

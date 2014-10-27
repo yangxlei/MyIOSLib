@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BJCodeDefine.h"
+
 @class HTTPRequest;
 @interface HTTPResult : NSObject
 @property (assign, readonly, nonatomic)NSUInteger taskID;
@@ -20,4 +22,5 @@
                       response:(id)responseObject
                          error:(NSError *)error;
 
+- (instancetype)initWithResult:(HTTPRequest *)request code:(BJDATA_ERROR_CODE)code;
 @end

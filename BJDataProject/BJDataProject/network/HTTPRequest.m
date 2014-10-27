@@ -88,12 +88,12 @@ static int REQUSET_TIME_OUT = 10;
     AFHTTPClient *client = [[AFHTTPClient alloc] init];
     NSMutableURLRequest *request = nil;
     switch (self.type) {//获取对应的request
-        case REQUSET_ITEM_TYPE_GET:
+        case REQUEST_ITEM_TYPE_GET:
         {
             request = [client requestWithMethod:@"GET" path:self.url parameters:self.parameters];
             break;
         }
-        case REQUSET_ITEM_TYPE_POST_FORM:
+        case REQUEST_ITEM_TYPE_POST_FORM:
         {
             client.parameterEncoding = AFFormURLParameterEncoding;
             if (!self.forms) {
@@ -119,7 +119,7 @@ static int REQUSET_TIME_OUT = 10;
         
         if (self.progressCallback) {//如果是上传和下载，添加进度
             switch (self.type) {
-                case REQUSET_ITEM_TYPE_GET:
+                case REQUEST_ITEM_TYPE_GET:
                 {
                     [self.requestOper setDownloadProgressBlock:^(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead) {
                         if (theModel && !theModel.isCancel) {
@@ -128,7 +128,7 @@ static int REQUSET_TIME_OUT = 10;
                     }];
                     break;
                 }
-                case REQUSET_ITEM_TYPE_POST_FORM:
+                case REQUEST_ITEM_TYPE_POST_FORM:
                 {
                     [self.requestOper setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
                         if (theModel && !theModel.isCancel) {

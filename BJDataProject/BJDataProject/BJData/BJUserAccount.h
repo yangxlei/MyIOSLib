@@ -21,6 +21,8 @@
 #define HOST_API @"http://tapi.genshuixue.com"
 #endif
 
+#define API_GET_ANONYMOUS_TOKEN @"/auth/anonymous"
+
 enum _account_ope
 {
     ACCOUNT_LOGIN = 11,

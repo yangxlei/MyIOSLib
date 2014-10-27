@@ -24,7 +24,9 @@
         _parameters = request.parameters;
         _data = [JsonUtils convertJsonObject:responseObject];
         _code = 1;
-        if (error) {
+
+        if (error)
+        {
             _code = [error code];
             _reason = [error localizedFailureReason];
         }
@@ -34,8 +36,24 @@
             _code = [_data intValueForkey:@"code" defaultValue:ERROR_UNKNOW];//[result[@"code"] integerValue];
             _reason = [_data getError];
         }
+       
     }
     
+    return self;
+}
+
+- (instancetype)initWithResult:(HTTPRequest *)request code:(BJDATA_ERROR_CODE)code
+{
+    self = [super init];
+    if (self)
+    {
+        _taskID = request.taskID;
+        _url = request.url;
+        _parameters = request.parameters;
+        _code = code;
+        _data = [JsonUtils newJsonObject:NO];
+        [_data setIntValue:code forKey:@"code"];
+    }
     return self;
 }
 

@@ -16,18 +16,18 @@
 
 typedef enum
 {
-    REQUSET_ITEM_TYPE_GET				= 0,
-    REQUSET_ITEM_TYPE_POST_FORM         = 1,
+    REQUEST_ITEM_TYPE_GET				= 0,
+    REQUEST_ITEM_TYPE_POST_FORM         = 1,
 }
-REQUSET_ITEM_TYPE;
+REQUEST_ITEM_TYPE;
 
 @class HTTPRequest;
 @class HTTPResult;
 
 @interface HTTPRequest : NSObject
 @property (assign, readonly, nonatomic)NSUInteger taskID;
-@property (copy, readonly, nonatomic)NSString *url;
-@property (assign, readonly, nonatomic)REQUSET_ITEM_TYPE type;
+@property (copy, nonatomic)NSString *url;
+@property (assign, readonly, nonatomic)REQUEST_ITEM_TYPE type;
 @property (strong, nonatomic)NSDictionary *parameters;//post ，get的参数
 
 /*
@@ -45,7 +45,7 @@ REQUSET_ITEM_TYPE;
 @property (assign, nonatomic)BOOL isFinish;
 
 - (instancetype)initWithUrl:(NSString *)url
-                       type:(REQUSET_ITEM_TYPE)type;
+                       type:(REQUEST_ITEM_TYPE)type;
 - (void)startRequest:(apiRequestFinishCallback)callback;
 - (void)startRequest:(apiRequestFinishCallback)callback progress:(apiRequestProgressCallback)proCallback;
 - (void)cancelRequest;
