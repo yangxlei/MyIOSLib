@@ -33,6 +33,14 @@
  */
 + (id)newJsonObject:(BOOL)array;
 
+/**
+ *  将外部的 json 转换为可变的 json(保险起见)
+ *
+ *  @param jsonObject 外部不知道类型的 Object
+ *
+ *  @return 可变的 Object
+ */
++ (id)convertJsonObject:(id)jsonObject;
 
 @end
 

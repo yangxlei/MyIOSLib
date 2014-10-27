@@ -8,6 +8,8 @@
 
 #import "HTTPResult.h"
 #import "HTTPRequest.h"
+#import "JsonUtils.h"
+#import "BJCodeDefine.h"
 
 @implementation HTTPResult
 
@@ -20,7 +22,7 @@
         _taskID = request.taskID;
         _url = request.url;
         _parameters = request.parameters;
-        _data = responseObject;
+        _data = [JsonUtils convertJsonObject:responseObject];
         _code = 1;
         if (error) {
             _code = [error code];
@@ -28,9 +30,9 @@
         }
         else if ([responseObject isKindOfClass:[NSDictionary class]])
         {
-            NSDictionary *result = (NSDictionary *)responseObject;
-            _code = [result[@"code"] integerValue];
-            _reason = result[@"message"];
+//            NSDictionary *result = (NSDictionary *)responseObject;
+            _code = [_data intValueForkey:@"code" defaultValue:ERROR_UNKNOW];//[result[@"code"] integerValue];
+            _reason = [_data getError];
         }
     }
     

@@ -15,6 +15,8 @@
 		9517609319FB9C5400D1B241 /* BJSimpleCacheData.m in Sources */ = {isa = PBXBuildFile; fileRef = 9517609219FB9C5400D1B241 /* BJSimpleCacheData.m */; };
 		951760C419FD33A800D1B241 /* TimeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 951760C119FD33A800D1B241 /* TimeUtils.m */; };
 		951760C519FD33A800D1B241 /* CTime.c in Sources */ = {isa = PBXBuildFile; fileRef = 951760C219FD33A800D1B241 /* CTime.c */; };
+		951760CB19FD41AA00D1B241 /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 951760CA19FD41AA00D1B241 /* Common.m */; };
+		951760CE19FD562F00D1B241 /* MD5.c in Sources */ = {isa = PBXBuildFile; fileRef = 951760CC19FD562F00D1B241 /* MD5.c */; };
 		955BEBB719F23D3100C04F90 /* BJUserAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 955BEBB619F23D3100C04F90 /* BJUserAccount.m */; };
 		955BEC0019FA81F800C04F90 /* TaskQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 955BEBFF19FA81F800C04F90 /* TaskQueue.m */; };
 		955BEC3819FA87DC00C04F90 /* TaskItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 955BEC3719FA87DC00C04F90 /* TaskItem.m */; };
@@ -71,6 +73,11 @@
 		951760C119FD33A800D1B241 /* TimeUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeUtils.m; sourceTree = "<group>"; };
 		951760C219FD33A800D1B241 /* CTime.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CTime.c; sourceTree = "<group>"; };
 		951760C319FD33A800D1B241 /* CTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTime.h; sourceTree = "<group>"; };
+		951760C619FD3B1300D1B241 /* BJCodeDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BJCodeDefine.h; sourceTree = "<group>"; };
+		951760C919FD41AA00D1B241 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
+		951760CA19FD41AA00D1B241 /* Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Common.m; sourceTree = "<group>"; };
+		951760CC19FD562F00D1B241 /* MD5.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = MD5.c; sourceTree = "<group>"; };
+		951760CD19FD562F00D1B241 /* MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MD5.h; sourceTree = "<group>"; };
 		955BEBB519F23D3100C04F90 /* BJUserAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BJUserAccount.h; sourceTree = "<group>"; };
 		955BEBB619F23D3100C04F90 /* BJUserAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BJUserAccount.m; sourceTree = "<group>"; };
 		955BEBFE19FA81F800C04F90 /* TaskQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskQueue.h; sourceTree = "<group>"; };
@@ -190,6 +197,8 @@
 				955BEC4919FB51B500C04F90 /* JsonUtils.m */,
 				955BEC4B19FB711A00C04F90 /* BJFileManager.h */,
 				955BEC4C19FB711A00C04F90 /* BJFileManager.m */,
+				951760CC19FD562F00D1B241 /* MD5.c */,
+				951760CD19FD562F00D1B241 /* MD5.h */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -294,6 +303,9 @@
 				9517608C19FB93FF00D1B241 /* BJPerson.m */,
 				9517609119FB9C5400D1B241 /* BJSimpleCacheData.h */,
 				9517609219FB9C5400D1B241 /* BJSimpleCacheData.m */,
+				951760C619FD3B1300D1B241 /* BJCodeDefine.h */,
+				951760C919FD41AA00D1B241 /* Common.h */,
+				951760CA19FD41AA00D1B241 /* Common.m */,
 			);
 			path = BJData;
 			sourceTree = "<group>";
@@ -438,7 +450,9 @@
 				951760C419FD33A800D1B241 /* TimeUtils.m in Sources */,
 				2538CB6F19FBA7C70099ED2C /* HTTPRequest.m in Sources */,
 				95AE53B519C932E70008ED0B /* RootViewController.m in Sources */,
+				951760CB19FD41AA00D1B241 /* Common.m in Sources */,
 				955BEC4A19FB51B500C04F90 /* JsonUtils.m in Sources */,
+				951760CE19FD562F00D1B241 /* MD5.c in Sources */,
 				9517608D19FB93FF00D1B241 /* BJPerson.m in Sources */,
 				955BEC0019FA81F800C04F90 /* TaskQueue.m in Sources */,
 				95AE53B819C9343D0008ED0B /* SecondViewController.m in Sources */,

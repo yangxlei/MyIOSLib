@@ -63,6 +63,25 @@
     return nil;
 }
 
++ (id)convertJsonObject:(id)jsonObject
+{
+    if ([jsonObject isKindOfClass:[NSDictionary class]])
+    {
+        return [[NSMutableDictionary alloc] initWithDictionary:jsonObject];
+    }
+    else if ([jsonObject isKindOfClass:[NSArray class]])
+    {
+        return [[NSMutableArray alloc] initWithArray:jsonObject];
+    }
+    else
+    {
+        return jsonObject;
+    }
+        
+    
+}
+
+
 @end
 
 @implementation NSString(JsonObject)

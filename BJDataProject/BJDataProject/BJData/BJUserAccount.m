@@ -34,8 +34,7 @@
     self = [super init];
     if (self)
     {
-        // 不允许直接调用这个方法。请调用 initWithDomain
-        assert(0);
+        NSAssert(0, @"不允许直接调用 init 方法。请调用 initWithDomain");
     }
     return self;
 }
