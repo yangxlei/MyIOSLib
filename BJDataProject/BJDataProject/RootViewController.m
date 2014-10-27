@@ -87,7 +87,7 @@
     NSString *api = @"/teacher_center/info?&name=xxx&age=22";
     
     NSMutableDictionary *postBody = [[NSMutableDictionary alloc] init];
-    NSString *url = [[APIManager shareInstance] signatureApiWithPost:api postBody:postBody account:[[Common shareInstance] getMainAccount]];
+    NSString *url = nil;//[[APIManager shareInstance] signatureApiWithPost:api postBody:postBody account:[[Common shareInstance] getMainAccount]];
     NSLog(@"%@\n%@", url, postBody);
     
 //    NSString *str = @"{\"aaa\":\"bbb\", \"ccc\":1, \"list\":[{\"name\":\"yl\", \"age\":23}], \"result\":{\"ext\":\"hehe\"}}";

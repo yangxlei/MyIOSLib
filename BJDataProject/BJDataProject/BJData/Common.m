@@ -7,6 +7,10 @@
 //
 
 #import "Common.h"
+#import <SystemConfiguration/SystemConfiguration.h>
+#import <sys/types.h>
+#import <sys/sysctl.h>
+#import "UIDevice+IdentifierAddition.h"
 
 @interface Common()
 {
@@ -33,6 +37,28 @@
     return instance;
 }
 
+- (void)loadCfg
+{
+    size_t size;
+    sysctlbyname("hw.machine",NULL,&size,NULL,0);
+    char name[2048];
+    sysctlbyname("hw.machine", name, &size,NULL,0);
+    _system_version = [UIDevice currentDevice].systemVersion;
+    _system_name = [NSString stringWithUTF8String:name];
+    _device_uuid = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
+    
+    NSBundle* mainBundle = [NSBundle mainBundle];
+    NSString* url = [mainBundle pathForResource:@"ex" ofType:@"plist"];
+    NSDictionary * d = [NSDictionary dictionaryWithContentsOfFile:url];
+    
+    _api_version = [d objectForKey:@"api_ver"];
+    _app_channel = [d objectForKey:@"channel"];
+    _is_company  = [[d objectForKey:@"company"] boolValue];
+    
+    _app_version = [[mainBundle infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    _app_build_version = [[mainBundle infoDictionary] objectForKey:@"CFBundleVersion"];
+}
+
 - (id)init
 {
     self = [super init];
@@ -40,8 +66,9 @@
     {
         _anonymousAccount = [[BJUserAccount alloc] initWithDomain:USER_DOMAIN_ANONYMOUS];
         _mainAccount = [[BJUserAccount alloc] initWithDomain:USER_DOMAIN_MAIN];
+        
+        [self loadCfg];
     }
-    
     return self;
 }
 

@@ -8,6 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ 根据JSON的key获取其对应的类型
+ */
+typedef enum {
+    JSON_VALUE_NIL,//为nil或NSNull
+    JSON_VALUE_NSString,
+    JSON_VALUE_NSArray,
+    JSON_VALUE_NSDictaionary,
+    JSON_VALUE_NSNumber,
+    JSON_VALUE_NSMutableArray,
+    JSON_Value_NSMutableDictionary,
+}JsonValueType;
+
 @interface JsonUtils : NSObject
 
 
@@ -69,6 +82,35 @@
 - (void)setBoolValue:(long long)value forKey:(NSString *)key;
 - (void)setFloatValue:(float)value forKey:(NSString *)key;
 - (void)setDoubleValue:(double)value forKey:(NSString *)key;
+- (JsonValueType)jsonTypeForKey:(NSString *)key;
+
+/**
+ *  给一个key对应的数组添加对象,添加到数组的最后面
+ *  如果对应的值不是NSMutableArray 类型，则自动转换NSMutableArray
+ *  如果对应的值为空，则自动创建NSMutableArray对象
+ *
+ *  @param object 要添加的对象
+ *  @param key    数组对应的key
+ */
+- (void)addObject:(id)object forKey:(NSString *)key;
+/**
+ *  给一个key对应的数组添加对象,添加到数组的最前面
+ *  如果对应的值不是NSMutableArray 类型，则自动转换NSMutableArray
+ *  如果对应的值为空，则自动创建NSMutableArray对象
+ *
+ *  @param object 要添加的对象
+ *  @param key    数组对应的key
+ */
+- (void)insertObjectHead:(id)object forKey:(NSString *)key;
+/**
+ *  给一个key对应的数组添加对象
+ *  如果对应的值不是NSMutableArray 类型 则自动转换为NSMutableArray
+ *  如果对应的值为空，则自动创建NSMutableArray对象
+ *
+ *  @param index 要删除的数组下标
+ *  @param key   数组对应的key
+ */
+- (void)removeObjectAt:(NSInteger)index forKey:(NSString *)key;
 
 - (void)removeValueForKey:(NSString *)key;
 
