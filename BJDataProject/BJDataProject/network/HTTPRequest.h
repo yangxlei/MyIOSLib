@@ -42,6 +42,10 @@ REQUEST_ITEM_TYPE;
 
 @property (assign, nonatomic)int priority;
 @property (assign, nonatomic)int timeout;
+
+/**
+ *  标记此次请求结束 ，包括正常结束和被取消
+ */
 @property (assign, nonatomic)BOOL isFinish;
 
 - (instancetype)initWithUrl:(NSString *)url
