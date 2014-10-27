@@ -8,7 +8,5 @@
 	<true/>
 	<key>api_ver</key>
 	<string>1.0.0</string>
-	<key>app_version</key>
-	<string>0.6.0</string>
 </dict>
 </plist>
