@@ -160,6 +160,13 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		951760CF19FDEF5500D1B241 /* configs */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = configs;
+			sourceTree = "<group>";
+		};
 		955BEBFD19FA80A600C04F90 /* Task */ = {
 			isa = PBXGroup;
 			children = (
@@ -239,6 +246,7 @@
 		958FE9A619BA143200E33260 /* BJDataProject */ = {
 			isa = PBXGroup;
 			children = (
+				951760CF19FDEF5500D1B241 /* configs */,
 				955BEC4719FB518D00C04F90 /* utils */,
 				955BEC4319FB517F00C04F90 /* network */,
 				955BEBFD19FA80A600C04F90 /* Task */,

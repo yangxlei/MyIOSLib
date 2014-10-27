@@ -99,5 +99,8 @@ typedef void (^apiRequestProgressCallback)(HTTPRequest *request, NSInteger curre
 
 
 - (NSString *)signatureApiWithGet:(NSString *)api account:(BJUserAccount *)account;
+- (NSString *)signatureApiWithPost:(NSString *)api
+                          postBody:(NSMutableDictionary *)postBody
+                           account:(BJUserAccount *)account;
 
 @end

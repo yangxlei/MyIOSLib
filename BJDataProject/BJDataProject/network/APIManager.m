@@ -164,7 +164,10 @@
     
     item.progressCallback = progressCallback;
     item.finishCallback = finishCallback;
-    item.url = [self signatureApiWithGet:api account:item.account];
+    
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] initWithDictionary:postBody];
+    item.url = [self signatureApiWithPost:api postBody:dic account:item.account];
+    
     return item.taskID;
 }
 
@@ -193,7 +196,7 @@
     }
     else
     {
-        strcat(resultApi, "auth_token=");
+        strcat(resultApi, "&auth_token=");
     }
     strcat(resultApi, [account.authToken UTF8String]);
     
@@ -207,6 +210,94 @@
     strcat(resultApi, [sign UTF8String]);
     
     return [NSString stringWithUTF8String:resultApi];
+}
+
+/**
+ *  对 Post 请求进行 url 封装，及签名
+ *
+ *  @param api
+ *  @param postBody
+ *  @param account
+ *
+ *  @return
+ */
+- (NSString *)signatureApiWithPost:(NSString *)api
+                          postBody:(NSMutableDictionary *)postBody
+                           account:(BJUserAccount *)account
+{
+
+    if ([api hasPrefix:@"http://"])
+    {// 如果传进来的是 http 开头的 url. 默认为外部链接，不做签名直接请求
+        return api;
+    }
+    
+    NSString *fullApi = [NSString stringWithFormat:@"%@%@", account.hostUrl, api];
+    
+    char _fullApi[1024] = {0};
+    strcat(_fullApi, [fullApi UTF8String]);
+    
+    char *param_index = strstr(_fullApi, "?&");
+    char *_param_index = NULL;
+    if (param_index == NULL)
+    {
+        param_index = strstr(_fullApi, "?");
+        if (param_index != NULL)
+        {
+            _param_index = param_index + 1;
+        }
+    }
+    else
+    {
+        _param_index = param_index + 2;
+    }
+    
+    char *api_end = _fullApi;
+    api_end += strlen(_fullApi);
+    
+    char _api[64] = {0};
+    
+    if (param_index != NULL)
+    {//包含 ?, 表示传进来的 api 中包含了参数，把参数截取出来
+        strncpy(_api, _fullApi, param_index - _fullApi);
+        while (_param_index != NULL && _param_index < api_end)
+        {
+            char *param_key_index = strstr(_param_index + 1, "=");
+            char key[32] = {0};
+            strncpy(key, _param_index, param_key_index - _param_index);
+            
+            _param_index = param_key_index + 1;
+            char *param_value_index = strstr(param_key_index + 1, "&");
+            if (param_value_index == NULL)
+            {
+                param_value_index = api_end;
+            }
+            char value[64]={0};
+            strncpy(value, _param_index, param_value_index - _param_index);
+            
+            //将 api 中的参数放入 postBody 中
+            [postBody setObject:[NSString stringWithUTF8String:value] forKey:[NSString stringWithUTF8String:key]];
+            
+            _param_index = param_value_index + 1;
+        }
+    }
+    else
+    { // 传进来的 api 中不带参数, 直接使用原有的 api
+        strcpy(_api, _fullApi);
+    }
+    
+    if (account.authToken != nil)
+    {
+        [postBody setObject:account.authToken forKey:@"auth_token"];
+    }
+    
+    char timestamp[32] = {0};
+    sprintf(timestamp, "%lld", bj_get_time());
+    [postBody setObject:[NSString stringWithUTF8String:timestamp] forKey:@"timestamp"];
+    
+    NSString *signature = [self computeSignature:fullApi authToken:account.authToken timestamp:timestamp appkey:account.appKey];
+    [postBody setObject:signature forKey:@"signature"];
+    
+    return [NSString stringWithUTF8String:_api];
 }
 
 /**
