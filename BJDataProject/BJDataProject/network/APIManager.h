@@ -97,10 +97,4 @@ typedef void (^apiRequestProgressCallback)(HTTPRequest *request, long long curre
  */
 - (void)cancelRequest:(NSInteger)taskId;
 
-
-- (NSString *)signatureApiWithGet:(NSString *)api account:(BJUserAccount *)account;
-- (NSString *)signatureApiWithPost:(NSString *)api
-                          postBody:(NSMutableDictionary *)postBody
-                           account:(BJUserAccount *)account;
-
 @end
