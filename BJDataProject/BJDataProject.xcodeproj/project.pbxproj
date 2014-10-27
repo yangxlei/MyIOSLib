@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		2538CB6F19FBA7C70099ED2C /* HTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2538CB6C19FBA7C70099ED2C /* HTTPRequest.m */; };
 		2538CB7019FBA7C70099ED2C /* HTTPResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 2538CB6E19FBA7C70099ED2C /* HTTPResult.m */; };
+		2584FB0019FE0E68001C9023 /* UIDevice+IdentifierAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 2584FAFF19FE0E68001C9023 /* UIDevice+IdentifierAddition.m */; };
+		2584FB0519FE0F77001C9023 /* ex.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2584FB0419FE0F77001C9023 /* ex.plist */; };
+		2584FB0819FE10E7001C9023 /* SvUDIDTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 2584FB0719FE10E7001C9023 /* SvUDIDTools.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		2584FB0B19FE110B001C9023 /* NSString+MD5Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 2584FB0A19FE110B001C9023 /* NSString+MD5Addition.m */; };
 		6EF9211C9E5CB9A5E0A13F3A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7097B1DE5796EA0143CC13F3 /* libPods.a */; };
 		9517608D19FB93FF00D1B241 /* BJPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 9517608C19FB93FF00D1B241 /* BJPerson.m */; };
 		9517609019FB987D00D1B241 /* APITask.m in Sources */ = {isa = PBXBuildFile; fileRef = 9517608F19FB987D00D1B241 /* APITask.m */; };
@@ -61,6 +65,13 @@
 		2538CB6C19FBA7C70099ED2C /* HTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPRequest.m; sourceTree = "<group>"; };
 		2538CB6D19FBA7C70099ED2C /* HTTPResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPResult.h; sourceTree = "<group>"; };
 		2538CB6E19FBA7C70099ED2C /* HTTPResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPResult.m; sourceTree = "<group>"; };
+		2584FAFE19FE0E68001C9023 /* UIDevice+IdentifierAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+IdentifierAddition.h"; sourceTree = "<group>"; };
+		2584FAFF19FE0E68001C9023 /* UIDevice+IdentifierAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+IdentifierAddition.m"; sourceTree = "<group>"; };
+		2584FB0419FE0F77001C9023 /* ex.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ex.plist; sourceTree = "<group>"; };
+		2584FB0619FE10E7001C9023 /* SvUDIDTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SvUDIDTools.h; sourceTree = "<group>"; };
+		2584FB0719FE10E7001C9023 /* SvUDIDTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SvUDIDTools.m; sourceTree = "<group>"; };
+		2584FB0919FE110B001C9023 /* NSString+MD5Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5Addition.h"; sourceTree = "<group>"; };
+		2584FB0A19FE110B001C9023 /* NSString+MD5Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5Addition.m"; sourceTree = "<group>"; };
 		6A97C76823B628E0CD0E1C31 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		7097B1DE5796EA0143CC13F3 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9517608B19FB93FF00D1B241 /* BJPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BJPerson.h; sourceTree = "<group>"; };
@@ -151,6 +162,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2584FAFD19FE0E68001C9023 /* UIDevice+UUID */ = {
+			isa = PBXGroup;
+			children = (
+				2584FAFE19FE0E68001C9023 /* UIDevice+IdentifierAddition.h */,
+				2584FAFF19FE0E68001C9023 /* UIDevice+IdentifierAddition.m */,
+				2584FB0619FE10E7001C9023 /* SvUDIDTools.h */,
+				2584FB0719FE10E7001C9023 /* SvUDIDTools.m */,
+			);
+			path = "UIDevice+UUID";
+			sourceTree = "<group>";
+		};
+		2584FB0319FE0F77001C9023 /* configs */ = {
+			isa = PBXGroup;
+			children = (
+				2584FB0419FE0F77001C9023 /* ex.plist */,
+			);
+			path = configs;
+			sourceTree = "<group>";
+		};
 		8635F3B8C0EFB8C0EF6DAB8E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -158,13 +188,6 @@
 				F1CF413BC49C42B81EF313CC /* Pods.release.xcconfig */,
 			);
 			name = Pods;
-			sourceTree = "<group>";
-		};
-		951760CF19FDEF5500D1B241 /* configs */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = configs;
 			sourceTree = "<group>";
 		};
 		955BEBFD19FA80A600C04F90 /* Task */ = {
@@ -196,6 +219,7 @@
 		955BEC4719FB518D00C04F90 /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				2584FAFD19FE0E68001C9023 /* UIDevice+UUID */,
 				951760C019FD33A800D1B241 /* TimeUtils.h */,
 				951760C119FD33A800D1B241 /* TimeUtils.m */,
 				951760C219FD33A800D1B241 /* CTime.c */,
@@ -206,6 +230,8 @@
 				955BEC4C19FB711A00C04F90 /* BJFileManager.m */,
 				951760CC19FD562F00D1B241 /* MD5.c */,
 				951760CD19FD562F00D1B241 /* MD5.h */,
+				2584FB0919FE110B001C9023 /* NSString+MD5Addition.h */,
+				2584FB0A19FE110B001C9023 /* NSString+MD5Addition.m */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -246,7 +272,7 @@
 		958FE9A619BA143200E33260 /* BJDataProject */ = {
 			isa = PBXGroup;
 			children = (
-				951760CF19FDEF5500D1B241 /* configs */,
+				2584FB0319FE0F77001C9023 /* configs */,
 				955BEC4719FB518D00C04F90 /* utils */,
 				955BEC4319FB517F00C04F90 /* network */,
 				955BEBFD19FA80A600C04F90 /* Task */,
@@ -395,6 +421,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2584FB0519FE0F77001C9023 /* ex.plist in Resources */,
 				958FE9AB19BA143200E33260 /* InfoPlist.strings in Resources */,
 				958FE9B619BA143200E33260 /* Images.xcassets in Resources */,
 			);
@@ -452,11 +479,13 @@
 				958FE9B119BA143200E33260 /* AppDelegate.m in Sources */,
 				955BEC4D19FB711A00C04F90 /* BJFileManager.m in Sources */,
 				95AE53BB19CC06C30008ED0B /* BJSimpleData.m in Sources */,
+				2584FB0019FE0E68001C9023 /* UIDevice+IdentifierAddition.m in Sources */,
 				955BEBB719F23D3100C04F90 /* BJUserAccount.m in Sources */,
 				955BEC3E19FAC41C00C04F90 /* TestTaskItem2.m in Sources */,
 				955BEC3B19FAB44500C04F90 /* TestTaskItem.m in Sources */,
 				951760C419FD33A800D1B241 /* TimeUtils.m in Sources */,
 				2538CB6F19FBA7C70099ED2C /* HTTPRequest.m in Sources */,
+				2584FB0819FE10E7001C9023 /* SvUDIDTools.m in Sources */,
 				95AE53B519C932E70008ED0B /* RootViewController.m in Sources */,
 				951760CB19FD41AA00D1B241 /* Common.m in Sources */,
 				955BEC4A19FB51B500C04F90 /* JsonUtils.m in Sources */,
@@ -468,6 +497,7 @@
 				958FE9D719BA14D200E33260 /* BJData.m in Sources */,
 				2538CB7019FBA7C70099ED2C /* HTTPResult.m in Sources */,
 				958FE9AD19BA143200E33260 /* main.m in Sources */,
+				2584FB0B19FE110B001C9023 /* NSString+MD5Addition.m in Sources */,
 				958FE9B419BA143200E33260 /* BJDataProject.xcdatamodeld in Sources */,
 				9517609319FB9C5400D1B241 /* BJSimpleCacheData.m in Sources */,
 				951760C519FD33A800D1B241 /* CTime.c in Sources */,
