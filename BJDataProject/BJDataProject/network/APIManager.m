@@ -11,7 +11,6 @@
 #include <string.h>
 #include "MD5.h"
 #include "CTime.h"
-#import "HTTPRequest.h"
 #import "JsonUtils.h"
 
 @interface APIItem : NSObject
@@ -124,7 +123,6 @@
        {
            [apiItem.httpRequest cancelRequest];
            [tempSelf cleanApiItem:apiItem];
-           // 待测试
            [_waitConnectionQueue removeObject:apiItem];
            [tempSelf updateAPIItemInQueue];
           *stop = YES;
@@ -136,7 +134,6 @@
         {
             [apiItem.httpRequest cancelRequest];
             [tempSelf cleanApiItem:apiItem];
-            // 待测试
             [_connectionQueue removeObject:apiItem];
             [tempSelf updateAPIItemInQueue];
             *stop = YES;
@@ -339,18 +336,19 @@
            if (apiItem.taskID == taskID)
            {
                BJUserAccount *account = apiItem.account;
-               int code = [result.data intValueForkey:@"code" defaultValue:ERROR_UNKNOW];
+               int code = (int)result.code;
                if (code == ERROR_ANOTHER_LOGIN)
                {
                    if ([account isLogin])
                    {
-                       [account logout];
+                       [account logoutWithOperation:ERROR_ANOTHER_LOGIN];
                        [tempSelf cancelRequestWithAccount:account];
                    }
                }
                else if (code == ERROR_OAUTH_TOKEN_BROKEN)
-               {
+               { // token 失效，请重新登录
                    // account invalid access token
+                   [account logoutWithOperation:ERROR_OAUTH_TOKEN_BROKEN];
                    [tempSelf cancelRequestWithAccount:account];
                }
                else if (code == ERROR_NEED_REFRESH_OAUTH_TOKEN)
@@ -359,7 +357,10 @@
                }
                else
                {
-                   apiItem.finishCallback(apiItem.httpRequest, result);
+                   if (apiItem.finishCallback)
+                   {
+                       apiItem.finishCallback(apiItem.httpRequest, result);
+                   }
                }
                *stop = YES;
            }
@@ -398,7 +399,6 @@
             [apiItem.httpRequest cancelRequest];
             apiItem.finishCallback(apiItem.httpRequest, result);
             [tempSelf cleanApiItem:apiItem];
-            // 待测试
             [_waitConnectionQueue removeObject:apiItem];
         }
     }];
@@ -410,7 +410,6 @@
             [apiItem.httpRequest cancelRequest];
             apiItem.finishCallback(apiItem.httpRequest, result);
             [tempSelf cleanApiItem:apiItem];
-            // 待测试
             [_connectionQueue removeObject:apiItem];
         }
     }];
@@ -444,7 +443,7 @@
     }
     NSString *fullApi = [NSString stringWithFormat:@"%@%@", account.hostUrl, api];
     
-    char resultApi[1024] = {0};
+    char resultApi[2048] = {0};
     strcat(resultApi, [fullApi UTF8String]);
     
     if (strstr(resultApi, "?"))
@@ -465,6 +464,24 @@
     NSString *sign = [self computeSignature:fullApi authToken:account.authToken timestamp:timestamp appkey:account.appKey];
     strcat(resultApi, "&signature=");
     strcat(resultApi, [sign UTF8String]);
+    
+    strcat(resultApi, "&version=");
+    strcat(resultApi, [CommonInstance.app_version UTF8String]);
+    
+    strcat(resultApi, "&api=");
+    strcat(resultApi, [CommonInstance.app_build_version UTF8String]);
+    
+    strcat(resultApi, "&platform=");
+    strcat(resultApi, [CommonInstance.system_name UTF8String]);
+    
+    strcat(resultApi, "&os=");
+    strcat(resultApi, [CommonInstance.system_version UTF8String]);
+    
+    strcat(resultApi, "&uuid=");
+    strcat(resultApi, [CommonInstance.device_uuid UTF8String]);
+    
+    strcat(resultApi, "&channel=");
+    strcat(resultApi, [CommonInstance.app_channel UTF8String]);
     
     return [NSString stringWithUTF8String:resultApi];
 }
@@ -553,6 +570,13 @@
     
     NSString *signature = [self computeSignature:fullApi authToken:account.authToken timestamp:timestamp appkey:account.appKey];
     [postBody setObject:signature forKey:@"signature"];
+    
+    [postBody setObject:CommonInstance.app_version forKey:@"version"];
+    [postBody setObject:CommonInstance.app_build_version forKey:@"api"];
+    [postBody setObject:CommonInstance.system_name forKey:@"platform"];
+    [postBody setObject:CommonInstance.system_version forKey:@"os"];
+    [postBody setObject:CommonInstance.device_uuid forKey:@"uuid"];
+    [postBody setObject:CommonInstance.app_channel forKey:@"channel"];
     
     return [NSString stringWithUTF8String:_api];
 }

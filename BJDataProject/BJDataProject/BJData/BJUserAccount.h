@@ -7,6 +7,7 @@
 //
 
 #import "BJData.h"
+#import "BJPerson.h"
 
 #define USER_DOMAIN_ANONYMOUS @"anonymouns"
 #define USER_DOMAIN_MAIN  @"main"
@@ -37,6 +38,8 @@ enum _account_ope
 @property (nonatomic, strong, readonly) NSString *hostUrl;
 @property (nonatomic, strong, readonly) NSString *appKey;
 
+@property (nonatomic, strong, readonly) BJPerson *person; // 当前账户对应的 person 信息,创建会自动刷新
+
 /**
     初始化，表明当前账户类型
     @param domain, 分为匿名账户，和正常使用的主账户
@@ -48,6 +51,12 @@ enum _account_ope
 - (void)loginWithAccount:(BJUserAccount *)account;
 
 - (void)logout;
+/**
+ *  退出账户, 指定操作来源。 例如：ACCOUNT_LOGOUT 表示主动退出
+ *
+ *  @param ope 操作
+ */
+- (void)logoutWithOperation:(int)ope;
 
 - (BOOL) isLogin;
 

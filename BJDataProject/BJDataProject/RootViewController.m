@@ -84,12 +84,16 @@
 
 - (void)buttonAction:(id)sender
 {
-    NSDictionary *param = [NSDictionary dictionaryWithObjectsAndKeys:@"18611579546",@"value", @"123456", @"password", nil];
-    NSInteger taskId = [[APIManager shareInstance] requestAPIWithPost:@"/auth/teacherLogin" postBody:param callback:^(HTTPRequest *request, HTTPResult *result) {
-        NSDictionary *_result = [result.data dictionaryValueForKey:@"result"];
-        NSString *token = [_result stringValueForKey:@"auth_token" defaultValue:nil];
-        NSDictionary *person = [_result dictionaryValueForKey:@"person"];
-        [[[Common shareInstance] getMainAccount] loginWithPerson:[person longLongValueForKey:@"id" defalutValue:0] token:token];
+//    NSDictionary *param = [NSDictionary dictionaryWithObjectsAndKeys:@"18611579546",@"value", @"123456", @"password", nil];
+//    NSInteger taskId = [[APIManager shareInstance] requestAPIWithPost:@"/auth/teacherLogin" postBody:param callback:^(HTTPRequest *request, HTTPResult *result) {
+//        NSDictionary *_result = [result.data dictionaryValueForKey:@"result"];
+//        NSString *token = [_result stringValueForKey:@"auth_token" defaultValue:nil];
+//        NSDictionary *person = [_result dictionaryValueForKey:@"person"];
+//        [[[Common shareInstance] getMainAccount] loginWithPerson:[person longLongValueForKey:@"id" defalutValue:0] token:token];
+//    }];
+    
+    NSInteger taskId = [APIManagerInstance requestAPIWithGet:@"http://www.baidu.com" callback:^(HTTPRequest *request, HTTPResult *result) {
+        NSLog(@"%@", result);
     }];
     NSLog(@"task:%d", (int)taskId);
 //    [[APIManager shareInstance] cancelRequest:taskId];

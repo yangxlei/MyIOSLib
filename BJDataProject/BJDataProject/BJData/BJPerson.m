@@ -8,6 +8,7 @@
 
 #import "BJPerson.h"
 #import "APITask.h"
+#import "Common.h"
 
 #define API_URL_PERSON  "/teacher_center/info?&auth_token="
 
@@ -15,9 +16,28 @@
 
 - (void)doRefreshOperation:(TaskQueue *)taskQueue
 {
-    APITask *task = [[APITask alloc] init];
+    if (_personID == 0)
+        return;
+    NSDictionary *postBody = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithLongLong:_personID], @"user_id", nil];
+    APITask *task = [[APITask alloc] initWithAPI:@API_URL_PERSON postBody:postBody];
     //TODO set task params
     [taskQueue addTaskItem:task];
+}
+
+- (void)setPersonID:(long long)personID
+{
+    [self cancelRefresh];
+    _personID = personID;
+    [self refresh];
+}
+
+- (NSString *)getCacheKey
+{
+    if (_personID != 0 && _personID == [CommonInstance getMainAccount].personId)
+    {
+        return [NSString stringWithFormat:@"person_%lld", _personID];
+    }
+    return nil;
 }
 
 @end

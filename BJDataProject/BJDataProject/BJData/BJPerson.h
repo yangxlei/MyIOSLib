@@ -10,4 +10,6 @@
 
 @interface BJPerson : BJSimpleData
 
+@property (nonatomic, assign) long long personID;
+
 @end

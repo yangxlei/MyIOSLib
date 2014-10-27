@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "BJUserAccount.h"
 
+#define CommonInstance [Common shareInstance]
+
 /**
  *  全局单例，保存一些全局有效的对象
  */

@@ -8,10 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import "HTTPResult.h"
+#import "HTTPRequest.h"
 
 #import "Common.h"
 
-@class HTTPRequest;
+#define APIManagerInstance [APIManager shareInstance]
+
 
 typedef void (^apiRequestFinishCallback)(HTTPRequest *request,HTTPResult *result);
 typedef void (^apiRequestProgressCallback)(HTTPRequest *request, long long current, long long total);

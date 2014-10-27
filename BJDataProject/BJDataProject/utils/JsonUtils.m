@@ -60,7 +60,7 @@
             return object;
         }
     }
-    return nil;
+    return data;
 }
 
 + (id)convertJsonObject:(id)jsonObject
