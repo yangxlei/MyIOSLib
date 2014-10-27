@@ -144,6 +144,8 @@ static int REQUSET_TIME_OUT = 10;
                     break;
             }
         }
+        
+        [self.requestOper start];
     }
 }
 
