@@ -47,13 +47,16 @@
     _system_name = [NSString stringWithUTF8String:name];
     _device_uuid = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
     
-    
     NSBundle* mainBundle = [NSBundle mainBundle];
     NSString* url = [mainBundle pathForResource:@"ex" ofType:@"plist"];
     NSDictionary * d = [NSDictionary dictionaryWithContentsOfFile:url];
     
     _api_version = [d objectForKey:@"api_ver"];
-    _app_version = [d objectForKey:@"app_version"];
+    _app_channel = [d objectForKey:@"channel"];
+    _is_company  = [[d objectForKey:@"company"] boolValue];
+    
+    _app_version = [[mainBundle infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    _app_build_version = [[mainBundle infoDictionary] objectForKey:@"CFBundleVersion"];
 }
 
 - (id)init
