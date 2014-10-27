@@ -73,6 +73,10 @@
     {
         return [[NSMutableArray alloc] initWithArray:jsonObject];
     }
+    else if ([jsonObject isKindOfClass:[NSData class]])
+    {
+        return [JsonUtils decode:jsonObject];
+    }
     else
     {
         return jsonObject;
@@ -125,11 +129,13 @@
     if ([self jsonTypeForKey:key] == JSON_VALUE_NSString ||
         [self jsonTypeForKey:key] == JSON_VALUE_NSNumber)
     {
-        NSAssert(0, @"%s,key对应的值不是NSString或者NSNumber类型",__func__);
         return NO;
     }
     else
+    {
+        NSAssert(0, @"%s,key对应的值不是NSString或者NSNumber类型",__func__);
         return YES;
+    }
 }
 
 - (int)intValueForkey:(NSString *)key defaultValue:(int)defalutValue
@@ -214,11 +220,17 @@
     if ([self jsonTypeForKey:key] == JSON_VALUE_NIL)
         return nil;
     
-    if (([self jsonTypeForKey:key] != JSON_VALUE_NSDictaionary))
+//    if (([self jsonTypeForKey:key] != JSON_VALUE_NSDictaionary))
+//    {
+//        NSAssert(0, @"%s key对应的类型不是NSDictionary的",__func__);
+//        return nil;
+//    }
+    
+    if (! [value isKindOfClass:[NSDictionary class]])
     {
-        NSAssert(0, @"%s key对应的类型不是NSDictionary的",__func__);
         return nil;
     }
+    
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] initWithDictionary:value];
     [self setValue:dic forKey:key];
     

@@ -30,7 +30,7 @@
             _code = [error code];
             _reason = [error localizedFailureReason];
         }
-        else if ([responseObject isKindOfClass:[NSDictionary class]])
+        else if ([_data isKindOfClass:[NSDictionary class]])
         {
 //            NSDictionary *result = (NSDictionary *)responseObject;
             _code = [_data intValueForkey:@"code" defaultValue:ERROR_UNKNOW];//[result[@"code"] integerValue];

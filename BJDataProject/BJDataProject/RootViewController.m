@@ -84,11 +84,16 @@
 
 - (void)buttonAction:(id)sender
 {
-    NSString *api = @"/teacher_center/info?&name=xxx&age=22";
     
-    NSMutableDictionary *postBody = [[NSMutableDictionary alloc] init];
-    NSString *url = nil;//[[APIManager shareInstance] signatureApiWithPost:api postBody:postBody account:[[Common shareInstance] getMainAccount]];
-    NSLog(@"%@\n%@", url, postBody);
+    NSInteger taskId = [[APIManager shareInstance] requestWithGetAPI:@"/teacher_center/info" callback:^(HTTPRequest *request, HTTPResult *result) {
+        NSLog(@"%@", result);
+    }];
+//    [[APIManager shareInstance] cancelRequest:taskId];
+//    NSString *api = @"/teacher_center/info?&name=xxx&age=22";
+//    
+//    NSMutableDictionary *postBody = [[NSMutableDictionary alloc] init];
+//    NSString *url = nil;//[[APIManager shareInstance] signatureApiWithPost:api postBody:postBody account:[[Common shareInstance] getMainAccount]];
+//    NSLog(@"%@\n%@", url, postBody);
     
 //    NSString *str = @"{\"aaa\":\"bbb\", \"ccc\":1, \"list\":[{\"name\":\"yl\", \"age\":23}], \"result\":{\"ext\":\"hehe\"}}";
 //    NSDictionary *dic = [str jsonValue];

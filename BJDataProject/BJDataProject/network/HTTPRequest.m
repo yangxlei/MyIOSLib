@@ -23,7 +23,7 @@ static int REQUSET_TIME_OUT = 10;
 @implementation HTTPRequest
 
 - (instancetype)initWithUrl:(NSString *)url
-                       type:(REQUSET_ITEM_TYPE)type
+                       type:(REQUEST_ITEM_TYPE)type
 {
     self = [super init];
     if (self) {
@@ -85,7 +85,7 @@ static int REQUSET_TIME_OUT = 10;
 {
     __weak HTTPRequest *theModel = self;
     self.resultCallback = callback;
-    AFHTTPClient *client = [[AFHTTPClient alloc] init];
+    AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:@""]];
     NSMutableURLRequest *request = nil;
     switch (self.type) {//获取对应的request
         case REQUEST_ITEM_TYPE_GET:
@@ -98,6 +98,8 @@ static int REQUSET_TIME_OUT = 10;
             client.parameterEncoding = AFFormURLParameterEncoding;
             if (!self.forms) {
                 request = [client requestWithMethod:@"POST" path:self.url parameters:self.parameters];
+                [request addValue:@"text/html" forHTTPHeaderField:@"Content-Type"];
+                [request addValue:@"gzip" forHTTPHeaderField:@"Content-Encoding"];
             }
             else
                 request = [client multipartFormRequestWithMethod:@"POST" path:self.url parameters:self.parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {

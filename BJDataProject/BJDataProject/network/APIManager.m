@@ -42,7 +42,7 @@
     NSMutableArray  *_connectionQueue; // 正在请求的任务
     NSMutableArray  *_waitConnectionQueue; // 等待请求的任务
     
-    NSInteger  _handleRefreshAnonymousTokenTaskId; // 获取匿名 token 任务 id
+    HTTPRequest *handleGetAnonaymousToaknRequest; // 获取匿名 token 任务 id
 }
 
 @end
@@ -257,21 +257,20 @@
  */
 - (void)createAnonaymousAccount
 {
-    if (_handleRefreshAnonymousTokenTaskId > 0)
+    if (handleGetAnonaymousToaknRequest != nil && ! [handleGetAnonaymousToaknRequest isFinish])
         return;
     
     NSString *anonaymouseAPI = [NSString stringWithFormat:@"%@%@", [[Common shareInstance] getAnonymousAccount].hostUrl, API_GET_ANONYMOUS_TOKEN];
-    HTTPRequest *request = [[HTTPRequest alloc] initWithUrl:anonaymouseAPI type:REQUEST_ITEM_TYPE_POST_FORM];
-    _handleRefreshAnonymousTokenTaskId = request.taskID;
+    handleGetAnonaymousToaknRequest = [[HTTPRequest alloc] initWithUrl:anonaymouseAPI type:REQUEST_ITEM_TYPE_POST_FORM];
+//    _handleRefreshAnonymousTokenTaskId = request.taskID;
     
     
     __weak typeof(self) tempSelf = self;
-    [request startRequest:^(HTTPRequest *request, HTTPResult *result) {
+    [handleGetAnonaymousToaknRequest startRequest:^(HTTPRequest *request, HTTPResult *result) {
         if (result.code == ERROR_SUCCESSFULL)
         {
             NSDictionary *_result = [result.data dictionaryValueForKey:@"result"];
-            NSDictionary *person = [_result dictionaryValueForKey:@"person"];
-            [[[Common shareInstance] getAnonymousAccount] loginWithPerson:[person longLongValueForKey:@"id" defalutValue:0] token:[person stringValueForKey:@"auth_token" defaultValue:nil]];
+            [[[Common shareInstance] getAnonymousAccount] loginWithPerson:[_result longLongValueForKey:@"id" defalutValue:0] token:[_result stringValueForKey:@"auth_token" defaultValue:nil]];
             [tempSelf updateAPIItemInQueue];
         }
         else
@@ -280,7 +279,7 @@
             [tempSelf cancelRequestWithAccount:[[Common shareInstance] getAnonymousAccount]];
         }
         
-        _handleRefreshAnonymousTokenTaskId = 0;
+        handleGetAnonaymousToaknRequest = nil;
     }];
 }
 
@@ -375,7 +374,10 @@
     {
         [_connectionQueue enumerateObjectsUsingBlock:^(APIItem *apiItem, NSUInteger idx, BOOL *stop) {
             if (apiItem.taskID == taskID) {
-                apiItem.progressCallback(apiItem.httpRequest, current, total);
+                if (apiItem.progressCallback)
+                {
+                    apiItem.progressCallback(apiItem.httpRequest, current, total);
+                }
                 *stop = YES;
             }
         }];
@@ -452,7 +454,7 @@
     }
     else
     {
-        strcat(resultApi, "&auth_token=");
+        strcat(resultApi, "?&auth_token=");
     }
     strcat(resultApi, [account.authToken UTF8String]);
     
