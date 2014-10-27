@@ -51,6 +51,7 @@
     _system_name = [NSString stringWithUTF8String:name];
     _device_uuid = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
     
+    
     NSBundle* mainBundle = [NSBundle mainBundle];
     NSString* url = [mainBundle pathForResource:@"ex" ofType:@"plist"];
     NSDictionary * d = [NSDictionary dictionaryWithContentsOfFile:url];
