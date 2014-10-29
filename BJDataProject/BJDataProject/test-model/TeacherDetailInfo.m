@@ -9,19 +9,19 @@
 #import "TeacherDetailInfo.h"
 #import "APITask.h"
 
-#define DATA_API @"/teacher_center/detailInfo"
+#define GET_DATA_API @"/teacher_center/detailInfo"
 
 @implementation TeacherDetailInfo
 
 - (void)doRefreshOperation:(TaskQueue *)taskQueue
 {
-    APITask *task = [[APITask alloc] initWithAPI:DATA_API];
+    APITask *task = [[APITask alloc] initWithAPI:GET_DATA_API postBody:nil];
     [taskQueue addTaskItem:task];
 }
 
 - (NSString *)getCacheKey
 {
-    return @"detail_info";
+    return NSStringFromClass([self class]);
 }
 
 @end

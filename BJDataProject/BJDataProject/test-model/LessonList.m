@@ -1,24 +1,24 @@
 //
-//  CaseList.m
+//  LessonList.m
 //  BJDataProject
 //
 //  Created by 杨磊 on 14-10-29.
 //  Copyright (c) 2014年 杨磊. All rights reserved.
 //
 
-#import "CaseList.h"
+#import "LessonList.h"
 #import "APITask.h"
 
-#define REFRESH_API @"/teacher_center/caseList"
+#define REFRESH_API @"/user/info"
 
-@implementation CaseList
+@implementation LessonList
 
 - (instancetype)init
 {
     self = [super init];
     if (self)
     {
-        [self loadCache];
+//        [self loadCache];
     }
     return self;
 }
@@ -29,9 +29,10 @@
     [taskQueue addTaskItem:task];
 }
 
+
 - (NSString *)getCacheKey
 {
-    return @"case_list";
+    return NSStringFromClass([self class]);
 }
 
 @end
