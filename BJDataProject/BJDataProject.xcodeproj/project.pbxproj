@@ -13,6 +13,8 @@
 		2584FB0519FE0F77001C9023 /* ex.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2584FB0419FE0F77001C9023 /* ex.plist */; };
 		2584FB0819FE10E7001C9023 /* SvUDIDTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 2584FB0719FE10E7001C9023 /* SvUDIDTools.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		2584FB0B19FE110B001C9023 /* NSString+MD5Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 2584FB0A19FE110B001C9023 /* NSString+MD5Addition.m */; };
+		25D3E3F21A00BF6600CBAA75 /* ListDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25D3E3F11A00BF6600CBAA75 /* ListDataViewController.m */; };
+		25D3E3F51A00D7FB00CBAA75 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25D3E3F41A00D7FB00CBAA75 /* BaseViewController.m */; };
 		6EF9211C9E5CB9A5E0A13F3A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7097B1DE5796EA0143CC13F3 /* libPods.a */; };
 		9517608D19FB93FF00D1B241 /* BJPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 9517608C19FB93FF00D1B241 /* BJPerson.m */; };
 		9517609019FB987D00D1B241 /* APITask.m in Sources */ = {isa = PBXBuildFile; fileRef = 9517608F19FB987D00D1B241 /* APITask.m */; };
@@ -73,6 +75,10 @@
 		2584FB0719FE10E7001C9023 /* SvUDIDTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SvUDIDTools.m; sourceTree = "<group>"; };
 		2584FB0919FE110B001C9023 /* NSString+MD5Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5Addition.h"; sourceTree = "<group>"; };
 		2584FB0A19FE110B001C9023 /* NSString+MD5Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5Addition.m"; sourceTree = "<group>"; };
+		25D3E3F01A00BF6600CBAA75 /* ListDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListDataViewController.h; sourceTree = "<group>"; };
+		25D3E3F11A00BF6600CBAA75 /* ListDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListDataViewController.m; sourceTree = "<group>"; };
+		25D3E3F31A00D7FB00CBAA75 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		25D3E3F41A00D7FB00CBAA75 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		6A97C76823B628E0CD0E1C31 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		7097B1DE5796EA0143CC13F3 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9517608B19FB93FF00D1B241 /* BJPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BJPerson.h; sourceTree = "<group>"; };
@@ -184,6 +190,17 @@
 			path = configs;
 			sourceTree = "<group>";
 		};
+		25D3E3EF1A00BE0B00CBAA75 /* View&ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				25D3E3F01A00BF6600CBAA75 /* ListDataViewController.h */,
+				25D3E3F11A00BF6600CBAA75 /* ListDataViewController.m */,
+				25D3E3F31A00D7FB00CBAA75 /* BaseViewController.h */,
+				25D3E3F41A00D7FB00CBAA75 /* BaseViewController.m */,
+			);
+			path = "View&ViewController";
+			sourceTree = "<group>";
+		};
 		8635F3B8C0EFB8C0EF6DAB8E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -284,6 +301,7 @@
 		958FE9A619BA143200E33260 /* BJDataProject */ = {
 			isa = PBXGroup;
 			children = (
+				25D3E3EF1A00BE0B00CBAA75 /* View&ViewController */,
 				951A165419FFE36A00BD8858 /* test-model */,
 				2584FB0319FE0F77001C9023 /* configs */,
 				955BEC4719FB518D00C04F90 /* utils */,
@@ -489,6 +507,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9517609019FB987D00D1B241 /* APITask.m in Sources */,
+				25D3E3F51A00D7FB00CBAA75 /* BaseViewController.m in Sources */,
 				958FE9B119BA143200E33260 /* AppDelegate.m in Sources */,
 				955BEC4D19FB711A00C04F90 /* BJFileManager.m in Sources */,
 				95AE53BB19CC06C30008ED0B /* BJSimpleData.m in Sources */,
@@ -499,6 +518,7 @@
 				955BEC3B19FAB44500C04F90 /* TestTaskItem.m in Sources */,
 				951760C419FD33A800D1B241 /* TimeUtils.m in Sources */,
 				2538CB6F19FBA7C70099ED2C /* HTTPRequest.m in Sources */,
+				25D3E3F21A00BF6600CBAA75 /* ListDataViewController.m in Sources */,
 				2584FB0819FE10E7001C9023 /* SvUDIDTools.m in Sources */,
 				95AE53B519C932E70008ED0B /* RootViewController.m in Sources */,
 				951760CB19FD41AA00D1B241 /* Common.m in Sources */,
