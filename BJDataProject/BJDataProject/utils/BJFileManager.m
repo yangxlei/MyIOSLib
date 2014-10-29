@@ -7,6 +7,7 @@
 //
 
 #import "BJFileManager.h"
+#import "BJUserAccount.h"
 
 @implementation BJFileManager
 

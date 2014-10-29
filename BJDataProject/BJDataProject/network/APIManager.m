@@ -8,6 +8,7 @@
 
 #import "APIManager.h"
 #import "BJUserAccount.h"
+#import "HTTPRequest.h"
 #include <string.h>
 #include "MD5.h"
 #include "CTime.h"
@@ -50,15 +51,12 @@
 + (APIManager *)shareInstance
 {
     static APIManager *manager = nil;
-    if (manager) return manager;
-    @synchronized(self)
-    {
-        if (manager == nil)
-        {
-            manager = [[APIManager alloc] initWithCapacity:5];
-        }
-    }
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        manager = [[self alloc] initWithCapacity:5];
     
+    });
+   
     return manager;
 }
 
@@ -156,14 +154,14 @@
 {
     APIItem *item = [[APIItem alloc] init];
     
-    BJUserAccount *account = [[Common shareInstance] getMainAccount];
+    BJUserAccount *account = CommonInstance.mainAccount;
     if (account.authToken != nil)
     {
         item.account = account;
     }
     else
     {
-        item.account = [[Common shareInstance] getAnonymousAccount];
+        item.account = CommonInstance.anonymousAccount;
     }
     item.progressCallback = progressCallback;
     item.finishCallback = finishCallback;
@@ -188,14 +186,14 @@
                     finishCallback:(apiRequestFinishCallback)finishCallback
 {
     APIItem *item = [[APIItem alloc] init];
-    BJUserAccount *account = [[Common shareInstance] getMainAccount];
+    BJUserAccount *account = CommonInstance.mainAccount;
     if(account.authToken != nil)
     {
         item.account = account;
     }
     else
     {
-        item.account = [[Common shareInstance] getAnonymousAccount];
+        item.account = CommonInstance.anonymousAccount;
     }
     
     item.progressCallback = progressCallback;
@@ -224,7 +222,7 @@
     {
         __weak typeof(self) tempSelf = self;
         [_waitConnectionQueue enumerateObjectsUsingBlock:^(APIItem *apiItem, NSUInteger idx, BOOL *stop) {
-            if (apiItem.account == [[Common shareInstance] getAnonymousAccount])
+            if (apiItem.account == CommonInstance.anonymousAccount)
             { // 检验匿名token是否已经获取
                 if (apiItem.account.authToken == nil)
                 {
@@ -256,7 +254,7 @@
     if (handleGetAnonaymousToaknRequest != nil && ! [handleGetAnonaymousToaknRequest isFinish])
         return;
     
-    NSString *anonaymouseAPI = [NSString stringWithFormat:@"%@%@", [[Common shareInstance] getAnonymousAccount].hostUrl, API_GET_ANONYMOUS_TOKEN];
+    NSString *anonaymouseAPI = [NSString stringWithFormat:@"%@%@", CommonInstance.anonymousAccount.hostUrl, API_GET_ANONYMOUS_TOKEN];
     handleGetAnonaymousToaknRequest = [[HTTPRequest alloc] initWithUrl:anonaymouseAPI type:REQUEST_ITEM_TYPE_POST_FORM];
 //    _handleRefreshAnonymousTokenTaskId = request.taskID;
     
@@ -266,13 +264,13 @@
         if (result.code == ERROR_SUCCESSFULL)
         {
             NSDictionary *_result = [result.data dictionaryValueForKey:@"result"];
-            [[[Common shareInstance] getAnonymousAccount] loginWithPerson:[_result longLongValueForKey:@"id" defalutValue:0] token:[_result stringValueForKey:@"auth_token" defaultValue:nil]];
+            [CommonInstance.anonymousAccount loginWithPerson:[_result longLongValueForKey:@"id" defalutValue:0] token:[_result stringValueForKey:@"auth_token" defaultValue:nil]];
             [tempSelf updateAPIItemInQueue];
         }
         else
         {
             // 匿名用户创建失败，取消当前账户下所有的网络请求
-            [tempSelf cancelRequestWithAccount:[[Common shareInstance] getAnonymousAccount]];
+            [tempSelf cancelRequestWithAccount:CommonInstance.anonymousAccount];
         }
         
         handleGetAnonaymousToaknRequest = nil;

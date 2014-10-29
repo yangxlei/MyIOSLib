@@ -10,6 +10,7 @@
 #import "BJDataDelegate.h"
 #import "BJCodeDefine.h"
 
+@class BJUserAccount;
 @interface BJData : NSObject
 {
     NSMutableArray __strong *_delegates;

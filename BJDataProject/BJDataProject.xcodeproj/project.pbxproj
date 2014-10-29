@@ -21,6 +21,7 @@
 		951760C519FD33A800D1B241 /* CTime.c in Sources */ = {isa = PBXBuildFile; fileRef = 951760C219FD33A800D1B241 /* CTime.c */; };
 		951760CB19FD41AA00D1B241 /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 951760CA19FD41AA00D1B241 /* Common.m */; };
 		951760CE19FD562F00D1B241 /* MD5.c in Sources */ = {isa = PBXBuildFile; fileRef = 951760CC19FD562F00D1B241 /* MD5.c */; };
+		951A165719FFE37F00BD8858 /* TeacherDetailInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 951A165619FFE37F00BD8858 /* TeacherDetailInfo.m */; };
 		955BEBB719F23D3100C04F90 /* BJUserAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 955BEBB619F23D3100C04F90 /* BJUserAccount.m */; };
 		955BEC0019FA81F800C04F90 /* TaskQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 955BEBFF19FA81F800C04F90 /* TaskQueue.m */; };
 		955BEC3819FA87DC00C04F90 /* TaskItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 955BEC3719FA87DC00C04F90 /* TaskItem.m */; };
@@ -89,6 +90,8 @@
 		951760CA19FD41AA00D1B241 /* Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Common.m; sourceTree = "<group>"; };
 		951760CC19FD562F00D1B241 /* MD5.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = MD5.c; sourceTree = "<group>"; };
 		951760CD19FD562F00D1B241 /* MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MD5.h; sourceTree = "<group>"; };
+		951A165519FFE37F00BD8858 /* TeacherDetailInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeacherDetailInfo.h; sourceTree = "<group>"; };
+		951A165619FFE37F00BD8858 /* TeacherDetailInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeacherDetailInfo.m; sourceTree = "<group>"; };
 		955BEBB519F23D3100C04F90 /* BJUserAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BJUserAccount.h; sourceTree = "<group>"; };
 		955BEBB619F23D3100C04F90 /* BJUserAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BJUserAccount.m; sourceTree = "<group>"; };
 		955BEBFE19FA81F800C04F90 /* TaskQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskQueue.h; sourceTree = "<group>"; };
@@ -190,6 +193,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		951A165419FFE36A00BD8858 /* test-model */ = {
+			isa = PBXGroup;
+			children = (
+				951A165519FFE37F00BD8858 /* TeacherDetailInfo.h */,
+				951A165619FFE37F00BD8858 /* TeacherDetailInfo.m */,
+			);
+			path = "test-model";
+			sourceTree = "<group>";
+		};
 		955BEBFD19FA80A600C04F90 /* Task */ = {
 			isa = PBXGroup;
 			children = (
@@ -272,6 +284,7 @@
 		958FE9A619BA143200E33260 /* BJDataProject */ = {
 			isa = PBXGroup;
 			children = (
+				951A165419FFE36A00BD8858 /* test-model */,
 				2584FB0319FE0F77001C9023 /* configs */,
 				955BEC4719FB518D00C04F90 /* utils */,
 				955BEC4319FB517F00C04F90 /* network */,
@@ -480,6 +493,7 @@
 				955BEC4D19FB711A00C04F90 /* BJFileManager.m in Sources */,
 				95AE53BB19CC06C30008ED0B /* BJSimpleData.m in Sources */,
 				2584FB0019FE0E68001C9023 /* UIDevice+IdentifierAddition.m in Sources */,
+				951A165719FFE37F00BD8858 /* TeacherDetailInfo.m in Sources */,
 				955BEBB719F23D3100C04F90 /* BJUserAccount.m in Sources */,
 				955BEC3E19FAC41C00C04F90 /* TestTaskItem2.m in Sources */,
 				955BEC3B19FAB44500C04F90 /* TestTaskItem.m in Sources */,

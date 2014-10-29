@@ -10,9 +10,21 @@
 #import "APITask.h"
 #import "Common.h"
 
-#define API_URL_PERSON  "/teacher_center/info?&auth_token="
+#define API_URL_PERSON  "/teacher_center/info"
 
 @implementation BJPerson
+
+- (instancetype)initWithPersonID:(long long)personId
+{
+    self = [super init];
+    if (self)
+    {
+        _personID = personId;
+        [self loadCache];
+    }
+    
+    return self;
+}
 
 - (void)doRefreshOperation:(TaskQueue *)taskQueue
 {
@@ -26,14 +38,18 @@
 
 - (void)setPersonID:(long long)personID
 {
+    if (_personID == personID && _taskQueue != nil)
+    {// personID 没有改变，并且正在刷新. 可以直接返回
+        return;
+    }
     [self cancelRefresh];
     _personID = personID;
-    [self refresh];
+    [self loadCache];
 }
 
 - (NSString *)getCacheKey
 {
-    if (_personID != 0 && _personID == [CommonInstance getMainAccount].personId)
+    if (_personID != 0)
     {
         return [NSString stringWithFormat:@"person_%lld", _personID];
     }

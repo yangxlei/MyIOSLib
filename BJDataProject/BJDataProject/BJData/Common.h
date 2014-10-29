@@ -29,7 +29,7 @@
 
 + (Common *)shareInstance;
 
-- (BJUserAccount *)getAnonymousAccount;
-- (BJUserAccount *)getMainAccount;
+- (BJUserAccount *)mainAccount;
+- (BJUserAccount *)anonymousAccount;
 
 @end

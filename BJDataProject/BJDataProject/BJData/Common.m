@@ -14,8 +14,7 @@
 
 @interface Common()
 {
-    BJUserAccount *_anonymousAccount;
-    BJUserAccount *_mainAccount;
+    NSMutableDictionary *dictionary;
 }
 
 @end
@@ -25,15 +24,14 @@
 + (Common *)shareInstance
 {
     static Common *instance = nil;
-    if (instance) return instance;
-    @synchronized(self)
-    {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
         if (instance == nil)
         {
-            instance = [[Common alloc] init];
+            instance = [[self alloc] init];
         }
-    }
-    
+    });
+   
     return instance;
 }
 
@@ -64,22 +62,40 @@
     self = [super init];
     if (self)
     {
-        _anonymousAccount = [[BJUserAccount alloc] initWithDomain:USER_DOMAIN_ANONYMOUS];
-        _mainAccount = [[BJUserAccount alloc] initWithDomain:USER_DOMAIN_MAIN];
-        
         [self loadCfg];
+        dictionary = [[NSMutableDictionary alloc] initWithCapacity:2];
     }
     return self;
 }
 
-- (BJUserAccount *)getAnonymousAccount
+- (void)dealloc
 {
-    return _anonymousAccount;
+    NSLog(@"Common dealloc");
 }
 
-- (BJUserAccount *)getMainAccount
+- (BJUserAccount *)mainAccount
 {
-    return _mainAccount;
+
+    if ([dictionary objectForKey:@"main"] == nil)
+    {
+        BJUserAccount *_mainAccount = [[BJUserAccount alloc] initWithDomain:USER_DOMAIN_MAIN];
+        [dictionary setObject:_mainAccount forKey:@"main"];
+        
+        [_mainAccount.person refresh];
+        
+    }
+    return [dictionary objectForKey:@"main"];
 }
+
+- (BJUserAccount *)anonymousAccount
+{
+    if ([dictionary objectForKey:@"anonymous"] == nil)
+    {
+        BJUserAccount *_anonymousAccount = [[BJUserAccount alloc] initWithDomain:USER_DOMAIN_ANONYMOUS];
+        [dictionary setObject:_anonymousAccount forKey:@"anonymouns"];
+    }
+    return [dictionary objectForKey:@"anonymous"];
+}
+
 
 @end

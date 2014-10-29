@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "HTTPResult.h"
-#import "HTTPRequest.h"
 
 #import "Common.h"
 
@@ -17,6 +16,7 @@
 
 typedef void (^apiRequestFinishCallback)(HTTPRequest *request,HTTPResult *result);
 typedef void (^apiRequestProgressCallback)(HTTPRequest *request, long long current, long long total);
+@class HTTPRequest;
 
 /**
     接口管理器，所有接口请求

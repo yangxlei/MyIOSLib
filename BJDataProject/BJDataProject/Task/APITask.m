@@ -8,6 +8,7 @@
 
 #import "APITask.h"
 #import "APIManager.h"
+#import "HTTPRequest.h"
 
 @interface APITask()
 {
@@ -59,13 +60,13 @@
     if (_requestType == REQUEST_ITEM_TYPE_GET)
     {
         self.taskId = [APIManagerInstance requestAPIWithGet:_api callback:^(HTTPRequest *request, HTTPResult *result) {
-            [tempSelf TaskCompleted:(int)result.code result:result];
+            [tempSelf TaskCompleted:(int)result.code result:result.data];
         }];
     }
     else
     {
         self.taskId = [APIManagerInstance requestAPIWithPost:_api postBody:_postBody callback:^(HTTPRequest *request, HTTPResult *result) {
-            [tempSelf TaskCompleted:(int)result.code result:result];
+            [tempSelf TaskCompleted:(int)result.code result:result.data];
         }];
     }
     return (int)self.taskId;

@@ -13,6 +13,8 @@
 #import "TestTaskItem.h"
 #import "JsonUtils.h"
 #import "APIManager.h"
+#import "BJFileManager.h"
+#import "TeacherDetailInfo.h"
 
 #include "MD5.h"
 
@@ -20,11 +22,14 @@
 {
     BJUserAccount *_account;
     TaskQueue *taskQueue;
+    
+    TeacherDetailInfo *detailInfo;
 }
 
 @end
 
 @implementation RootViewController
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -41,6 +46,7 @@
 
 - (void)taskDidStart:(TaskItem *)taskItem
 {
+//    NSString *result =  self.text ;
 }
 
 - (void)taskDidFinished:(TaskItem *)taskItem
@@ -70,8 +76,9 @@
     button.frame = CGRectMake(50, 150, 100, 50);
     [button addTarget:self action:@selector(buttonAction2:) forControlEvents:UIControlEventTouchUpInside];
     
-    _account = [[BJUserAccount alloc] initWithDomain:USER_DOMAIN_MAIN];
-    [_account addDelegate:self];
+    
+//    _account = [[BJUserAccount alloc] initWithDomain:USER_DOMAIN_MAIN];
+//    [_account addDelegate:self];
     
 }
 
@@ -84,18 +91,26 @@
 
 - (void)buttonAction:(id)sender
 {
+    
+    detailInfo = [[TeacherDetailInfo alloc] init];
+//    [detailInfo refresh];
+    NSLog(@"cache = %@", detailInfo.data);
+    
+//    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:@"aa",@"bb", nil];
+//    NSString *filepath = [BJFileManager getCacheFilePath:@"test_cache"];
+//    [dic writeToFile:filepath atomically:YES];
 //    NSDictionary *param = [NSDictionary dictionaryWithObjectsAndKeys:@"18611579546",@"value", @"123456", @"password", nil];
-//    NSInteger taskId = [[APIManager shareInstance] requestAPIWithPost:@"/auth/teacherLogin" postBody:param callback:^(HTTPRequest *request, HTTPResult *result) {
+//    NSInteger taskId = [[APIManager shareInstance] requestAPIWithPost:@"/teacher_center/detailInfo" postBody:param callback:^(HTTPRequest *request, HTTPResult *result) {
 //        NSDictionary *_result = [result.data dictionaryValueForKey:@"result"];
+//        NSLog(@"result : %@", _result);
 //        NSString *token = [_result stringValueForKey:@"auth_token" defaultValue:nil];
 //        NSDictionary *person = [_result dictionaryValueForKey:@"person"];
-//        [[[Common shareInstance] getMainAccount] loginWithPerson:[person longLongValueForKey:@"id" defalutValue:0] token:token];
+//        [CommonInstance.mainAccount loginWithPerson:[person longLongValueForKey:@"id" defalutValue:0] token:token];
 //    }];
+//
     
-    NSInteger taskId = [APIManagerInstance requestAPIWithGet:@"http://www.baidu.com" callback:^(HTTPRequest *request, HTTPResult *result) {
-        NSLog(@"%@", result);
-    }];
-    NSLog(@"task:%d", (int)taskId);
+//    NSInteger taskId = [APIManagerInstance requestAPIWithGet:@"http://www.baidu.com" callback:^(HTTPRequest *request, HTTPResult *result) {
+//    }];
 //    [[APIManager shareInstance] cancelRequest:taskId];
 //    NSString *api = @"/teacher_center/info?&name=xxx&age=22";
 //    

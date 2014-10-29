@@ -64,6 +64,7 @@
     _personId = 0;
     _authToken = nil;
     [_person cancelRefresh];
+    _person.personID = 0;
     [BJFileManager deleteCacheFile:[_person getCacheKey]];
     
     if ([self getCacheKey])
