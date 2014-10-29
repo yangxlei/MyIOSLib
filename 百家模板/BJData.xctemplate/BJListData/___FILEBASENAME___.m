@@ -29,6 +29,22 @@
     [taskQueue addTaskItem:task];
 }
 
+//- (void)doGetMoreOperation:(TaskQueue *)taskQueue
+//{
+//}
+//
+//- (void)doAddItemOperation:(TaskQueue *)taskQueue at:(NSInteger)index
+//{
+//}
+//
+//- (void)doRemoveItemOperation:(TaskQueue *)taskQueue at:(NSInteger)index
+//{
+//}
+//
+//- (void)doSaveItemOperation:(TaskQueue *)taskQueue at:(NSInteger)index
+//{
+//}
+
 - (NSString *)getCacheKey
 {
     return NSStringFromClass([self class]);

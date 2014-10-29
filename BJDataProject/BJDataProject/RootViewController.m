@@ -16,6 +16,7 @@
 #import "BJFileManager.h"
 #import "TeacherDetailInfo.h"
 #import "CaseList.h"
+#import "SubjectData.h"
 
 #include "MD5.h"
 
@@ -29,6 +30,7 @@
     TaskQueue *tasks[10];
     
     CaseList *caseList;
+    SubjectData *subjects;
 }
 
 @end
@@ -101,7 +103,11 @@
 //        NSDictionary *person = [_result dictionaryValueForKey:@"person"];
 //        [CommonInstance.mainAccount loginWithPerson:[person longLongValueForKey:@"id" defalutValue:0] token:token];
 //    }];
-    [caseList refresh];
+//    [caseList refresh];
+    subjects = [[SubjectData alloc] init];
+    [subjects addDelegate:self];
+    [subjects refresh];
+    
 }
 
 

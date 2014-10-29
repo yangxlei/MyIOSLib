@@ -200,6 +200,7 @@
     
     if (tasks[OPERATION_SAVE_ITEM] == nil)
     {
+        [self invokeDelegateWithError:ERROR_SUCCESSFULL ope:OPERATION_DATA_CHANGED error_message:nil params:nil];
         tasks[OPERATION_SAVE_ITEM] = [[TaskQueue alloc] init];
         [self doSaveItemOperation:tasks[OPERATION_SAVE_ITEM] at:index];
         tasks[OPERATION_SAVE_ITEM].delegate = self;
@@ -242,6 +243,7 @@
 
 - (void)cleanList
 {
+    [self cancelOperation:OPERATION_ALL];
     [self.list removeAllObjects];
     _status = STATUS_NO_CONNECT_AND_NO_DATA;
     _mNextCursor = nil;
@@ -253,6 +255,10 @@
 
 - (void)saveCache
 {
+    
+    NSString *filePath = [BJFileManager getCacheFilePath:[self getCacheKey] withAccount:self.mAccount];
+    if (filePath == nil) return;
+    
     id json = [JsonUtils newJsonObject:NO];
     if (_list != nil)
     {
@@ -274,12 +280,8 @@
     }
     [json setIntValue:_mTotalNum forKey:@"total_num"];
     
-    NSString *filePath = [BJFileManager getCacheFilePath:[self getCacheKey] withAccount:self.mAccount];
-    if (filePath != nil)
-    {
-        NSString *code = [JsonUtils jsonToString:json];
-        [code writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:nil];
-    }
+    NSString *code = [JsonUtils jsonToString:json];
+    [code writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:nil];
 }
 
 - (void)loadCache
@@ -351,8 +353,6 @@
         }
     }
     [self invokeDelegateWithError:error ope:OPERATION_REFRESH error_message:[result getError] params:nil];
-//    [tasks[OPERATION_REFRESH] cleanQueue];
-//    tasks[OPERATION_REFRESH] = nil;
 }
 
 - (void)getMoreCallback:(TaskQueue *)taskQueue param:(id)param error:(int)error
@@ -393,6 +393,10 @@
     {
         int index = [taskQueue.param intValue];
         [_list removeObjectAt:index];
+        if ([_list count] == 0)
+        {
+            _status = STATUS_EMPTY;
+        }
         [self saveCache];
     }
     [self invokeDelegateWithError:error ope:OPERATION_REMOVE_ITEM error_message:[result getError] params:nil];

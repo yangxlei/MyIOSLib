@@ -9,7 +9,7 @@
 #import "SubjectData.h"
 #import "APITask.h"
 
-#define GET_DATA_API @"/user/info"
+#define GET_DATA_API @"/subject/getAllData"
 
 @implementation SubjectData
 
@@ -18,7 +18,7 @@
     self = [super init];
     if (self)
     {
-//        [self loadCache];
+        [self loadCache];
     }
     return self;
 }
@@ -36,6 +36,6 @@
 
 - (long)dataCacheTime
 {
-    return 0;
+    return 100000;
 }
 @end
