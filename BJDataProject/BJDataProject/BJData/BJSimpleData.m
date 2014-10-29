@@ -50,7 +50,7 @@
 
 - (void)saveCache
 {
-    NSString *filePath = [BJFileManager getCacheFilePath:[self getCacheKey]];
+    NSString *filePath = [BJFileManager getCacheFilePath:[self getCacheKey] withAccount:self.mAccount];
     if (filePath == nil)
         return;
 //    BOOL succ = [_data writeToFile:filePath atomically:YES];
@@ -65,7 +65,7 @@
 
 - (void)loadCache
 {
-    NSString *filePath = [BJFileManager getCacheFilePath:[self getCacheKey]];
+    NSString *filePath = [BJFileManager getCacheFilePath:[self getCacheKey] withAccount:self.mAccount];
     if (filePath == nil) return;
     
     NSString *source = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
@@ -110,16 +110,14 @@
         id _result = [taskQueue.result dictionaryValueForKey:@"result"];
         if (_result != nil)
         {
-//            [_data removeAllObjects];
-//            _data = [[NSMutableDictionary alloc] initWithDictionary:_result];
             _data = _result;
             [self saveCache];
         }
     }
     
+    [self invokeDelegateWithError:error ope:OPERATION_REFRESH error_message:[taskQueue.result getError] params:nil];
     [_taskQueue cleanQueue];
     _taskQueue = nil;
-    [self invokeDelegateWithError:error ope:OPERATION_REFRESH error_message:[_data getError] params:nil];
 }
 
 @end

@@ -25,6 +25,7 @@
     {
         _domain = [domain copy];
         _person = [[BJPerson alloc] init];
+        _person.mAccount = self;
         [self loadCache];
     }
     return self;

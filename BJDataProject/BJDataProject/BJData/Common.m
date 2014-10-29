@@ -75,11 +75,17 @@
 
 - (BJUserAccount *)mainAccount
 {
+    if ([dictionary valueForKey:@"create_main"] != nil && [dictionary valueForKey:@"main"] == nil)
+    {
+        return nil;
+    }
 
     if ([dictionary objectForKey:@"main"] == nil)
     {
+        [dictionary setObject:@"create" forKey:@"create_main"];
         BJUserAccount *_mainAccount = [[BJUserAccount alloc] initWithDomain:USER_DOMAIN_MAIN];
         [dictionary setObject:_mainAccount forKey:@"main"];
+        [dictionary removeObjectForKey:@"create_main"];
         
         [_mainAccount.person refresh];
         
@@ -89,10 +95,17 @@
 
 - (BJUserAccount *)anonymousAccount
 {
-    if ([dictionary objectForKey:@"anonymous"] == nil)
+    if ([dictionary valueForKey:@"create_anony"] != nil && [dictionary valueForKey:@"anonymouns"] == nil)
     {
+        return nil;
+    }
+
+    if ([dictionary objectForKey:@"anonymouns"] == nil)
+    {
+         [dictionary setObject:@"create" forKey:@"create_anony"];
         BJUserAccount *_anonymousAccount = [[BJUserAccount alloc] initWithDomain:USER_DOMAIN_ANONYMOUS];
         [dictionary setObject:_anonymousAccount forKey:@"anonymouns"];
+        [dictionary removeObjectForKey:@"create_anony"];
     }
     return [dictionary objectForKey:@"anonymous"];
 }

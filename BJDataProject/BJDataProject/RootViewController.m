@@ -93,7 +93,8 @@
 {
     
     detailInfo = [[TeacherDetailInfo alloc] init];
-//    [detailInfo refresh];
+    [detailInfo refresh];
+    [detailInfo addDelegate:self];
     NSLog(@"cache = %@", detailInfo.data);
     
 //    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:@"aa",@"bb", nil];
@@ -157,7 +158,7 @@
 
 - (void)dataEvent:(BJData *)_data error:(int)_error ope:(int)_ope error_message:(NSString *)_error_message params:(id)params
 {
-
+    NSLog(@"_data %@", _data);
 }
 
 /*

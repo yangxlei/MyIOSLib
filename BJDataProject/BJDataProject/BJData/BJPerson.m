@@ -49,7 +49,7 @@
 
 - (NSString *)getCacheKey
 {
-    if (_personID != 0)
+    if (_personID != 0 && _personID == self.mAccount.personId)
     {
         return [NSString stringWithFormat:@"person_%lld", _personID];
     }
