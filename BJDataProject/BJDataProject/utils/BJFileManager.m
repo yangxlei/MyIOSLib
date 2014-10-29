@@ -27,4 +27,14 @@
     [[NSFileManager defaultManager] removeItemAtPath:filepath error:nil];
 }
 
++ (NSString *)getCacheFilePath:(NSString *)cache withAccount:(BJUserAccount *)account
+{
+    if (cache == nil || account == nil)
+        return nil;
+    NSString *dir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    dir = [NSString stringWithFormat:@"%@/%lld", dir, account.personId];
+    [[NSFileManager defaultManager] createDirectoryAtPath:dir withIntermediateDirectories:YES attributes:nil error:nil];
+    return [NSString stringWithFormat:@"%@/%@", dir, cache];
+}
+
 @end

@@ -31,8 +31,8 @@ typedef enum _status_code
     STATUS_NETWORK_ERROR_AND_NO_DATA = 1,
     STATUS_EMPTY = 2,
     STATUS_HAVE_DATA = 3,
-    STATUS_DATA_DELETED = 4,
-    STATUS_NO_PERMISSION = 5,
+//    STATUS_DATA_DELETED = 4,
+//    STATUS_NO_PERMISSION = 5,
 }BJDATA_STATUS_CODE;
 
 typedef enum _ope_code

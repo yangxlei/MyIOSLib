@@ -17,6 +17,8 @@
     BOOL                    bIsCallbacking;
 }
 
+@property (nonatomic, weak) BJUserAccount *mAccount;
+
 /**
  保存数据到缓存
  */
