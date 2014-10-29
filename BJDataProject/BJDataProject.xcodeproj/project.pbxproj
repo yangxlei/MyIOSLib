@@ -24,6 +24,7 @@
 		951A165719FFE37F00BD8858 /* TeacherDetailInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 951A165619FFE37F00BD8858 /* TeacherDetailInfo.m */; };
 		951A165A1A00984800BD8858 /* BJDataFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 951A16591A00984800BD8858 /* BJDataFactory.m */; };
 		951A165D1A00C64400BD8858 /* BJListData.m in Sources */ = {isa = PBXBuildFile; fileRef = 951A165C1A00C64400BD8858 /* BJListData.m */; };
+		951A16631A010F7700BD8858 /* CaseList.m in Sources */ = {isa = PBXBuildFile; fileRef = 951A16621A010F7700BD8858 /* CaseList.m */; };
 		955BEBB719F23D3100C04F90 /* BJUserAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 955BEBB619F23D3100C04F90 /* BJUserAccount.m */; };
 		955BEC0019FA81F800C04F90 /* TaskQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 955BEBFF19FA81F800C04F90 /* TaskQueue.m */; };
 		955BEC3819FA87DC00C04F90 /* TaskItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 955BEC3719FA87DC00C04F90 /* TaskItem.m */; };
@@ -98,6 +99,8 @@
 		951A16591A00984800BD8858 /* BJDataFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BJDataFactory.m; sourceTree = "<group>"; };
 		951A165B1A00C64400BD8858 /* BJListData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BJListData.h; sourceTree = "<group>"; };
 		951A165C1A00C64400BD8858 /* BJListData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BJListData.m; sourceTree = "<group>"; };
+		951A16611A010F7700BD8858 /* CaseList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaseList.h; sourceTree = "<group>"; };
+		951A16621A010F7700BD8858 /* CaseList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaseList.m; sourceTree = "<group>"; };
 		955BEBB519F23D3100C04F90 /* BJUserAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BJUserAccount.h; sourceTree = "<group>"; };
 		955BEBB619F23D3100C04F90 /* BJUserAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BJUserAccount.m; sourceTree = "<group>"; };
 		955BEBFE19FA81F800C04F90 /* TaskQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskQueue.h; sourceTree = "<group>"; };
@@ -204,6 +207,8 @@
 			children = (
 				951A165519FFE37F00BD8858 /* TeacherDetailInfo.h */,
 				951A165619FFE37F00BD8858 /* TeacherDetailInfo.m */,
+				951A16611A010F7700BD8858 /* CaseList.h */,
+				951A16621A010F7700BD8858 /* CaseList.m */,
 			);
 			path = "test-model";
 			sourceTree = "<group>";
@@ -506,6 +511,7 @@
 				951A165719FFE37F00BD8858 /* TeacherDetailInfo.m in Sources */,
 				955BEBB719F23D3100C04F90 /* BJUserAccount.m in Sources */,
 				955BEC3E19FAC41C00C04F90 /* TestTaskItem2.m in Sources */,
+				951A16631A010F7700BD8858 /* CaseList.m in Sources */,
 				955BEC3B19FAB44500C04F90 /* TestTaskItem.m in Sources */,
 				951760C419FD33A800D1B241 /* TimeUtils.m in Sources */,
 				2538CB6F19FBA7C70099ED2C /* HTTPRequest.m in Sources */,

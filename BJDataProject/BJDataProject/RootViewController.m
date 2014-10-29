@@ -15,6 +15,7 @@
 #import "APIManager.h"
 #import "BJFileManager.h"
 #import "TeacherDetailInfo.h"
+#import "CaseList.h"
 
 #include "MD5.h"
 
@@ -24,6 +25,10 @@
     TaskQueue *taskQueue;
     
     TeacherDetailInfo *detailInfo;
+    
+    TaskQueue *tasks[10];
+    
+    CaseList *caseList;
 }
 
 @end
@@ -84,18 +89,36 @@
 
 - (void)buttonAction2:(id)sender
 {
-    SecondViewController *second = [[SecondViewController alloc] init];
-    [self.navigationController pushViewController:second animated:YES];
+//    SecondViewController *second = [[SecondViewController alloc] init];
+//    [self.navigationController pushViewController:second animated:YES];
+//    BJUserAccount *account = [Common shareInstance].anonymousAccount;
+//    
+//    NSDictionary *param = [NSDictionary dictionaryWithObjectsAndKeys:@"18611579546",@"value", @"yl123456", @"password", nil];
+//    NSInteger taskId = [[APIManager shareInstance] requestAPIWithPost:@"/auth/teacherLogin" postBody:param callback:^(HTTPRequest *request, HTTPResult *result) {
+//        NSDictionary *_result = [result.data dictionaryValueForKey:@"result"];
+//        NSLog(@"result : %@", _result);
+//        NSString *token = [_result stringValueForKey:@"auth_token" defaultValue:nil];
+//        NSDictionary *person = [_result dictionaryValueForKey:@"person"];
+//        [CommonInstance.mainAccount loginWithPerson:[person longLongValueForKey:@"id" defalutValue:0] token:token];
+//    }];
+    [caseList refresh];
 }
 
 
 - (void)buttonAction:(id)sender
 {
     
-    detailInfo = [[TeacherDetailInfo alloc] init];
-    [detailInfo refresh];
-    [detailInfo addDelegate:self];
-    NSLog(@"cache = %@", detailInfo.data);
+    caseList = [[CaseList alloc] init];
+    [caseList refresh];
+    [caseList addDelegate:self];
+//    [caseList loadCache];
+    NSLog(@"%@", caseList.list);
+    
+//    detailInfo = [[TeacherDetailInfo alloc] init];
+//    [detailInfo refresh];
+//    [detailInfo addDelegate:self];
+//    NSLog(@"cache = %@", detailInfo.data);
+    
     
 //    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:@"aa",@"bb", nil];
 //    NSString *filepath = [BJFileManager getCacheFilePath:@"test_cache"];

@@ -37,7 +37,7 @@ typedef void (^apiRequestProgressCallback)(HTTPRequest *request, long long curre
  *
  *  @return APIManager
  */
-- (id)initWithCapacity:(NSUInteger)capacity;
+- (id)initWithCapacity:(NSUInteger)capacity NS_REQUIRES_SUPER;
 
 /**
  *  Get 方式请求 API
