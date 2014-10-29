@@ -13,6 +13,7 @@
 #import "TestTaskItem.h"
 #import "JsonUtils.h"
 #import "APIManager.h"
+#import "SelectImageTools.h"
 
 @interface RootViewController ()<BJDataDelegate, TaskItemDelegate, TaskQueueDelegate>
 {
@@ -71,6 +72,20 @@
     _account = [[BJUserAccount alloc] initWithDomain:USER_DOMAIN_MAIN];
     [_account addDelegate:self];
     
+    
+    button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setBackgroundColor:[UIColor redColor]];
+    [button setTitle:@"获取图片" forState:UIControlStateNormal];
+    [self.view addSubview:button];
+    button.frame = CGRectMake(50, 250, 100, 50);
+    [button addTarget:self action:@selector(selectImage:) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)selectImage:(id)sender
+{
+    [[SelectImageTools shareSelectImageTools] selectImagesBeginWith:self andAllowEditing:NO andPicNum:1 andOptions:nil andFrontCamera:NO andFinishCallback:^(UIImage *image, id params) {
+        
+    } andParams:nil];
 }
 
 - (void)buttonAction2:(id)sender
