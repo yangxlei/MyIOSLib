@@ -38,7 +38,13 @@
     return tools;
 }
 
-- (void)selectImagesBeginWith:(id)controller andAllowEditing:(BOOL)allowEditing andPicNum:(int)picNum andOptions:(NSDictionary *)options andFrontCamera:(BOOL)frontCamera andFinishCallback:(finishCallback)callback andParams:(id)params{
+- (void)selectImagesBeginWith:(id)controller
+              andAllowEditing:(BOOL)allowEditing
+                    andPicNum:(int)picNum
+                   andOptions:(NSDictionary *)options
+               andFrontCamera:(BOOL)frontCamera
+            andFinishCallback:(finishCallback)callback
+                    andParams:(id)params{
     self.picNum = picNum;
     self.allowEditing = allowEditing;
     if (options) {

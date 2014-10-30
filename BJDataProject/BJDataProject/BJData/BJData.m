@@ -183,11 +183,6 @@
     return find;
 }
 
-//- (BOOL)isOperation:(int)ope
-//{
-//    return NO;
-//}
-
 /**
  清除掉已被删除的 delegate
  */
