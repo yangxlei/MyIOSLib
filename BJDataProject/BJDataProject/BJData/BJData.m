@@ -7,6 +7,7 @@
 //
 
 #import "BJData.h"
+#import "Common.h"
 
 /** delegate 已被删除标记 */
 #define DELEGATE_MASK_REMOVE 1
@@ -67,6 +68,23 @@
 
 - (void)loadCache
 {
+}
+
+- (BJUserAccount *)mAccount
+{
+    if (_mAccount != nil)
+    {
+        return _mAccount;
+    }
+    if (CommonInstance.mainAccount)
+    {
+        _mAccount = CommonInstance.mainAccount;
+    }
+    else
+    {
+        _mAccount = CommonInstance.anonymousAccount;
+    }
+    return _mAccount;
 }
 
 - (NSString *)getType

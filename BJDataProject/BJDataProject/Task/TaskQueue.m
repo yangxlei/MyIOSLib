@@ -123,8 +123,8 @@
        if ([_delegate respondsToSelector:@selector(taskQueueFinished:param:error:)])
        {
            [_delegate taskQueueFinished:self param:_param error:ERROR_SUCCESSFULL];
-           _result = nil;
        }
+       _result = nil;
        _param = nil;
    }
 }

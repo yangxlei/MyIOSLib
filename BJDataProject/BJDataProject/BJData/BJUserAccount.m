@@ -24,6 +24,8 @@
     if (self)
     {
         _domain = [domain copy];
+        _person = [[BJPerson alloc] init];
+        _person.mAccount = self;
         [self loadCache];
     }
     return self;
@@ -48,27 +50,36 @@
 {
     _personId = personId;
     _authToken = token;
+    _person.personID = _personId;
     [self saveCache];
     [self invokeDelegateWithError:ERROR_SUCCESSFULL ope:ACCOUNT_LOGIN error_message:nil params:_domain];
 }
 
 - (void)logout
 {
+    [self logoutWithOperation:ACCOUNT_LOGOUT];
+}
+
+- (void)logoutWithOperation:(int)ope
+{
     _personId = 0;
     _authToken = nil;
+    [_person cancelRefresh];
+    _person.personID = 0;
+    [BJFileManager deleteCacheFile:[_person getCacheKey]];
     
     if ([self getCacheKey])
     {
-       [BJFileManager deleteCacheFile:[self getCacheKey]];
+        [BJFileManager deleteCacheFile:[self getCacheKey]];
     }
     
     //广播， 当前账户退出登陆
-    [self invokeDelegateWithError:ERROR_SUCCESSFULL ope:ACCOUNT_LOGOUT error_message:nil params:_domain];
+    [self invokeDelegateWithError:ERROR_SUCCESSFULL ope:ope error_message:nil params:_domain];
 }
 
 - (BOOL)isLogin
 {
-    return (_personId != 0 && [_authToken length] > 0);
+    return (_authToken != nil && [_authToken length] > 0);
 }
 
 - (void)loadCache
@@ -85,6 +96,8 @@
         { //此次登陆和上次登陆的 url 和 key 没有被修改，才能继续使用之前的 token
             _personId = [[dictionary valueForKey:@"person_id"] longLongValue];
             _authToken = [dictionary valueForKey:@"auth_token"];
+            
+            _person.personID = _personId;
         }
         else
         {

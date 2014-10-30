@@ -10,4 +10,8 @@
 
 @interface BJPerson : BJSimpleData
 
+- (instancetype)initWithPersonID:(long long)personId;
+
+@property (nonatomic, assign) long long personID;
+
 @end

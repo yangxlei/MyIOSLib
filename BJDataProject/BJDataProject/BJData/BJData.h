@@ -10,11 +10,14 @@
 #import "BJDataDelegate.h"
 #import "BJCodeDefine.h"
 
+@class BJUserAccount;
 @interface BJData : NSObject
 {
     NSMutableArray __strong *_delegates;
     BOOL                    bIsCallbacking;
 }
+
+@property (nonatomic, weak) BJUserAccount *mAccount;
 
 /**
  保存数据到缓存

@@ -14,16 +14,29 @@
 #import "JsonUtils.h"
 #import "APIManager.h"
 #import "SelectImageTools.h"
+#import "BJFileManager.h"
+#import "TeacherDetailInfo.h"
+#import "CaseList.h"
+#import "SubjectData.h"
+#include "MD5.h"
 
 @interface RootViewController ()<BJDataDelegate, TaskItemDelegate, TaskQueueDelegate>
 {
     BJUserAccount *_account;
     TaskQueue *taskQueue;
+    
+    TeacherDetailInfo *detailInfo;
+    
+    TaskQueue *tasks[10];
+    
+    CaseList *caseList;
+    SubjectData *subjects;
 }
 
 @end
 
 @implementation RootViewController
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -40,6 +53,7 @@
 
 - (void)taskDidStart:(TaskItem *)taskItem
 {
+//    NSString *result =  self.text ;
 }
 
 - (void)taskDidFinished:(TaskItem *)taskItem
@@ -69,8 +83,9 @@
     button.frame = CGRectMake(50, 150, 100, 50);
     [button addTarget:self action:@selector(buttonAction2:) forControlEvents:UIControlEventTouchUpInside];
     
-    _account = [[BJUserAccount alloc] initWithDomain:USER_DOMAIN_MAIN];
-    [_account addDelegate:self];
+    
+//    _account = [[BJUserAccount alloc] initWithDomain:USER_DOMAIN_MAIN];
+//    [_account addDelegate:self];
     
     
     button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -90,18 +105,62 @@
 
 - (void)buttonAction2:(id)sender
 {
-    SecondViewController *second = [[SecondViewController alloc] init];
-    [self.navigationController pushViewController:second animated:YES];
+//    SecondViewController *second = [[SecondViewController alloc] init];
+//    [self.navigationController pushViewController:second animated:YES];
+//    BJUserAccount *account = [Common shareInstance].anonymousAccount;
+//    
+//    NSDictionary *param = [NSDictionary dictionaryWithObjectsAndKeys:@"18611579546",@"value", @"yl123456", @"password", nil];
+//    NSInteger taskId = [[APIManager shareInstance] requestAPIWithPost:@"/auth/teacherLogin" postBody:param callback:^(HTTPRequest *request, HTTPResult *result) {
+//        NSDictionary *_result = [result.data dictionaryValueForKey:@"result"];
+//        NSLog(@"result : %@", _result);
+//        NSString *token = [_result stringValueForKey:@"auth_token" defaultValue:nil];
+//        NSDictionary *person = [_result dictionaryValueForKey:@"person"];
+//        [CommonInstance.mainAccount loginWithPerson:[person longLongValueForKey:@"id" defalutValue:0] token:token];
+//    }];
+//    [caseList refresh];
+    subjects = [[SubjectData alloc] init];
+    [subjects addDelegate:self];
+    [subjects refresh];
+    
 }
 
 
 - (void)buttonAction:(id)sender
 {
     
-    NSString *api = @"/teacher_center/info";
+    caseList = [[CaseList alloc] init];
+    [caseList refresh];
+    [caseList addDelegate:self];
+//    [caseList loadCache];
+    NSLog(@"%@", caseList.list);
     
-    NSString *result = [[APIManager shareInstance] signatureApiWithGet:api account:[[Common shareInstance] getMainAccount]];
-    NSLog(@"%@", result);
+//    detailInfo = [[TeacherDetailInfo alloc] init];
+//    [detailInfo refresh];
+//    [detailInfo addDelegate:self];
+//    NSLog(@"cache = %@", detailInfo.data);
+    
+    
+//    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:@"aa",@"bb", nil];
+//    NSString *filepath = [BJFileManager getCacheFilePath:@"test_cache"];
+//    [dic writeToFile:filepath atomically:YES];
+//    NSDictionary *param = [NSDictionary dictionaryWithObjectsAndKeys:@"18611579546",@"value", @"123456", @"password", nil];
+//    NSInteger taskId = [[APIManager shareInstance] requestAPIWithPost:@"/teacher_center/detailInfo" postBody:param callback:^(HTTPRequest *request, HTTPResult *result) {
+//        NSDictionary *_result = [result.data dictionaryValueForKey:@"result"];
+//        NSLog(@"result : %@", _result);
+//        NSString *token = [_result stringValueForKey:@"auth_token" defaultValue:nil];
+//        NSDictionary *person = [_result dictionaryValueForKey:@"person"];
+//        [CommonInstance.mainAccount loginWithPerson:[person longLongValueForKey:@"id" defalutValue:0] token:token];
+//    }];
+//
+    
+//    NSInteger taskId = [APIManagerInstance requestAPIWithGet:@"http://www.baidu.com" callback:^(HTTPRequest *request, HTTPResult *result) {
+//    }];
+//    [[APIManager shareInstance] cancelRequest:taskId];
+//    NSString *api = @"/teacher_center/info?&name=xxx&age=22";
+//    
+//    NSMutableDictionary *postBody = [[NSMutableDictionary alloc] init];
+//    NSString *url = nil;//[[APIManager shareInstance] signatureApiWithPost:api postBody:postBody account:[[Common shareInstance] getMainAccount]];
+//    NSLog(@"%@\n%@", url, postBody);
     
 //    NSString *str = @"{\"aaa\":\"bbb\", \"ccc\":1, \"list\":[{\"name\":\"yl\", \"age\":23}], \"result\":{\"ext\":\"hehe\"}}";
 //    NSDictionary *dic = [str jsonValue];
@@ -142,7 +201,7 @@
 
 - (void)dataEvent:(BJData *)_data error:(int)_error ope:(int)_ope error_message:(NSString *)_error_message params:(id)params
 {
-
+    NSLog(@"_data %@", _data);
 }
 
 /*

@@ -39,7 +39,7 @@ enum _task_status
 @property (nonatomic, weak) id<TaskItemDelegate> delegate;
 
 /** 当前任务ID */
-@property (nonatomic, assign) int taskId;
+@property (nonatomic, assign) NSInteger taskId;
 
 /** 当前任务状态, 由 TaskQueue 更改 */
 @property (nonatomic, assign) int taskStatus;

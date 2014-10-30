@@ -22,7 +22,6 @@
     self = [super init];
     if (self)
     {
-        [self loadCache];
     }
     return self;
 }
@@ -45,18 +44,23 @@
 
 - (void)saveCache
 {
-    NSString *filePath = [BJFileManager getCacheFilePath:[self getCacheKey]];
+    NSString *filePath = [BJFileManager getCacheFilePath:[self getCacheKey] withAccount:self.mAccount];
     if (filePath == nil)
         return;
-    [_data writeToFile:filePath atomically:YES];
+    NSError *error = nil;
+    BOOL succ = [[JsonUtils jsonToString:_data] writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:&error];
+    NSLog(@"write file succ %d", succ);
+    
+    
 }
 
 - (void)loadCache
 {
-    NSString *filePath = [BJFileManager getCacheFilePath:[self getCacheKey]];
+    NSString *filePath = [BJFileManager getCacheFilePath:[self getCacheKey] withAccount:self.mAccount];
     if (filePath == nil) return;
     
-    _data = [[NSMutableDictionary alloc] initWithContentsOfFile:filePath];
+    NSString *source = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
+    _data = [source jsonValue];
 }
 
 - (void)refresh
@@ -94,18 +98,17 @@
     if (error == ERROR_SUCCESSFULL)
     {
         // 获取结果数据
-        id _result = [taskQueue.result valueForKey:@"result"];
+        id _result = [taskQueue.result dictionaryValueForKey:@"result"];
         if (_result != nil)
         {
-            [_data removeAllObjects];
-            _data = [[NSMutableDictionary alloc] initWithDictionary:_result];
+            _data = _result;
             [self saveCache];
         }
     }
     
+    [self invokeDelegateWithError:error ope:OPERATION_REFRESH error_message:[taskQueue.result getError] params:nil];
     [_taskQueue cleanQueue];
     _taskQueue = nil;
-    [self invokeDelegateWithError:error ope:OPERATION_REFRESH error_message:[_data getError] params:nil];
 }
 
 @end

@@ -13,7 +13,7 @@
 
 @implementation HTTPResult
 
-- (instancetype)initWithResult:(HTTPRequest *)request
+- (instancetype)initWithRequest:(HTTPRequest *)request
                       response:(id)responseObject
                          error:(NSError *)error
 {
@@ -24,18 +24,36 @@
         _parameters = request.parameters;
         _data = [JsonUtils convertJsonObject:responseObject];
         _code = 1;
-        if (error) {
+
+        if (error)
+        {
             _code = [error code];
             _reason = [error localizedFailureReason];
         }
-        else if ([responseObject isKindOfClass:[NSDictionary class]])
+        else if ([_data isKindOfClass:[NSDictionary class]])
         {
 //            NSDictionary *result = (NSDictionary *)responseObject;
             _code = [_data intValueForkey:@"code" defaultValue:ERROR_UNKNOW];//[result[@"code"] integerValue];
             _reason = [_data getError];
         }
+       
     }
     
+    return self;
+}
+
+- (instancetype)initWithRequest:(HTTPRequest *)request code:(BJDATA_ERROR_CODE)code
+{
+    self = [super init];
+    if (self)
+    {
+        _taskID = request.taskID;
+        _url = request.url;
+        _parameters = request.parameters;
+        _code = code;
+        _data = [JsonUtils newJsonObject:NO];
+        [_data setIntValue:code forKey:@"code"];
+    }
     return self;
 }
 
