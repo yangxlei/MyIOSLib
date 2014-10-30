@@ -29,6 +29,18 @@ MyIOSLib:
       <li>- (void)cancelRequest:(NSInteger)taskId   取消正在处理的请求任务</li>                  
     </ol>
    <p>返回的回调 block 中会有 HTTPResult 对象。其中 code 表示此次请求处理的返回码，等于 SUCCESSFULL 表示正常处理成功。 data 为处理完成返回的数据</p>
-   <B>PS: requestXXX 方法会返回当前处理任务的 ID。所以在界面正常退出(如:viewDidDisAppear， dealloc)的地方，应该主动 cancelRequest 这次任务.</B>
+   <B>PS: requestXXX 方法会返回当前处理任务的 ID。所以在界面正常退出(如:viewDidDisAppear， dealloc)的地方，应该主动 cancelRequest 这次任务, 清除回收对应的资源</B>
 
   </p>
+  <br/>
+  <p>BJUserAccount:</p>
+  <p>用户账户， 在 APP 内部会模拟两个账户, 一个匿名 anonymous 账户，一个用户登录后使用的 main 账户. 两个账户底下会有各自的 authToken；在 APIManager 请求网络时，如果已经登录， 会使用 main account，如果没有登录，使用 anonymous account; 上层在正常请求时，不需要关心"我"当前是否已经登录了. <br/>
+  Common 工具类是个单例，从中获取 anonymous 和 main account 的实例 
+  </p>
+
+
+  <p>BJData:</p>
+  <p>所有数据模型的基类</p>
+
+
+
