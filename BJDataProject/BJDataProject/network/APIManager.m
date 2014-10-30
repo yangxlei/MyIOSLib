@@ -41,7 +41,7 @@
     NSMutableArray  *_connectionQueue; // 正在请求的任务
     NSMutableArray  *_waitConnectionQueue; // 等待请求的任务
     
-    HTTPRequest *handleGetAnonaymousToaknRequest; // 获取匿名 token 任务 id
+    HTTPRequest *handleGetAnonaymousToaknRequest; // 获取匿名 token 任务
 }
 
 @end
@@ -256,8 +256,6 @@
     
     NSString *anonaymouseAPI = [NSString stringWithFormat:@"%@%@", CommonInstance.anonymousAccount.hostUrl, API_GET_ANONYMOUS_TOKEN];
     handleGetAnonaymousToaknRequest = [[HTTPRequest alloc] initWithUrl:anonaymouseAPI type:REQUEST_ITEM_TYPE_POST_FORM];
-//    _handleRefreshAnonymousTokenTaskId = request.taskID;
-    
     
     __weak typeof(self) tempSelf = self;
     [handleGetAnonaymousToaknRequest startRequest:^(HTTPRequest *request, HTTPResult *result) {
@@ -293,7 +291,6 @@
         if (apiItem.requestType == REQUEST_ITEM_TYPE_GET)
         {
             NSString *url = [self signatureApiWithGet:apiItem.url account:apiItem.account];
-            //TODO add Global params
             
             apiItem.url = url;
             apiItem.httpRequest.url = url;
@@ -301,7 +298,6 @@
         else
         {
             NSString *url = [self signatureApiWithPost:apiItem.url postBody:apiItem.postBody account:apiItem.account];
-            //TODO insert Global Params
             
             apiItem.url = url;
             apiItem.httpRequest.url = url;
@@ -395,7 +391,10 @@
         {
             HTTPResult *result = [[HTTPResult alloc] initWithRequest:apiItem.httpRequest code:ERROR_CANCEL];
             [apiItem.httpRequest cancelRequest];
-            apiItem.finishCallback(apiItem.httpRequest, result);
+            if (apiItem.finishCallback != nil)
+            {
+                apiItem.finishCallback(apiItem.httpRequest, result);
+            }
             [tempSelf cleanApiItem:apiItem];
             [_waitConnectionQueue removeObject:apiItem];
         }
@@ -406,7 +405,10 @@
         {
             HTTPResult *result = [[HTTPResult alloc] initWithRequest:apiItem.httpRequest code:ERROR_CANCEL];
             [apiItem.httpRequest cancelRequest];
-            apiItem.finishCallback(apiItem.httpRequest, result);
+            if (apiItem.finishCallback != nil)
+            {
+                apiItem.finishCallback(apiItem.httpRequest, result);
+            }
             [tempSelf cleanApiItem:apiItem];
             [_connectionQueue removeObject:apiItem];
         }

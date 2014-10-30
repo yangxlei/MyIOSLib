@@ -1,17 +1,27 @@
 //
-//  TeacherDetailInfo.m
+//  SubjectData.m
 //  BJDataProject
 //
-//  Created by 杨磊 on 14-10-28.
+//  Created by 杨磊 on 14-10-29.
 //  Copyright (c) 2014年 杨磊. All rights reserved.
 //
 
-#import "TeacherDetailInfo.h"
+#import "SubjectData.h"
 #import "APITask.h"
 
-#define GET_DATA_API @"/teacher_center/detailInfo"
+#define GET_DATA_API @"/subject/getAllData"
 
-@implementation TeacherDetailInfo
+@implementation SubjectData
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self)
+    {
+        [self loadCache];
+    }
+    return self;
+}
 
 - (void)doRefreshOperation:(TaskQueue *)taskQueue
 {
@@ -24,4 +34,8 @@
     return NSStringFromClass([self class]);
 }
 
+- (long)dataCacheTime
+{
+    return 100000;
+}
 @end

@@ -63,7 +63,7 @@
     if (self)
     {
         [self loadCfg];
-        dictionary = [[NSMutableDictionary alloc] initWithCapacity:2];
+        dictionary = [[NSMutableDictionary alloc] initWithCapacity:4];
     }
     return self;
 }
@@ -76,7 +76,7 @@
 - (BJUserAccount *)mainAccount
 {
     if ([dictionary valueForKey:@"create_main"] != nil && [dictionary valueForKey:@"main"] == nil)
-    {
+    { //表示 main account 正在创建，就被调用。直接返回 nil。这种情况只在 BJPerson 中会出现
         return nil;
     }
 
@@ -95,16 +95,16 @@
 
 - (BJUserAccount *)anonymousAccount
 {
-    if ([dictionary valueForKey:@"create_anony"] != nil && [dictionary valueForKey:@"anonymouns"] == nil)
+    if ([dictionary valueForKey:@"create_anony"] != nil && [dictionary valueForKey:@"anonymous"] == nil)
     {
         return nil;
     }
 
-    if ([dictionary objectForKey:@"anonymouns"] == nil)
+    if ([dictionary objectForKey:@"anonymous"] == nil)
     {
          [dictionary setObject:@"create" forKey:@"create_anony"];
         BJUserAccount *_anonymousAccount = [[BJUserAccount alloc] initWithDomain:USER_DOMAIN_ANONYMOUS];
-        [dictionary setObject:_anonymousAccount forKey:@"anonymouns"];
+        [dictionary setObject:_anonymousAccount forKey:@"anonymous"];
         [dictionary removeObjectForKey:@"create_anony"];
     }
     return [dictionary objectForKey:@"anonymous"];

@@ -22,7 +22,6 @@
     self = [super init];
     if (self)
     {
-        [self loadCache];
     }
     return self;
 }
@@ -43,19 +42,11 @@
     [self saveCache];
 }
 
-- (void)checkAccount
-{
-    
-}
-
 - (void)saveCache
 {
     NSString *filePath = [BJFileManager getCacheFilePath:[self getCacheKey] withAccount:self.mAccount];
     if (filePath == nil)
         return;
-//    BOOL succ = [_data writeToFile:filePath atomically:YES];
-//    NSLog(@"write file succ %d", succ);
-    
     NSError *error = nil;
     BOOL succ = [[JsonUtils jsonToString:_data] writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:&error];
     NSLog(@"write file succ %d", succ);

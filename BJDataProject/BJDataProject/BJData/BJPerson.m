@@ -32,7 +32,7 @@
         return;
     NSDictionary *postBody = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithLongLong:_personID], @"user_id", nil];
     APITask *task = [[APITask alloc] initWithAPI:@API_URL_PERSON postBody:postBody];
-    //TODO set task params
+    //set task params
     [taskQueue addTaskItem:task];
 }
 

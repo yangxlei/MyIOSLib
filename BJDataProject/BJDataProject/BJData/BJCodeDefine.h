@@ -35,8 +35,16 @@ typedef enum _status_code
 //    STATUS_NO_PERMISSION = 5,
 }BJDATA_STATUS_CODE;
 
+/**
+ 数据操作类型
+ */
 typedef enum _ope_code
 {
     OPERATION_REFRESH = 1,
     OPERATION_GET_MORE = 2,
+    OPERATION_ADD_ITEM = 3,
+    OPERATION_REMOVE_ITEM = 4,
+    OPERATION_SAVE_ITEM = 5,
+    OPERATION_DATA_CHANGED = 6,
+    OPERATION_ALL = 7,
 }BJDATA_OPERATION_CODE;
