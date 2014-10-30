@@ -61,4 +61,6 @@ MyIOSLib:
     </ol>
   </P>
 
+<p>BJSimpleCacheData</p>
+<p>集成自 BJSimpleData, 在其基础上加了 dataCacheTime, 设置一个过期时间。 如设置 1天 的过期时间，那么在上次保存之后，1天内如果再次刷新，请求不会发送</p>
 
