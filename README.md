@@ -40,7 +40,25 @@ MyIOSLib:
 
 
   <p>BJData:</p>
-  <p>所有数据模型的基类</p>
+  <p>所有数据模型的基类
+    <ol>
+      对数据进行监听，以下两个方法必须对应调用，比如在界面中 alloc 添加监听， dealloc 中移除监听<br/>
+      <li>addDelegate 添加对数据的监听</li>
+      <li>removeDelegate 移除对数据的监听</li>
+      <li>saveCache 通过设置 getCacheKey，将数据缓存到本地</li>
+      <li>loadCache 将本地缓存的数据加载到当前 data 中</li>
+      <li>getCacehKey 这个方法返回换到到本地的文件名，如果返回 nil，表示不缓存</li>
+    </ol>
+    数据中对应的操作，都会在 dataEvent 回调方法中接收到<br/>
+  </p>
 
+  <br/>
+  <p>BJSimpleData</p>
+  <p>包含成员变量 data， 是一个字典。对应的实际值都会存在于这个 data 中。
+    <ol>
+      <li>refresh 方法， 刷新操作。创建完实例之后，调用 refresh 方法获取最新的数据, 刷新完成后回自动 saveCache </li>
+      <li>doRefreshOperation 这个方法由子类实现，在模板文件中有调用方法。执行具体的刷新操作</li>
+    </ol>
+  </P>
 
 
