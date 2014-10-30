@@ -56,11 +56,16 @@ MyIOSLib:
   <p>BJSimpleData</p>
   <p>包含成员变量 data， 是一个字典。对应的实际值都会存在于这个 data 中。
     <ol>
-      <li>refresh 方法， 刷新操作。创建完实例之后，调用 refresh 方法获取最新的数据, 刷新完成后回自动 saveCache </li>
+      <li>refresh 方法， 刷新操作。创建完实例之后，调用 refresh 方法获取最新的数据, 刷新完成后会自动 saveCache </li>
       <li>doRefreshOperation 这个方法由子类实现，在模板文件中有调用方法。执行具体的刷新操作</li>
     </ol>
   </P>
 
+<br/>
 <p>BJSimpleCacheData</p>
-<p>集成自 BJSimpleData, 在其基础上加了 dataCacheTime, 设置一个过期时间。 如设置 1天 的过期时间，那么在上次保存之后，1天内如果再次刷新，请求不会发送</p>
+<p>继承自 BJSimpleData, 在其基础上加了 dataCacheTime, 设置一个过期时间。 如设置 1天 的过期时间，那么在上次保存之后，1天内如果再次刷新，请求不会发送</p>
+
+<br/>
+<p>BJListData</>
+<p>列表数据类型</p>
 
