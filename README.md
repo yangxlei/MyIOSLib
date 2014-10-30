@@ -14,12 +14,19 @@ MyIOSLib:
     各个方法：
     <ol>
       <li>- (NSInteger)requestAPIWithGet:(NSString *)api
-                            callback:(apiRequestFinishCallback)callback Get 方式请求 API</li>
+                            callback:(apiRequestFinishCallback)callback       Get 方式请求 API</li>
       <li>- (NSInteger)requestAPIWithPost:(NSString *)api
                              postBody:(NSDictionary *)postBody
-                                                    callback:(apiRequestFinishCallback)callback Post 方式请求 API</li>
-      <li></li>
-      <li></li>
+                           callback:(apiRequestFinishCallback)callback     Post 方式请求 API</li>
+      <li>- (NSInteger)requestDownloadFile:(NSString *)api
+                      progressCallback:(apiRequestProgressCallback)progress
+                           finishCallback:(apiRequestFinishCallback)callback         请求下载文件</li>
+      <li>- (NSInteger)requestUploadFile:(NSString *)api
+                            postBody:(NSDictionary *)postBody
+                            file:(NSDictionary *)file
+                           progressCallback:(apiRequestProgressCallback)progress
+                           finishCallback:(apiRequestFinishCallback)callback   请求上传文件</li>
+      <li>- (void)cancelRequest:(NSInteger)taskId   取消正在处理的请求任务</li>                  
     </ol>
   
   </p>
