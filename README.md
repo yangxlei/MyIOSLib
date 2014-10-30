@@ -30,6 +30,6 @@ MyIOSLib:
     </ol>
   
     返回的回调 block 中会有 HTTPResult 对象。其中 code 表示此次请求处理的返回码，等于 SUCCESSFULL 表示正常处理成功。 data 为处理完成返回的数据<br/>
-    <b>PS: requestXXX 方法会返回当前处理任务的 ID。所以在界面正常退出(如:viewDidDisAppear， dealloc)的地方，应该主动 cancelRequest 这次任务。</b>
+   <B>PS: requestXXX 方法会返回当前处理任务的 ID。所以在界面正常退出(如:viewDidDisAppear， dealloc)的地方，应该主动 cancelRequest 这次任务.</B>
 
   </p>
