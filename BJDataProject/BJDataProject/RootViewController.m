@@ -98,7 +98,7 @@
 
 - (void)selectImage:(id)sender
 {
-    [[SelectImageTools shareSelectImageTools] selectImagesBeginWith:self andAllowEditing:NO andPicNum:1 andOptions:nil andFrontCamera:NO andFinishCallback:^(UIImage *image, id params) {
+    [[SelectImageTools shareSelectImageTools] selectImagesBeginWith:self andAllowEditing:YES andPicNum:1 andOptions:nil andFrontCamera:NO andFinishCallback:^(UIImage *image, id params) {
         
     } andParams:nil];
 }

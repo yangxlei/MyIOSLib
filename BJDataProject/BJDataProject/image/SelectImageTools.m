@@ -118,7 +118,7 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     NSLog(@"info = %@",info);
-    if (picker.sourceType==UIImagePickerControllerSourceTypePhotoLibrary) {
+    if (picker.sourceType==UIImagePickerControllerSourceTypePhotoLibrary&&!self.allowEditing) {
         ConfirmImageController *vc = [[ConfirmImageController alloc] init];
         vc.delegate = self;
         [picker presentViewController:vc animated:YES completion:^{
@@ -133,6 +133,7 @@
             self.callback(image, self.params);
         }
     }
+    
     [picker dismissViewControllerAnimated:YES completion:^{
     
     }];
