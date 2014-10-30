@@ -11,11 +11,15 @@
 #import "TaskQueue.h"
 #import "TestTaskItem.h"
 #import "TestTaskItem2.h"
+#import "BJDataFactory.h"
+#import "CaseList.h"
+#import "SubjectData.h"
 
 @interface SecondViewController ()<TaskQueueDelegate, TaskItemDelegate>
 {
     BJData  *_data;
     TaskQueue *taskQueue;
+    SubjectData *subjects;
 }
 
 @end
@@ -63,23 +67,26 @@
     [self.view addSubview:button];
     button.frame = CGRectMake(50, 50, 100, 50);
     [button addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+    subjects = [[SubjectData alloc] init];
 }
 
 - (void)buttonAction:(id)sender
 {
-    [_data invokeDelegateWithError:ERROR_SUCCESSFULL ope:1 error_message:@"成功" params:nil];
     
-    taskQueue = [[TaskQueue alloc] init];
-    TestTaskItem *item = [[TestTaskItem alloc] init];
-    item.delegate = self;
-    [taskQueue addTaskItem:item];
-    
-    TestTaskItem2 *item2 = [[TestTaskItem2 alloc] init];
-    item2.delegate = self;
-    [taskQueue addTaskItem:item2];
-    
-    taskQueue.delegate = self;
-    [taskQueue start:@"helloTask"];
+    [[BJDataFactory shareInstance] boardCastMessage:@"CaseList" message:@"helloWorld" params:@"hahaah"];
+//    [_data invokeDelegateWithError:ERROR_SUCCESSFULL ope:1 error_message:@"成功" params:nil];
+//    
+//    taskQueue = [[TaskQueue alloc] init];
+//    TestTaskItem *item = [[TestTaskItem alloc] init];
+//    item.delegate = self;
+//    [taskQueue addTaskItem:item];
+//    
+//    TestTaskItem2 *item2 = [[TestTaskItem2 alloc] init];
+//    item2.delegate = self;
+//    [taskQueue addTaskItem:item2];
+//    
+//    taskQueue.delegate = self;
+//    [taskQueue start:@"helloTask"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -92,16 +99,16 @@
 {
     [super viewWillAppear:animated];
 //    _data = [[BJData alloc] init];
-    _data = [[BJSimpleData alloc] init];
-    [_data addDelegate:self];
-    NSLog(@"type : %@", [_data getType]);
+//    _data = [[BJSimpleData alloc] init];
+//    [_data addDelegate:self];
+//    NSLog(@"type : %@", [_data getType]);
 }
 
 
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
-    [_data removeDelegate:self];
+//    [_data removeDelegate:self];
 }
 
 - (void)dataEvent:(BJData *)_data

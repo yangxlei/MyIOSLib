@@ -105,11 +105,14 @@
 
 - (void)buttonAction2:(id)sender
 {
-//    SecondViewController *second = [[SecondViewController alloc] init];
-//    [self.navigationController pushViewController:second animated:YES];
-//    BJUserAccount *account = [Common shareInstance].anonymousAccount;
-//    
-//    NSDictionary *param = [NSDictionary dictionaryWithObjectsAndKeys:@"18611579546",@"value", @"yl123456", @"password", nil];
+    caseList = [[CaseList alloc] init];
+    [caseList refresh];
+    [caseList addDelegate:self];
+    
+    SecondViewController *second = [[SecondViewController alloc] init];
+    [self.navigationController pushViewController:second animated:YES];
+
+//    NSDictionary *param = [NSDictionary dictionaryWithObjectsAndKeys:@"18611579546",@"value", @"123456", @"password", nil];
 //    NSInteger taskId = [[APIManager shareInstance] requestAPIWithPost:@"/auth/teacherLogin" postBody:param callback:^(HTTPRequest *request, HTTPResult *result) {
 //        NSDictionary *_result = [result.data dictionaryValueForKey:@"result"];
 //        NSLog(@"result : %@", _result);
@@ -118,9 +121,9 @@
 //        [CommonInstance.mainAccount loginWithPerson:[person longLongValueForKey:@"id" defalutValue:0] token:token];
 //    }];
 //    [caseList refresh];
-    subjects = [[SubjectData alloc] init];
-    [subjects addDelegate:self];
-    [subjects refresh];
+//    subjects = [[SubjectData alloc] init];
+//    [subjects addDelegate:self];
+//    [subjects refresh];
     
 }
 
@@ -128,11 +131,10 @@
 - (void)buttonAction:(id)sender
 {
     
-    caseList = [[CaseList alloc] init];
-    [caseList refresh];
-    [caseList addDelegate:self];
-//    [caseList loadCache];
-    NSLog(@"%@", caseList.list);
+//    caseList = [[CaseList alloc] init];
+//    [caseList refresh];
+//    [caseList addDelegate:self];
+//    NSLog(@"%@", caseList.list);
     
 //    detailInfo = [[TeacherDetailInfo alloc] init];
 //    [detailInfo refresh];

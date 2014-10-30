@@ -65,4 +65,13 @@
                   error_message:(NSString *)error_message
                          params:(id)params;
 
+/**
+ *  处理广播过来的消息, 注： BJUserAccount 不在链表内
+ *
+ *  @param message 消息内容
+ *  @param params  附带参数
+ *  @result YES 表示不再往下传递
+ */
+- (BOOL)messageHandle:(NSString *)message params:(id)params;
+
 @end

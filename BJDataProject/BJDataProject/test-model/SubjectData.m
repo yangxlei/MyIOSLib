@@ -23,6 +23,10 @@
     return self;
 }
 
+- (void)dealloc
+{
+}
+
 - (void)doRefreshOperation:(TaskQueue *)taskQueue
 {
     APITask *task = [[APITask alloc] initWithAPI:GET_DATA_API postBody:nil];
