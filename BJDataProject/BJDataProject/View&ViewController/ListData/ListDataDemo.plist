@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>demo</key>
+	<dict>
+		<key>model2UI</key>
+		<string>demoListCore:width:indexPath:onlyComputeHeight:</string>
+		<key>name</key>
+		<string>demo</string>
+		<key>empty_data</key>
+		<string>你没加入任何圈子</string>
+		<key>get_more</key>
+		<string>查看更多</string>
+		<key>class_cell</key>
+		<string>BJCell</string>
+		<key>has_error_cell</key>
+		<true/>
+		<key>no_push_refresh</key>
+		<false/>
+		<key>nodata_xib</key>
+		<string>NoDataCell</string>
+		<key>is_edit</key>
+		<false/>
+	</dict>
+</dict>
+</plist>
