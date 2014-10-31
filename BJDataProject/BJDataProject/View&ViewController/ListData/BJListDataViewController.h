@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "BJListData.h"
 #import "BJDataDelegate.h"
-#import "BJBaseViewController.h"
 @interface BJListDataViewController : UIViewController<BJDataDelegate,
     UITableViewDataSource,
     UITableViewDelegate>
