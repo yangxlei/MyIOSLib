@@ -84,7 +84,7 @@
     // Do any additional setup after loading the view.
     if (! _tableView) {
         CGRect rect = self.view.frame;
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(rect.origin.x, 0, rect.size.width, rect.size.height)];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, rect.size.width, rect.size.height)];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.backgroundColor = [UIColor clearColor];
