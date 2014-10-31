@@ -104,7 +104,7 @@
 
 - (void)taskQueueFinished:(TaskQueue *)taskQueue param:(id)param error:(int)error
 {
-    if (error == ERROR_SUCCESSFULL)
+    if (error == BJ_ERROR_SUCCESSFULL)
     {
         id _result = [taskQueue.result dictionaryValueForKey:@"result"];
         // 获取结果数据
@@ -115,11 +115,11 @@
         }
     }
     
-    [self invokeDelegateWithError:error ope:OPERATION_REFRESH error_message:[taskQueue.result getError] params:nil];
+    [self invokeDelegateWithError:error ope:BJ_OPERATION_REFRESH error_message:[taskQueue.result getError] params:nil];
     
     if (_operationCallback)
     {
-        _operationCallback(self, error, OPERATION_REFRESH, taskQueue.result);
+        _operationCallback(self, error, BJ_OPERATION_REFRESH, taskQueue.result);
     }
     
     _operationCallback = nil;

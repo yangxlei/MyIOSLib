@@ -259,7 +259,7 @@
     
     __weak typeof(self) tempSelf = self;
     [handleGetAnonaymousToaknRequest startRequest:^(HTTPRequest *request, HTTPResult *result) {
-        if (result.code == ERROR_SUCCESSFULL)
+        if (result.code == BJ_ERROR_SUCCESSFULL)
         {
             NSDictionary *_result = [result.data dictionaryValueForKey:@"result"];
             [CommonInstance.anonymousAccount loginWithPerson:[_result longLongValueForKey:@"id" defalutValue:0] token:[_result stringValueForKey:@"auth_token" defaultValue:nil]];
@@ -331,21 +331,21 @@
            {
                BJUserAccount *account = apiItem.account;
                int code = (int)result.code;
-               if (code == ERROR_ANOTHER_LOGIN)
+               if (code == BJ_ERROR_ANOTHER_LOGIN)
                {
                    if ([account isLogin])
                    {
-                       [account logoutWithOperation:ERROR_ANOTHER_LOGIN];
+                       [account logoutWithOperation:BJ_ERROR_ANOTHER_LOGIN];
                        [tempSelf cancelRequestWithAccount:account];
                    }
                }
-               else if (code == ERROR_OAUTH_TOKEN_BROKEN)
+               else if (code == BJ_ERROR_OAUTH_TOKEN_BROKEN)
                { // token 失效，请重新登录
                    // account invalid access token
-                   [account logoutWithOperation:ERROR_OAUTH_TOKEN_BROKEN];
+                   [account logoutWithOperation:BJ_ERROR_OAUTH_TOKEN_BROKEN];
                    [tempSelf cancelRequestWithAccount:account];
                }
-               else if (code == ERROR_NEED_REFRESH_OAUTH_TOKEN)
+               else if (code == BJ_ERROR_NEED_REFRESH_OAUTH_TOKEN)
                {
                    //token 过期，可以自动刷新。服务器暂不支持，后期实现
                }
@@ -389,7 +389,7 @@
     [_waitConnectionQueue enumerateObjectsUsingBlock:^(APIItem *apiItem, NSUInteger idx, BOOL *stop) {
         if (apiItem.account == account)
         {
-            HTTPResult *result = [[HTTPResult alloc] initWithRequest:apiItem.httpRequest code:ERROR_CANCEL];
+            HTTPResult *result = [[HTTPResult alloc] initWithRequest:apiItem.httpRequest code:BJ_ERROR_CANCEL];
             [apiItem.httpRequest cancelRequest];
             if (apiItem.finishCallback != nil)
             {
@@ -403,7 +403,7 @@
     [_connectionQueue enumerateObjectsUsingBlock:^(APIItem *apiItem, NSUInteger idx, BOOL *stop) {
         if (apiItem.account == account)
         {
-            HTTPResult *result = [[HTTPResult alloc] initWithRequest:apiItem.httpRequest code:ERROR_CANCEL];
+            HTTPResult *result = [[HTTPResult alloc] initWithRequest:apiItem.httpRequest code:BJ_ERROR_CANCEL];
             [apiItem.httpRequest cancelRequest];
             if (apiItem.finishCallback != nil)
             {
@@ -633,7 +633,7 @@
     sprintf(temp, "%s%s%s%s%s", [authToken UTF8String], apiGroup, apiName, timestamp, [appkey UTF8String]);
     
     char sign[64] = {0};
-    md5_encode_str(sign, temp);
+    BJ_md5_encode_str(sign, temp);
 
     return [NSString stringWithUTF8String:sign];
 }

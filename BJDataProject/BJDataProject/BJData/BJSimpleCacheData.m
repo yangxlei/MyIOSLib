@@ -29,7 +29,7 @@
 {
     if (_simpleCacheData == nil)
     {
-        [self TaskCompleted:ERROR_SUCCESSFULL result:nil];
+        [self TaskCompleted:BJ_ERROR_SUCCESSFULL result:nil];
         return 0;
     }
     
@@ -38,11 +38,11 @@
     
     if (lastModify == 0 || (lastModify + [_simpleCacheData dataCacheTime]) < current)
     {
-        [self TaskCompleted:ERROR_SUCCESSFULL result:nil];
+        [self TaskCompleted:BJ_ERROR_SUCCESSFULL result:nil];
     }
     else
     {
-        [self TaskCompleted:ERROR_CANCEL result:nil];
+        [self TaskCompleted:BJ_ERROR_CANCEL result:nil];
     }
     
     return 0;

@@ -45,7 +45,7 @@
             [item.delegate taskDidFinished:item];
         }
         
-        if (error == ERROR_SUCCESSFULL)
+        if (error == BJ_ERROR_SUCCESSFULL)
         {
             item.taskStatus = TASK_STATUS_FINISH;
             _result = result;
@@ -122,7 +122,7 @@
        b_start = NO;
        if ([_delegate respondsToSelector:@selector(taskQueueFinished:param:error:)])
        {
-           [_delegate taskQueueFinished:self param:_param error:ERROR_SUCCESSFULL];
+           [_delegate taskQueueFinished:self param:_param error:BJ_ERROR_SUCCESSFULL];
        }
        _result = nil;
        _param = nil;

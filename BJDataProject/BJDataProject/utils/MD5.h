@@ -20,7 +20,7 @@ typedef struct
     unsigned int count[2];
     unsigned int state[4];
     unsigned char buffer[64];
-}MD5_CTX;
+}BJ_MD5_CTX;
 
 
 #define F(x,y,z) ((x & y) | (~x & z))
@@ -52,14 +52,14 @@ typedef struct
     a = ROTATE_LEFT(a,s); \
     a += b; \
 }
-void MD5Init(MD5_CTX *context);
-void MD5Update(MD5_CTX *context,unsigned char *input,unsigned int inputlen);
-void MD5Final(MD5_CTX *context,unsigned char digest[16]);
-void MD5Transform(unsigned int state[4],unsigned char block[64]);
-void MD5Encode(unsigned char *output,unsigned int *input,unsigned int len);
-void MD5Decode(unsigned int *output,unsigned char *input,unsigned int len);
+void BJ_MD5Init(BJ_MD5_CTX *context);
+void BJ_MD5Update(BJ_MD5_CTX *context,unsigned char *input,unsigned int inputlen);
+void BJ_MD5Final(BJ_MD5_CTX *context,unsigned char digest[16]);
+void BJ_MD5Transform(unsigned int state[4],unsigned char block[64]);
+void BJ_MD5Encode(unsigned char *output,unsigned int *input,unsigned int len);
+void BJ_MD5Decode(unsigned int *output,unsigned char *input,unsigned int len);
     
-    void md5_encode_str(char *result, unsigned char *src);
+    void BJ_md5_encode_str(char *result, unsigned char *src);
     
 #ifdef __cplusplus
 }
