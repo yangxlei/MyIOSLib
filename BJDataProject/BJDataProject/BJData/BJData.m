@@ -8,6 +8,7 @@
 
 #import "BJData.h"
 #import "Common.h"
+#import "BJDataFactory.h"
 
 /** delegate 已被删除标记 */
 #define DELEGATE_MASK_REMOVE 1
@@ -53,6 +54,7 @@
     {
         _delegates = [[NSMutableArray alloc] initWithCapacity:3];
         bIsCallbacking = NO;
+        [[BJDataFactory shareInstance] addBJDataIntoLink:self];
     }
     return self;
 }
@@ -60,6 +62,7 @@
 - (void)dealloc
 {
     _delegates = nil;
+    [[BJDataFactory shareInstance] removeBJDataFromLink:self];
 }
 
 - (void)saveCache
@@ -68,6 +71,15 @@
 
 - (void)loadCache
 {
+}
+
+- (BOOL)messageHandle:(NSString *)message params:(id)params
+{
+//    if ([CommonInstance.mainAccount isLogin] && _mAccount == CommonInstance.anonymousAccount)
+//    {
+//        _mAccount = CommonInstance.mainAccount;
+//    }
+    return NO;
 }
 
 - (BJUserAccount *)mAccount
@@ -182,11 +194,6 @@
     
     return find;
 }
-
-//- (BOOL)isOperation:(int)ope
-//{
-//    return NO;
-//}
 
 /**
  清除掉已被删除的 delegate

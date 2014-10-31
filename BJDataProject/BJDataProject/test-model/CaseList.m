@@ -23,6 +23,11 @@
     return self;
 }
 
+- (void)dealloc
+{
+
+}
+
 - (void)doRefreshOperation:(TaskQueue *)taskQueue
 {
     APITask *task = [[APITask alloc] initWithAPI:REFRESH_API postBody:nil];
@@ -32,6 +37,12 @@
 - (NSString *)getCacheKey
 {
     return @"case_list";
+}
+
+- (BOOL)messageHandle:(NSString *)message params:(id)params
+{
+    NSLog(@"message %@   params  %@", message, params);
+    return NO;
 }
 
 @end

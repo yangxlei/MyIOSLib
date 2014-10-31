@@ -74,6 +74,11 @@
 		95AE53B519C932E70008ED0B /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AE53B419C932E70008ED0B /* RootViewController.m */; };
 		95AE53B819C9343D0008ED0B /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AE53B719C9343D0008ED0B /* SecondViewController.m */; };
 		95AE53BB19CC06C30008ED0B /* BJSimpleData.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AE53BA19CC06C30008ED0B /* BJSimpleData.m */; };
+		A425989A19FE25EE00EA153C /* UIAlertView+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = A425989619FE25EE00EA153C /* UIAlertView+Block.m */; };
+		A425989B19FE25EE00EA153C /* UIActionSheet+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = A425989819FE25EE00EA153C /* UIActionSheet+Blocks.m */; };
+		A49630BC19FE1C2A005314C9 /* SelectImageTools.m in Sources */ = {isa = PBXBuildFile; fileRef = A49630BB19FE1C2A005314C9 /* SelectImageTools.m */; };
+		A4AD186D1A00C6A6007CE8FA /* ConfirmImageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4AD186C1A00C6A6007CE8FA /* ConfirmImageController.xib */; };
+		A4AD18701A00C78C007CE8FA /* ConfirmImageController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AD186F1A00C78C007CE8FA /* ConfirmImageController.m */; };
 		95EC1EED1A01334200422709 /* SubjectData.m in Sources */ = {isa = PBXBuildFile; fileRef = 95EC1EEC1A01334200422709 /* SubjectData.m */; };
 /* End PBXBuildFile section */
 
@@ -210,6 +215,17 @@
 		95AE53B719C9343D0008ED0B /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		95AE53B919CC06C30008ED0B /* BJSimpleData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BJSimpleData.h; sourceTree = "<group>"; };
 		95AE53BA19CC06C30008ED0B /* BJSimpleData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BJSimpleData.m; sourceTree = "<group>"; };
+		A425989619FE25EE00EA153C /* UIAlertView+Block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+Block.m"; sourceTree = "<group>"; };
+		A425989719FE25EE00EA153C /* UIActionSheet+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIActionSheet+Blocks.h"; sourceTree = "<group>"; };
+		A425989819FE25EE00EA153C /* UIActionSheet+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIActionSheet+Blocks.m"; sourceTree = "<group>"; };
+		A425989919FE25EE00EA153C /* UIAlertView+Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+Block.h"; sourceTree = "<group>"; };
+		A42598A419FE731B00EA153C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		A42598A519FE731B00EA153C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		A49630BA19FE1C2A005314C9 /* SelectImageTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectImageTools.h; sourceTree = "<group>"; };
+		A49630BB19FE1C2A005314C9 /* SelectImageTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectImageTools.m; sourceTree = "<group>"; };
+		A4AD186C1A00C6A6007CE8FA /* ConfirmImageController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConfirmImageController.xib; sourceTree = "<group>"; };
+		A4AD186E1A00C78C007CE8FA /* ConfirmImageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfirmImageController.h; sourceTree = "<group>"; };
+		A4AD186F1A00C78C007CE8FA /* ConfirmImageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfirmImageController.m; sourceTree = "<group>"; };
 		95EC1EEB1A01334200422709 /* SubjectData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubjectData.h; sourceTree = "<group>"; };
 		95EC1EEC1A01334200422709 /* SubjectData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubjectData.m; sourceTree = "<group>"; };
 		F1CF413BC49C42B81EF313CC /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -376,6 +392,10 @@
 				250937971A0235DC00BFF71D /* NSStringExtending.m */,
 				252742041A02321F00E1A4B3 /* DictionaryExtending.h */,
 				252742051A02321F00E1A4B3 /* DictionaryExtending.m */,
+				A425989919FE25EE00EA153C /* UIAlertView+Block.h */,
+				A425989619FE25EE00EA153C /* UIAlertView+Block.m */,
+				A425989719FE25EE00EA153C /* UIActionSheet+Blocks.h */,
+				A425989819FE25EE00EA153C /* UIActionSheet+Blocks.m */,
 				2584FAFD19FE0E68001C9023 /* UIDevice+UUID */,
 				951760C019FD33A800D1B241 /* TimeUtils.h */,
 				951760C119FD33A800D1B241 /* TimeUtils.m */,
@@ -432,6 +452,7 @@
 			isa = PBXGroup;
 			children = (
 				25D3E3EF1A00BE0B00CBAA75 /* View&ViewController */,
+				A49630B919FE1B19005314C9 /* image */,
 				951A165419FFE36A00BD8858 /* test-model */,
 				2584FB0319FE0F77001C9023 /* configs */,
 				955BEC4719FB518D00C04F90 /* utils */,
@@ -509,6 +530,18 @@
 			path = BJData;
 			sourceTree = "<group>";
 		};
+		A49630B919FE1B19005314C9 /* image */ = {
+			isa = PBXGroup;
+			children = (
+				A49630BA19FE1C2A005314C9 /* SelectImageTools.h */,
+				A49630BB19FE1C2A005314C9 /* SelectImageTools.m */,
+				A4AD186E1A00C78C007CE8FA /* ConfirmImageController.h */,
+				A4AD186F1A00C78C007CE8FA /* ConfirmImageController.m */,
+				A4AD186C1A00C6A6007CE8FA /* ConfirmImageController.xib */,
+			);
+			path = image;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -569,6 +602,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				"zh-Hans",
 			);
 			mainGroup = 958FE99219BA143200E33260;
 			productRefGroup = 958FE99C19BA143200E33260 /* Products */;
@@ -590,6 +624,7 @@
 				2584FB0519FE0F77001C9023 /* ex.plist in Resources */,
 				252741FD1A02184500E1A4B3 /* NoDataCell.xib in Resources */,
 				958FE9AB19BA143200E33260 /* InfoPlist.strings in Resources */,
+				A4AD186D1A00C6A6007CE8FA /* ConfirmImageController.xib in Resources */,
 				958FE9B619BA143200E33260 /* Images.xcassets in Resources */,
 				250937F61A0267B400BFF71D /* ListDataDemo.plist in Resources */,
 			);
@@ -660,9 +695,12 @@
 				951760C419FD33A800D1B241 /* TimeUtils.m in Sources */,
 				2538CB6F19FBA7C70099ED2C /* HTTPRequest.m in Sources */,
 				2509380C1A02712800BFF71D /* MJRefreshHeaderView.m in Sources */,
+				A425989A19FE25EE00EA153C /* UIAlertView+Block.m in Sources */,
+				A425989B19FE25EE00EA153C /* UIActionSheet+Blocks.m in Sources */,
 				2584FB0819FE10E7001C9023 /* SvUDIDTools.m in Sources */,
 				95AE53B519C932E70008ED0B /* RootViewController.m in Sources */,
 				951760CB19FD41AA00D1B241 /* Common.m in Sources */,
+				A4AD18701A00C78C007CE8FA /* ConfirmImageController.m in Sources */,
 				955BEC4A19FB51B500C04F90 /* JsonUtils.m in Sources */,
 				951A165D1A00C64400BD8858 /* BJListData.m in Sources */,
 				252741E51A02182300E1A4B3 /* nibLoader.m in Sources */,
@@ -694,6 +732,7 @@
 				951760C519FD33A800D1B241 /* CTime.c in Sources */,
 				252741FC1A02184500E1A4B3 /* NoDataCell.m in Sources */,
 				955BEC4619FB517F00C04F90 /* APIManager.m in Sources */,
+				A49630BC19FE1C2A005314C9 /* SelectImageTools.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -720,6 +759,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				958FE9AA19BA143200E33260 /* en */,
+				A42598A419FE731B00EA153C /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -728,6 +768,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				958FE9C719BA143200E33260 /* en */,
+				A42598A519FE731B00EA153C /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";

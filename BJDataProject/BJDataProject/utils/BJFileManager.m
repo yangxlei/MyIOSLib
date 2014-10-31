@@ -32,7 +32,13 @@
     if (cache == nil || account == nil)
         return nil;
     NSString *dir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+#ifdef DEBUG
+    dir = [NSString stringWithFormat:@"%@/debug_%lld", dir, account.personId];
+#elif BETA
+    dir = [NSString stringWithFormat:@"%@/beta_%lld", dir, account.personId];
+#else
     dir = [NSString stringWithFormat:@"%@/%lld", dir, account.personId];
+#endif
     [[NSFileManager defaultManager] createDirectoryAtPath:dir withIntermediateDirectories:YES attributes:nil error:nil];
     return [NSString stringWithFormat:@"%@/%@", dir, cache];
 }

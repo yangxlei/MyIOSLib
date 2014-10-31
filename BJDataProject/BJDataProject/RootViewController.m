@@ -13,11 +13,11 @@
 #import "TestTaskItem.h"
 #import "JsonUtils.h"
 #import "APIManager.h"
+#import "SelectImageTools.h"
 #import "BJFileManager.h"
 #import "TeacherDetailInfo.h"
 #import "CaseList.h"
 #import "SubjectData.h"
-
 #include "MD5.h"
 
 @interface RootViewController ()<BJDataDelegate, TaskItemDelegate, TaskQueueDelegate>
@@ -87,15 +87,32 @@
 //    _account = [[BJUserAccount alloc] initWithDomain:USER_DOMAIN_MAIN];
 //    [_account addDelegate:self];
     
+    
+    button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setBackgroundColor:[UIColor redColor]];
+    [button setTitle:@"获取图片" forState:UIControlStateNormal];
+    [self.view addSubview:button];
+    button.frame = CGRectMake(50, 250, 100, 50);
+    [button addTarget:self action:@selector(selectImage:) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)selectImage:(id)sender
+{
+    [[SelectImageTools shareSelectImageTools] selectImagesBeginWith:self andAllowEditing:YES andPicNum:1 andOptions:nil andFrontCamera:NO andFinishCallback:^(UIImage *image, id params) {
+        
+    } andParams:nil];
 }
 
 - (void)buttonAction2:(id)sender
 {
-//    SecondViewController *second = [[SecondViewController alloc] init];
-//    [self.navigationController pushViewController:second animated:YES];
-//    BJUserAccount *account = [Common shareInstance].anonymousAccount;
-//    
-//    NSDictionary *param = [NSDictionary dictionaryWithObjectsAndKeys:@"18611579546",@"value", @"yl123456", @"password", nil];
+    caseList = [[CaseList alloc] init];
+    [caseList refresh];
+    [caseList addDelegate:self];
+    
+    SecondViewController *second = [[SecondViewController alloc] init];
+    [self.navigationController pushViewController:second animated:YES];
+
+//    NSDictionary *param = [NSDictionary dictionaryWithObjectsAndKeys:@"18611579546",@"value", @"123456", @"password", nil];
 //    NSInteger taskId = [[APIManager shareInstance] requestAPIWithPost:@"/auth/teacherLogin" postBody:param callback:^(HTTPRequest *request, HTTPResult *result) {
 //        NSDictionary *_result = [result.data dictionaryValueForKey:@"result"];
 //        NSLog(@"result : %@", _result);
@@ -104,9 +121,9 @@
 //        [CommonInstance.mainAccount loginWithPerson:[person longLongValueForKey:@"id" defalutValue:0] token:token];
 //    }];
 //    [caseList refresh];
-    subjects = [[SubjectData alloc] init];
-    [subjects addDelegate:self];
-    [subjects refresh];
+//    subjects = [[SubjectData alloc] init];
+//    [subjects addDelegate:self];
+//    [subjects refresh];
     
 }
 
@@ -114,11 +131,10 @@
 - (void)buttonAction:(id)sender
 {
     
-    caseList = [[CaseList alloc] init];
-    [caseList refresh];
-    [caseList addDelegate:self];
-//    [caseList loadCache];
-    NSLog(@"%@", caseList.list);
+//    caseList = [[CaseList alloc] init];
+//    [caseList refresh];
+//    [caseList addDelegate:self];
+//    NSLog(@"%@", caseList.list);
     
 //    detailInfo = [[TeacherDetailInfo alloc] init];
 //    [detailInfo refresh];

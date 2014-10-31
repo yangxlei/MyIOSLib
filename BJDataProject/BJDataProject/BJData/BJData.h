@@ -55,19 +55,23 @@
 - (BOOL)containsDelegate:(id<BJDataDelegate>)_delegate;
 
 /**
- 是否正在执行某个操作
- */
-//- (BOOL)isOperation:(int)ope;
-
-/**
     执行代理回调
  @param error 结果状态
  @param ope   当前操作
  @param error_message  错误信息
  */
 - (void)invokeDelegateWithError:(int)error
-                   ope:(int)ope
-         error_message:(NSString *)error_message
-                params:(id)params;
+                            ope:(int)ope
+                  error_message:(NSString *)error_message
+                         params:(id)params;
+
+/**
+ *  处理广播过来的消息, 注： BJUserAccount 不在链表内
+ *
+ *  @param message 消息内容
+ *  @param params  附带参数
+ *  @result YES 表示不再往下传递
+ */
+- (BOOL)messageHandle:(NSString *)message params:(id)params;
 
 @end
