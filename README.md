@@ -67,5 +67,13 @@ MyIOSLib:
 
 <br/>
 <p>BJListData</>
-<p>列表数据类型</p>
+<p>列表数据类型
+  <ol>
+    <li>refresh</li>
+    <li>getMore</li>
+    <li>addItem</li>
+    <li>removeItem</li>
+    <li>saveItem</li>
+  </ol>
+</p>
 
