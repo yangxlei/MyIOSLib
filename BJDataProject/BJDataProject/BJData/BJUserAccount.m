@@ -52,12 +52,12 @@
     _authToken = token;
     _person.personID = _personId;
     [self saveCache];
-    [self invokeDelegateWithError:ERROR_SUCCESSFULL ope:ACCOUNT_LOGIN error_message:nil params:_domain];
+    [self invokeDelegateWithError:BJ_ERROR_SUCCESSFULL ope:BJ_ACCOUNT_LOGIN error_message:nil params:_domain];
 }
 
 - (void)logout
 {
-    [self logoutWithOperation:ACCOUNT_LOGOUT];
+    [self logoutWithOperation:BJ_ACCOUNT_LOGOUT];
 }
 
 - (void)logoutWithOperation:(int)ope
@@ -74,7 +74,7 @@
     }
     
     //广播， 当前账户退出登陆
-    [self invokeDelegateWithError:ERROR_SUCCESSFULL ope:ope error_message:nil params:_domain];
+    [self invokeDelegateWithError:BJ_ERROR_SUCCESSFULL ope:ope error_message:nil params:_domain];
 }
 
 - (BOOL)isLogin

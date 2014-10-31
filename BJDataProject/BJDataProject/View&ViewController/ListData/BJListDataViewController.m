@@ -66,7 +66,7 @@
         [self.tableView headerBeginRefreshing];
     }
     
-    if ([self.listData isOperation:OPERATION_GET_MORE] &&
+    if ([self.listData isOperation:BJ_OPERATION_GET_MORE] &&
         self.get_more) {
         [self.tableView footerBeginRefreshing];
     }
@@ -203,17 +203,17 @@
 
 - (void)getMoreDataList
 {
-    if (![self.listData isOperation:OPERATION_GET_MORE] && self.get_more) {
+    if (![self.listData isOperation:BJ_OPERATION_GET_MORE] && self.get_more) {
         [self.listData getMore];
-        [self showLoadingView:OPERATION_GET_MORE];
+        [self showLoadingView:BJ_OPERATION_GET_MORE];
     }
 }
 
 - (void)refresh
 {
-    if (![self.listData isOperation:OPERATION_REFRESH]) {
+    if (![self.listData isOperation:BJ_OPERATION_REFRESH]) {
         [self.listData refresh];
-        [self showLoadingView:OPERATION_REMOVE_ITEM];
+        [self showLoadingView:BJ_OPERATION_REMOVE_ITEM];
     }
 }
 
@@ -234,16 +234,16 @@
     error_message:(NSString *)_error_message
            params:(id)params
 {
-    if (_ope == OPERATION_REFRESH) {
+    if (_ope == BJ_OPERATION_REFRESH) {
         [self.tableView headerEndRefreshing];
 
     }
-    else if (_ope == OPERATION_GET_MORE)
+    else if (_ope == BJ_OPERATION_GET_MORE)
     {
         [self.tableView footerEndRefreshing];
         [self.tableView setFooterHidden:!(self.get_more && [self.listData hasMore])];
     }
-    else if (_ope == OPERATION_REMOVE_ITEM)
+    else if (_ope == BJ_OPERATION_REMOVE_ITEM)
     {
         [self removeLoadingView];
     }
@@ -265,7 +265,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    if(self.listData.status == STATUS_NO_CONNECT_AND_NO_DATA)
+    if(self.listData.status == BJ_STATUS_NO_CONNECT_AND_NO_DATA)
     {
         return 0;
     }
@@ -280,15 +280,15 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     BJDATA_STATUS_CODE ds = self.listData.status;
-    if (ds == STATUS_EMPTY)
+    if (ds == BJ_STATUS_EMPTY)
     {//空数据
         return self.has_error_cell? 1 : 0;
     }
-    else if (ds == STATUS_NO_CONNECT_AND_NO_DATA)
+    else if (ds == BJ_STATUS_NO_CONNECT_AND_NO_DATA)
     {//在数据为空，并且没有下载正在执行的时候，那么这个tableView是0行。这种状态只存在于当前页面不是显示页面的时候
         return 0;
     }
-    else if (ds == STATUS_NETWORK_ERROR_AND_NO_DATA)
+    else if (ds == BJ_STATUS_NETWORK_ERROR_AND_NO_DATA)
     {
         return self.has_error_cell? 1 : 0;
     }
@@ -314,15 +314,15 @@
     
     BJDATA_STATUS_CODE ds = self.listData.status;
     
-    if (ds == STATUS_NO_CONNECT_AND_NO_DATA && numberofItems == 0)
+    if (ds == BJ_STATUS_NO_CONNECT_AND_NO_DATA && numberofItems == 0)
     {//在数据为空，并且没有下载正在执行的时候，那么这个tableView是0行。这种状态只存在于当前页面不是显示页面的时候
 //        BJASSERT(0);
     }
-    else if (ds == STATUS_NETWORK_ERROR_AND_NO_DATA && numberofItems == 0)
+    else if (ds == BJ_STATUS_NETWORK_ERROR_AND_NO_DATA && numberofItems == 0)
     {//这种情况是数据源真的是没有数据，或者因为网络错误，没有取下来数据
         return self.networkErrorTableViewCell;
     }
-    else if (ds == STATUS_EMPTY && numberofItems == 0)
+    else if (ds == BJ_STATUS_EMPTY && numberofItems == 0)
     {
         return self.noDataTableViewCell;
     }
@@ -388,15 +388,15 @@
     
     BJDATA_STATUS_CODE ds = self.listData.status;
     
-    if (ds == STATUS_NO_CONNECT_AND_NO_DATA)
+    if (ds == BJ_STATUS_NO_CONNECT_AND_NO_DATA)
     {//在数据为空，并且没有下载正在执行的时候，那么这个tableView是0行。这种状态只存在于当前页面不是显示页面的时候
         return 0;
     }
-    else if (ds == STATUS_NETWORK_ERROR_AND_NO_DATA)
+    else if (ds == BJ_STATUS_NETWORK_ERROR_AND_NO_DATA)
     {//这种情况是数据源真的是没有数据，或者因为网络错误，没有取下来数据
         return self.specialview_height;
     }
-    else if (ds == STATUS_EMPTY)
+    else if (ds == BJ_STATUS_EMPTY)
     {
         return self.specialview_height;
     }
@@ -421,7 +421,7 @@
 {
     if (self.isEdit) {
         if ([self.listData removeItem:indexPath.row])
-            [self showLoadingView:OPERATION_REMOVE_ITEM];
+            [self showLoadingView:BJ_OPERATION_REMOVE_ITEM];
     }
 }
 

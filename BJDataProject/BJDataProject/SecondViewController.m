@@ -74,7 +74,7 @@
 {
     
     [[BJDataFactory shareInstance] boardCastMessage:@"CaseList" message:@"helloWorld" params:@"hahaah"];
-//    [_data invokeDelegateWithError:ERROR_SUCCESSFULL ope:1 error_message:@"成功" params:nil];
+//    [_data invokeDelegateWithError:BJ_ERROR_SUCCESSFULL ope:1 error_message:@"成功" params:nil];
 //    
 //    taskQueue = [[TaskQueue alloc] init];
 //    TestTaskItem *item = [[TestTaskItem alloc] init];

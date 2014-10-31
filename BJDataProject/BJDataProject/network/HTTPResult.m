@@ -33,7 +33,7 @@
         else if ([_data isKindOfClass:[NSDictionary class]])
         {
 //            NSDictionary *result = (NSDictionary *)responseObject;
-            _code = [_data intValueForkey:@"code" defaultValue:ERROR_UNKNOW];//[result[@"code"] integerValue];
+            _code = [_data intValueForkey:@"code" defaultValue:BJ_ERROR_UNKNOW];//[result[@"code"] integerValue];
             _reason = [_data getError];
         }
        

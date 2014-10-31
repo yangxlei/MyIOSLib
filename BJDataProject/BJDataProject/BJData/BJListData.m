@@ -30,14 +30,14 @@
     self = [super init];
     if (self)
     {
-        _status = STATUS_NO_CONNECT_AND_NO_DATA;
+        _status = BJ_STATUS_NO_CONNECT_AND_NO_DATA;
     }
     return self;
 }
 
 - (void)dealloc
 {
-    [self cancelOperation:OPERATION_ALL];
+    [self cancelOperation:BJ_OPERATION_ALL];
 }
 
 - (NSMutableArray *)list
@@ -51,19 +51,19 @@
 
 - (void)refresh
 {
-    if (tasks[OPERATION_REFRESH] == nil)
+    if (tasks[BJ_OPERATION_REFRESH] == nil)
     {
-        tasks[OPERATION_REFRESH] = [[TaskQueue alloc] init];
-        [self doRefreshOperation:tasks[OPERATION_REFRESH]];
-        tasks[OPERATION_REFRESH].delegate = self;
-        [tasks[OPERATION_REFRESH] start:nil];
+        tasks[BJ_OPERATION_REFRESH] = [[TaskQueue alloc] init];
+        [self doRefreshOperation:tasks[BJ_OPERATION_REFRESH]];
+        tasks[BJ_OPERATION_REFRESH].delegate = self;
+        [tasks[BJ_OPERATION_REFRESH] start:nil];
     }
 }
 
 - (void)refresh:(listDataOperationCallback)operationCallback
 {
     [self refresh];
-    operationCallbacks[OPERATION_REFRESH] = operationCallback;
+    operationCallbacks[BJ_OPERATION_REFRESH] = operationCallback;
 }
 
 - (void)doRefreshOperation:(TaskQueue *)taskQueue
@@ -72,19 +72,19 @@
 
 - (void)getMore
 {
-    if (tasks[OPERATION_REFRESH] == nil && [self hasMore] && tasks[OPERATION_GET_MORE] == nil)
+    if (tasks[BJ_OPERATION_REFRESH] == nil && [self hasMore] && tasks[BJ_OPERATION_GET_MORE] == nil)
     {
-        tasks[OPERATION_GET_MORE] = [[TaskQueue alloc] init];
-        [self doGetMoreOperation:tasks[OPERATION_GET_MORE]];
-        tasks[OPERATION_GET_MORE].delegate = self;
-        [tasks[OPERATION_GET_MORE] start:nil];
+        tasks[BJ_OPERATION_GET_MORE] = [[TaskQueue alloc] init];
+        [self doGetMoreOperation:tasks[BJ_OPERATION_GET_MORE]];
+        tasks[BJ_OPERATION_GET_MORE].delegate = self;
+        [tasks[BJ_OPERATION_GET_MORE] start:nil];
     }
 }
 
 - (void)getMore:(listDataOperationCallback)operationCallback
 {
     [self getMore];
-    operationCallbacks[OPERATION_GET_MORE] = operationCallback;
+    operationCallbacks[BJ_OPERATION_GET_MORE] = operationCallback;
 }
 
 - (void)doGetMoreOperation:(TaskQueue *)taskQueue
@@ -98,40 +98,40 @@
 
 - (BOOL)addItem:(id)item at:(NSInteger)index
 {
-    if ([self isOperation:OPERATION_REFRESH])
+    if ([self isOperation:BJ_OPERATION_REFRESH])
     { //如果正在刷新，取消刷新操作
-        [self cancelOperation:OPERATION_REFRESH];
+        [self cancelOperation:BJ_OPERATION_REFRESH];
     }
     
-    if ([self isOperation:OPERATION_REMOVE_ITEM])
+    if ([self isOperation:BJ_OPERATION_REMOVE_ITEM])
     {
     
-        [self invokeDelegateWithError:ERROR_CANCEL ope:OPERATION_ADD_ITEM error_message:@"正在处理删除操作，请稍后再试" params:item];
+        [self invokeDelegateWithError:BJ_ERROR_CANCEL ope:BJ_OPERATION_ADD_ITEM error_message:@"正在处理删除操作，请稍后再试" params:item];
         return NO;
     }
     
-    if ([self isOperation:OPERATION_SAVE_ITEM])
+    if ([self isOperation:BJ_OPERATION_SAVE_ITEM])
     {
-        [self invokeDelegateWithError:ERROR_CANCEL ope:OPERATION_ADD_ITEM error_message:@"正在处理编辑保存操作，请稍后再试" params:item];
+        [self invokeDelegateWithError:BJ_ERROR_CANCEL ope:BJ_OPERATION_ADD_ITEM error_message:@"正在处理编辑保存操作，请稍后再试" params:item];
         return NO;
     }
     
-    if ([self isOperation:OPERATION_ADD_ITEM])
+    if ([self isOperation:BJ_OPERATION_ADD_ITEM])
     {
-        [self invokeDelegateWithError:ERROR_CANCEL ope:OPERATION_ADD_ITEM error_message:@"正在处理添加操作，请稍后再试" params:item];
+        [self invokeDelegateWithError:BJ_ERROR_CANCEL ope:BJ_OPERATION_ADD_ITEM error_message:@"正在处理添加操作，请稍后再试" params:item];
         return NO;
     }
     
-    if (tasks[OPERATION_ADD_ITEM] == nil)
+    if (tasks[BJ_OPERATION_ADD_ITEM] == nil)
     {
         [_list insertObject:item atIndex:index];
-        _status = STATUS_HAVE_DATA;
-        [self invokeDelegateWithError:ERROR_SUCCESSFULL ope:OPERATION_DATA_CHANGED error_message:@"" params:item];
+        _status = BJ_STATUS_HAVE_DATA;
+        [self invokeDelegateWithError:BJ_ERROR_SUCCESSFULL ope:BJ_OPERATION_DATA_CHANGED error_message:@"" params:item];
         
-        tasks[OPERATION_ADD_ITEM] = [[TaskQueue alloc] init];
-        [self doAddItemOperation:tasks[OPERATION_ADD_ITEM] at:index];
-        tasks[OPERATION_ADD_ITEM].delegate = self;
-        [tasks[OPERATION_ADD_ITEM] start:[NSNumber numberWithInteger:index]];
+        tasks[BJ_OPERATION_ADD_ITEM] = [[TaskQueue alloc] init];
+        [self doAddItemOperation:tasks[BJ_OPERATION_ADD_ITEM] at:index];
+        tasks[BJ_OPERATION_ADD_ITEM].delegate = self;
+        [tasks[BJ_OPERATION_ADD_ITEM] start:[NSNumber numberWithInteger:index]];
         
         return YES;
     }
@@ -140,7 +140,7 @@
 
 - (BOOL)addItem:(id)item at:(NSInteger)index block:(listDataOperationCallback)operationCallback
 {
-    operationCallbacks[OPERATION_ADD_ITEM] = operationCallback;
+    operationCallbacks[BJ_OPERATION_ADD_ITEM] = operationCallback;
     return [self addItem:item at:index];
 }
 
@@ -150,38 +150,38 @@
 
 - (BOOL)removeItem:(NSInteger)index
 {
-    if ([self isOperation:OPERATION_REFRESH])
+    if ([self isOperation:BJ_OPERATION_REFRESH])
     {
-        [self cancelOperation:OPERATION_REFRESH];
+        [self cancelOperation:BJ_OPERATION_REFRESH];
     }
     
-    if ([self isOperation:OPERATION_REMOVE_ITEM])
+    if ([self isOperation:BJ_OPERATION_REMOVE_ITEM])
     {
         
-        [self invokeDelegateWithError:ERROR_CANCEL ope:OPERATION_REMOVE_ITEM error_message:@"正在处理删除操作，请稍后再试" params:[NSNumber numberWithInteger:index]];
+        [self invokeDelegateWithError:BJ_ERROR_CANCEL ope:BJ_OPERATION_REMOVE_ITEM error_message:@"正在处理删除操作，请稍后再试" params:[NSNumber numberWithInteger:index]];
         return NO;
     }
     
-    if ([self isOperation:OPERATION_SAVE_ITEM])
+    if ([self isOperation:BJ_OPERATION_SAVE_ITEM])
     {
-        [self invokeDelegateWithError:ERROR_CANCEL ope:OPERATION_REMOVE_ITEM error_message:@"正在处理编辑保存操作，请稍后再试" params:[NSNumber numberWithInteger:index]];
-        
-        return NO;
-    }
-    
-    if ([self isOperation:OPERATION_ADD_ITEM])
-    {
-        [self invokeDelegateWithError:ERROR_CANCEL ope:OPERATION_REMOVE_ITEM error_message:@"正在处理添加操作，请稍后再试" params:[NSNumber numberWithInteger:index]];
+        [self invokeDelegateWithError:BJ_ERROR_CANCEL ope:BJ_OPERATION_REMOVE_ITEM error_message:@"正在处理编辑保存操作，请稍后再试" params:[NSNumber numberWithInteger:index]];
         
         return NO;
     }
     
-    if (tasks[OPERATION_REMOVE_ITEM] == nil)
+    if ([self isOperation:BJ_OPERATION_ADD_ITEM])
     {
-        tasks[OPERATION_REMOVE_ITEM] = [[TaskQueue alloc] init];
-        [self doRemoveItemOperation:tasks[OPERATION_REMOVE_ITEM] at:index];
-        tasks[OPERATION_REMOVE_ITEM].delegate = self;
-        [tasks[OPERATION_REMOVE_ITEM] start:[NSNumber numberWithInteger:index]];
+        [self invokeDelegateWithError:BJ_ERROR_CANCEL ope:BJ_OPERATION_REMOVE_ITEM error_message:@"正在处理添加操作，请稍后再试" params:[NSNumber numberWithInteger:index]];
+        
+        return NO;
+    }
+    
+    if (tasks[BJ_OPERATION_REMOVE_ITEM] == nil)
+    {
+        tasks[BJ_OPERATION_REMOVE_ITEM] = [[TaskQueue alloc] init];
+        [self doRemoveItemOperation:tasks[BJ_OPERATION_REMOVE_ITEM] at:index];
+        tasks[BJ_OPERATION_REMOVE_ITEM].delegate = self;
+        [tasks[BJ_OPERATION_REMOVE_ITEM] start:[NSNumber numberWithInteger:index]];
         return YES;
     }
     return NO;
@@ -189,7 +189,7 @@
 
 - (BOOL)removeItem:(NSInteger)index block:(listDataOperationCallback)operationCallback
 {
-    operationCallbacks[OPERATION_REMOVE_ITEM] = operationCallback;
+    operationCallbacks[BJ_OPERATION_REMOVE_ITEM] = operationCallback;
     return [self removeItem:index];
 }
 
@@ -199,37 +199,37 @@
 
 - (BOOL)saveItem:(NSInteger)index
 {
-    if ([self isOperation:OPERATION_REFRESH])
+    if ([self isOperation:BJ_OPERATION_REFRESH])
     {
-        [self cancelOperation:OPERATION_REFRESH];
+        [self cancelOperation:BJ_OPERATION_REFRESH];
     }
     
-    if ([self isOperation:OPERATION_REMOVE_ITEM])
+    if ([self isOperation:BJ_OPERATION_REMOVE_ITEM])
     {
         
-        [self invokeDelegateWithError:ERROR_CANCEL ope:OPERATION_SAVE_ITEM error_message:@"正在处理删除操作，请稍后再试" params:[NSNumber numberWithInteger:index]];
+        [self invokeDelegateWithError:BJ_ERROR_CANCEL ope:BJ_OPERATION_SAVE_ITEM error_message:@"正在处理删除操作，请稍后再试" params:[NSNumber numberWithInteger:index]];
         return NO;
     }
     
-    if ([self isOperation:OPERATION_SAVE_ITEM])
+    if ([self isOperation:BJ_OPERATION_SAVE_ITEM])
     {
-        [self invokeDelegateWithError:ERROR_CANCEL ope:OPERATION_SAVE_ITEM error_message:@"正在处理编辑保存操作，请稍后再试" params:[NSNumber numberWithInteger:index]];
+        [self invokeDelegateWithError:BJ_ERROR_CANCEL ope:BJ_OPERATION_SAVE_ITEM error_message:@"正在处理编辑保存操作，请稍后再试" params:[NSNumber numberWithInteger:index]];
         return NO;
     }
     
-    if ([self isOperation:OPERATION_ADD_ITEM])
+    if ([self isOperation:BJ_OPERATION_ADD_ITEM])
     {
-        [self invokeDelegateWithError:ERROR_CANCEL ope:OPERATION_SAVE_ITEM error_message:@"正在处理添加操作，请稍后再试" params:[NSNumber numberWithInteger:index]];
+        [self invokeDelegateWithError:BJ_ERROR_CANCEL ope:BJ_OPERATION_SAVE_ITEM error_message:@"正在处理添加操作，请稍后再试" params:[NSNumber numberWithInteger:index]];
         return NO;
     }
     
-    if (tasks[OPERATION_SAVE_ITEM] == nil)
+    if (tasks[BJ_OPERATION_SAVE_ITEM] == nil)
     {
-        [self invokeDelegateWithError:ERROR_SUCCESSFULL ope:OPERATION_DATA_CHANGED error_message:nil params:nil];
-        tasks[OPERATION_SAVE_ITEM] = [[TaskQueue alloc] init];
-        [self doSaveItemOperation:tasks[OPERATION_SAVE_ITEM] at:index];
-        tasks[OPERATION_SAVE_ITEM].delegate = self;
-        [tasks[OPERATION_SAVE_ITEM] start:[NSNumber numberWithInteger:index]];
+        [self invokeDelegateWithError:BJ_ERROR_SUCCESSFULL ope:BJ_OPERATION_DATA_CHANGED error_message:nil params:nil];
+        tasks[BJ_OPERATION_SAVE_ITEM] = [[TaskQueue alloc] init];
+        [self doSaveItemOperation:tasks[BJ_OPERATION_SAVE_ITEM] at:index];
+        tasks[BJ_OPERATION_SAVE_ITEM].delegate = self;
+        [tasks[BJ_OPERATION_SAVE_ITEM] start:[NSNumber numberWithInteger:index]];
         return YES;
     }
     return NO;
@@ -237,7 +237,7 @@
 
 - (BOOL)saveItem:(NSInteger)index block:(listDataOperationCallback)operationCallback
 {
-    operationCallbacks[OPERATION_SAVE_ITEM] = operationCallback;
+    operationCallbacks[BJ_OPERATION_SAVE_ITEM] = operationCallback;
     return [self saveItem:index];
 }
 
@@ -257,9 +257,9 @@
 
 - (void)cancelOperation:(BJDATA_OPERATION_CODE)ope
 {
-    if (ope == OPERATION_ALL)
+    if (ope == BJ_OPERATION_ALL)
     {
-        for (int i = OPERATION_REFRESH; i < OPERATION_ALL; ++ i)
+        for (int i = BJ_OPERATION_REFRESH; i < BJ_OPERATION_ALL; ++ i)
         {
             [tasks[i] cancelQueue];
             tasks[i] = nil;
@@ -274,9 +274,9 @@
 
 - (void)cleanList
 {
-    [self cancelOperation:OPERATION_ALL];
+    [self cancelOperation:BJ_OPERATION_ALL];
     [self.list removeAllObjects];
-    _status = STATUS_NO_CONNECT_AND_NO_DATA;
+    _status = BJ_STATUS_NO_CONNECT_AND_NO_DATA;
     _mNextCursor = nil;
     _mPreCursor = nil;
     _hasMore = NO;
@@ -333,29 +333,29 @@
             
             if ([_list count] > 0)
             {
-                _status = STATUS_HAVE_DATA;
+                _status = BJ_STATUS_HAVE_DATA;
             }
             else
             {
-                _status = STATUS_EMPTY;
+                _status = BJ_STATUS_EMPTY;
             }
         }
         else
         {
-            _status = STATUS_NO_CONNECT_AND_NO_DATA;
+            _status = BJ_STATUS_NO_CONNECT_AND_NO_DATA;
         }
     }
     else
     {
-        _status = STATUS_NO_CONNECT_AND_NO_DATA;
+        _status = BJ_STATUS_NO_CONNECT_AND_NO_DATA;
     }
 }
 
 #pragma operation callback
 - (void)refreshCallback:(TaskQueue *)taskQueue param:(id)param error:(int)error
 {
-    id result = tasks[OPERATION_REFRESH].result;
-    if (error == ERROR_SUCCESSFULL)
+    id result = tasks[BJ_OPERATION_REFRESH].result;
+    if (error == BJ_ERROR_SUCCESSFULL)
     {
         [self cleanList];
         NSDictionary *_result = [result dictionaryValueForKey:@"result"];
@@ -369,32 +369,32 @@
         
         if ([_list count] > 0)
         {
-            _status = STATUS_HAVE_DATA;
+            _status = BJ_STATUS_HAVE_DATA;
         }
         else
         {
-            _status = STATUS_EMPTY;
+            _status = BJ_STATUS_EMPTY;
         }
     }
     else
     {
-        if (_status == STATUS_NO_CONNECT_AND_NO_DATA)
+        if (_status == BJ_STATUS_NO_CONNECT_AND_NO_DATA)
         {
-            _status = STATUS_NETWORK_ERROR_AND_NO_DATA;
+            _status = BJ_STATUS_NETWORK_ERROR_AND_NO_DATA;
         }
     }
-    [self invokeDelegateWithError:error ope:OPERATION_REFRESH error_message:[result getError] params:nil];
+    [self invokeDelegateWithError:error ope:BJ_OPERATION_REFRESH error_message:[result getError] params:nil];
     
-    if (operationCallbacks[OPERATION_REFRESH] != nil)
+    if (operationCallbacks[BJ_OPERATION_REFRESH] != nil)
     {
-        operationCallbacks[OPERATION_REFRESH](self, error, OPERATION_REFRESH, result);
+        operationCallbacks[BJ_OPERATION_REFRESH](self, error, BJ_OPERATION_REFRESH, result);
     }
 }
 
 - (void)getMoreCallback:(TaskQueue *)taskQueue param:(id)param error:(int)error
 {
     id result = taskQueue.result;
-    if (error == ERROR_SUCCESSFULL)
+    if (error == BJ_ERROR_SUCCESSFULL)
     {
         NSDictionary *_result = [result dictionaryValueForKey:@"result"];
         NSArray *__list = [_result arrayValueForKey:@"list"];
@@ -408,95 +408,95 @@
         
         [self saveCache];
     }
-    [self invokeDelegateWithError:error ope:OPERATION_GET_MORE error_message:[result getError] params:nil];
+    [self invokeDelegateWithError:error ope:BJ_OPERATION_GET_MORE error_message:[result getError] params:nil];
     
-    if (operationCallbacks[OPERATION_GET_MORE] != nil)
+    if (operationCallbacks[BJ_OPERATION_GET_MORE] != nil)
     {
-        operationCallbacks[OPERATION_GET_MORE](self, error, OPERATION_GET_MORE, result);
+        operationCallbacks[BJ_OPERATION_GET_MORE](self, error, BJ_OPERATION_GET_MORE, result);
     }
 }
 
 - (void)addItemCallback:(TaskQueue *)taskQueue param:(id)param error:(int)error
 {
     id result = taskQueue.result;
-    if (error == ERROR_SUCCESSFULL)
+    if (error == BJ_ERROR_SUCCESSFULL)
     {
         [self saveCache];
     }
-    [self invokeDelegateWithError:error ope:OPERATION_ADD_ITEM error_message:[result getError] params:nil];
+    [self invokeDelegateWithError:error ope:BJ_OPERATION_ADD_ITEM error_message:[result getError] params:nil];
     
-    if (operationCallbacks[OPERATION_ADD_ITEM] != nil)
+    if (operationCallbacks[BJ_OPERATION_ADD_ITEM] != nil)
     {
-        operationCallbacks[OPERATION_ADD_ITEM](self, error, OPERATION_ADD_ITEM, result);
+        operationCallbacks[BJ_OPERATION_ADD_ITEM](self, error, BJ_OPERATION_ADD_ITEM, result);
     }
 }
 
 - (void)removeItemCallback:(TaskQueue *)taskQueue param:(id)param error:(int)error
 {
     id result = taskQueue.result;
-    if (error == ERROR_SUCCESSFULL)
+    if (error == BJ_ERROR_SUCCESSFULL)
     {
         int index = [taskQueue.param intValue];
         [_list removeObjectAt:index];
         if ([_list count] == 0)
         {
-            _status = STATUS_EMPTY;
+            _status = BJ_STATUS_EMPTY;
         }
         [self saveCache];
     }
-    [self invokeDelegateWithError:error ope:OPERATION_REMOVE_ITEM error_message:[result getError] params:nil];
+    [self invokeDelegateWithError:error ope:BJ_OPERATION_REMOVE_ITEM error_message:[result getError] params:nil];
     
-    if (operationCallbacks[OPERATION_REMOVE_ITEM] != nil)
+    if (operationCallbacks[BJ_OPERATION_REMOVE_ITEM] != nil)
     {
-        operationCallbacks[OPERATION_REMOVE_ITEM](self, error, OPERATION_REMOVE_ITEM, result);
+        operationCallbacks[BJ_OPERATION_REMOVE_ITEM](self, error, BJ_OPERATION_REMOVE_ITEM, result);
     }
 }
 
 - (void)saveItemCallback:(TaskQueue *)taskQueue param:(id)param error:(int)error
 {
     id result = taskQueue.result;
-    if(error == ERROR_SUCCESSFULL)
+    if(error == BJ_ERROR_SUCCESSFULL)
     {
         [self saveCache];
     }
-    [self invokeDelegateWithError:error ope:OPERATION_SAVE_ITEM error_message:[result getError] params:nil];
+    [self invokeDelegateWithError:error ope:BJ_OPERATION_SAVE_ITEM error_message:[result getError] params:nil];
     
-    if (operationCallbacks[OPERATION_SAVE_ITEM] != nil)
+    if (operationCallbacks[BJ_OPERATION_SAVE_ITEM] != nil)
     {
-        operationCallbacks[OPERATION_SAVE_ITEM](self, error, OPERATION_SAVE_ITEM, result);
+        operationCallbacks[BJ_OPERATION_SAVE_ITEM](self, error, BJ_OPERATION_SAVE_ITEM, result);
     }
 }
 
 - (void)taskQueueFinished:(TaskQueue *)taskQueue param:(id)param error:(int)error
 {
     BJDATA_OPERATION_CODE ope ;
-    if (tasks[OPERATION_REFRESH] == taskQueue)
+    if (tasks[BJ_OPERATION_REFRESH] == taskQueue)
     { //callback refresh
         [self refreshCallback:taskQueue param:param error:error];
-        ope = OPERATION_REFRESH;
+        ope = BJ_OPERATION_REFRESH;
     }
-    else if (tasks[OPERATION_GET_MORE] == taskQueue)
+    else if (tasks[BJ_OPERATION_GET_MORE] == taskQueue)
     {//callback getmore
         [self getMoreCallback:taskQueue param:param error:error];
-        ope = OPERATION_GET_MORE;
+        ope = BJ_OPERATION_GET_MORE;
     }
-    else if (tasks[OPERATION_ADD_ITEM] == taskQueue)
+    else if (tasks[BJ_OPERATION_ADD_ITEM] == taskQueue)
     { // callback additem
         [self addItemCallback:taskQueue param:param error:error];
         
-        ope = OPERATION_ADD_ITEM;
+        ope = BJ_OPERATION_ADD_ITEM;
     }
-    else if (tasks[OPERATION_REMOVE_ITEM] == taskQueue)
+    else if (tasks[BJ_OPERATION_REMOVE_ITEM] == taskQueue)
     {// callback remove item
         [self removeItemCallback:taskQueue param:param error:error];
         
-        ope = OPERATION_REMOVE_ITEM;
+        ope = BJ_OPERATION_REMOVE_ITEM;
     }
-    else if (tasks[OPERATION_SAVE_ITEM] == taskQueue)
+    else if (tasks[BJ_OPERATION_SAVE_ITEM] == taskQueue)
     {//callback save item
         [self saveItemCallback:taskQueue param:param error:error];
         
-        ope = OPERATION_SAVE_ITEM;
+        ope = BJ_OPERATION_SAVE_ITEM;
     }
     
     [tasks[ope] cleanQueue];

@@ -26,9 +26,9 @@
 
 enum _account_ope
 {
-    ACCOUNT_LOGIN = 11,
-    ACCOUNT_LOGOUT = 12,
-}ACCOUNT_OPERATION;
+    BJ_ACCOUNT_LOGIN = 11,
+    BJ_ACCOUNT_LOGOUT = 12,
+}BJ_ACCOUNT_OPERATION;
 
 @interface BJUserAccount : BJData
 
@@ -52,7 +52,7 @@ enum _account_ope
 
 - (void)logout;
 /**
- *  退出账户, 指定操作来源。 例如：ACCOUNT_LOGOUT 表示主动退出
+ *  退出账户, 指定操作来源。 例如：BJ_ACCOUNT_LOGOUT 表示主动退出
  *
  *  @param ope 操作
  */
