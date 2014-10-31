@@ -9,6 +9,17 @@
 #import "BJData.h"
 #import "TaskQueue.h"
 
+@class BJListData;
+/**
+ *  操作回调用的 block
+ *
+ *  @param listData 操作的 ListData， 此时回调的 listData已经处理完数据
+ *  @param err      本次操作的返回码
+ *  @param ope      本次操作的类型
+ *  @param result   本次操作的到得结果，只用来看， 不需要再往 listData 里面添加
+ */
+typedef void (^listDataOperationCallback)(BJListData *listData, int err, int ope, id result);
+
 /**
  *  列表数据模型
  *  功能(PS:逻辑中做了判断，只能同时执行一个操作)：
@@ -26,10 +37,17 @@
 
 @property (nonatomic, strong) id mAdditional;
 
+
 /**
  *  刷新列表，完成后所有数据都会是全新的
  */
 - (void)refresh;
+/**
+ *  刷新操作，操作完成会回调 block
+ *
+ *  @param operationCallback 
+ */
+- (void)refresh:(listDataOperationCallback)operationCallback;
 - (void)doRefreshOperation:(TaskQueue *)taskQueue;
 /**
  *  刷新完成被调用
@@ -44,6 +62,7 @@
  *  加载更多
  */
 - (void)getMore;
+- (void)getMore:(listDataOperationCallback)operationCallback;
 - (void)doGetMoreOperation:(TaskQueue *)taskQueue;
 - (void)getMoreCallback:(TaskQueue *)taskQueue param:(id)param error:(int)error;
 
@@ -62,6 +81,7 @@
  *  @return 操作是否成功
  */
 - (BOOL)addItem:(id)item at:(NSInteger)index;
+- (BOOL)addItem:(id)item at:(NSInteger)index block:(listDataOperationCallback)operationCallback;
 - (void)doAddItemOperation:(TaskQueue *)taskQueue at:(NSInteger)index; //子类实现
 - (void)addItemCallback:(TaskQueue *)taskQueue param:(id)param error:(int)error;
 
@@ -73,6 +93,7 @@
  *  @return 操作是否成功
  */
 - (BOOL)removeItem:(NSInteger)index;
+- (BOOL)removeItem:(NSInteger)index block:(listDataOperationCallback)operationCallback;
 - (void)doRemoveItemOperation:(TaskQueue *)taskQueue at:(NSInteger)index;
 - (void)removeItemCallback:(TaskQueue *)taskQueue param:(id)param error:(int)error;
 
@@ -84,6 +105,7 @@
  *  @return 保存是否成功
  */
 - (BOOL)saveItem:(NSInteger)index;
+- (BOOL)saveItem:(NSInteger)index block:(listDataOperationCallback)operationCallback;
 - (void)doSaveItemOperation:(TaskQueue *)taskQueue at:(NSInteger)index;
 - (void)saveItemCallback:(TaskQueue *)taskQueue param:(id)param error:(int)error;
 

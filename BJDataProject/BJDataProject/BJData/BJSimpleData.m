@@ -11,6 +11,9 @@
 #import "JsonUtils.h"
 
 @interface BJSimpleData()
+{
+    simpleDataOperationCallback _operationCallback;
+}
 
 @end
 
@@ -78,6 +81,12 @@
     [_taskQueue start:nil];
 }
 
+- (void)refresh:(simpleDataOperationCallback)operationCallback
+{
+    [self refresh];
+    _operationCallback = operationCallback;
+}
+
 - (void)cancelRefresh
 {
     if (_taskQueue == nil)
@@ -97,8 +106,8 @@
 {
     if (error == ERROR_SUCCESSFULL)
     {
-        // 获取结果数据
         id _result = [taskQueue.result dictionaryValueForKey:@"result"];
+        // 获取结果数据
         if (_result != nil)
         {
             _data = _result;
@@ -107,6 +116,14 @@
     }
     
     [self invokeDelegateWithError:error ope:OPERATION_REFRESH error_message:[taskQueue.result getError] params:nil];
+    
+    if (_operationCallback)
+    {
+        _operationCallback(self, error, OPERATION_REFRESH, taskQueue.result);
+    }
+    
+    _operationCallback = nil;
+    
     [_taskQueue cleanQueue];
     _taskQueue = nil;
 }
