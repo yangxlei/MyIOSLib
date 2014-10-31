@@ -24,7 +24,6 @@
 		252741FC1A02184500E1A4B3 /* NoDataCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 252741F31A02184500E1A4B3 /* NoDataCell.m */; };
 		252741FD1A02184500E1A4B3 /* NoDataCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 252741F41A02184500E1A4B3 /* NoDataCell.xib */; };
 		252742001A021E2C00E1A4B3 /* BJListDataCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 252741FF1A021E2C00E1A4B3 /* BJListDataCell.m */; };
-		252742031A02263F00E1A4B3 /* BJBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 252742021A02263F00E1A4B3 /* BJBaseViewController.m */; };
 		252742061A02321F00E1A4B3 /* DictionaryExtending.m in Sources */ = {isa = PBXBuildFile; fileRef = 252742051A02321F00E1A4B3 /* DictionaryExtending.m */; };
 		2538CB6F19FBA7C70099ED2C /* HTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2538CB6C19FBA7C70099ED2C /* HTTPRequest.m */; };
 		2538CB7019FBA7C70099ED2C /* HTTPResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 2538CB6E19FBA7C70099ED2C /* HTTPResult.m */; };
@@ -126,8 +125,6 @@
 		252741F41A02184500E1A4B3 /* NoDataCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoDataCell.xib; sourceTree = "<group>"; };
 		252741FE1A021E2C00E1A4B3 /* BJListDataCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BJListDataCell.h; sourceTree = "<group>"; };
 		252741FF1A021E2C00E1A4B3 /* BJListDataCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BJListDataCell.m; sourceTree = "<group>"; };
-		252742011A02263F00E1A4B3 /* BJBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BJBaseViewController.h; sourceTree = "<group>"; };
-		252742021A02263F00E1A4B3 /* BJBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BJBaseViewController.m; sourceTree = "<group>"; };
 		252742041A02321F00E1A4B3 /* DictionaryExtending.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DictionaryExtending.h; sourceTree = "<group>"; };
 		252742051A02321F00E1A4B3 /* DictionaryExtending.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DictionaryExtending.m; sourceTree = "<group>"; };
 		2538CB6B19FBA7C70099ED2C /* HTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPRequest.h; sourceTree = "<group>"; };
@@ -140,6 +137,7 @@
 		2582DCBC1A032B0D00B16732 /* UIAlertView+Block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+Block.m"; sourceTree = "<group>"; };
 		2582DCBD1A032B0D00B16732 /* UIColor+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Utils.h"; sourceTree = "<group>"; };
 		2582DCBE1A032B0D00B16732 /* UIColor+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Utils.m"; sourceTree = "<group>"; };
+		2582DCC21A032ED900B16732 /* BJDataProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BJDataProtocol.h; sourceTree = "<group>"; };
 		2584FAFE19FE0E68001C9023 /* UIDevice+IdentifierAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+IdentifierAddition.h"; sourceTree = "<group>"; };
 		2584FAFF19FE0E68001C9023 /* UIDevice+IdentifierAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+IdentifierAddition.m"; sourceTree = "<group>"; };
 		2584FB0419FE0F77001C9023 /* ex.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ex.plist; sourceTree = "<group>"; };
@@ -293,12 +291,11 @@
 				252741F21A02184500E1A4B3 /* NoDataCell.h */,
 				252741F31A02184500E1A4B3 /* NoDataCell.m */,
 				252741F41A02184500E1A4B3 /* NoDataCell.xib */,
-				252742011A02263F00E1A4B3 /* BJBaseViewController.h */,
-				252742021A02263F00E1A4B3 /* BJBaseViewController.m */,
 				250937F11A0260D700BFF71D /* NSDictionary+demo.h */,
-				250937F21A0260D700BFF71D /* NSDictionary+demo.m */,
 				250937F41A02662A00BFF71D /* ListDataDefine.h */,
+				250937F21A0260D700BFF71D /* NSDictionary+demo.m */,
 				250937F51A0267B400BFF71D /* ListDataDemo.plist */,
+				2582DCC21A032ED900B16732 /* BJDataProtocol.h */,
 			);
 			path = ListData;
 			sourceTree = "<group>";
@@ -721,7 +718,6 @@
 				951A165A1A00984800BD8858 /* BJDataFactory.m in Sources */,
 				252741F51A02184500E1A4B3 /* BJListDataViewController.m in Sources */,
 				252741F81A02184500E1A4B3 /* ErrorCell.m in Sources */,
-				252742031A02263F00E1A4B3 /* BJBaseViewController.m in Sources */,
 				955BEC0019FA81F800C04F90 /* TaskQueue.m in Sources */,
 				2509380F1A02712800BFF71D /* UIView+MJExtension.m in Sources */,
 				95EC1EED1A01334200422709 /* SubjectData.m in Sources */,

@@ -17,7 +17,7 @@
 #import "objc/runtime.h"
 #import "objc/message.h"
 
-#import "BJBaseViewController.h"
+#import "BJDataProtocol.h"
 
 #import "DictionaryExtending.h"
 
@@ -359,8 +359,8 @@
     if (row < numberofItems)
     {
         if (self.selectedClass) {
-            BJBaseViewController *viewController = [[NSClassFromString(self.selectedClass) alloc] init];
-            if ([viewController isKindOfClass:[BJBaseViewController class]]) {
+            UIViewController<BJDataProtocol> *viewController = [[NSClassFromString(self.selectedClass) alloc] init];
+            if ([viewController conformsToProtocol:@protocol(BJDataProtocol)]) {
                 NSMutableDictionary *dataDic = [[NSMutableDictionary alloc] initWithCapacity:0];
                 if (self.selectedTitle.length>0) {
                     [dataDic setObject:self.selectedTitle forKey:LIST_DATA_SELECTED_TITLE];
@@ -375,7 +375,7 @@
                     NSAssert1(0, @"%s, NSClassFromString 字符串不是正确的类名", __FUNCTION__);
             }
             else
-                NSAssert1(0, @"%s ,selectedClass必须是BJBaseViewController的子类", __FUNCTION__);
+                NSAssert1(0, @"%s ,selectedClass必须遵循BJDataProtocol的协议", __FUNCTION__);
         }
     }
     else
