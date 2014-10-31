@@ -13,6 +13,7 @@
 @interface BJListData()
 {
     TaskQueue *tasks[8];
+    listDataOperationCallback operationCallbacks[8];
     BOOL _hasMore;
 }
 
@@ -59,6 +60,12 @@
     }
 }
 
+- (void)refresh:(listDataOperationCallback)operationCallback
+{
+    [self refresh];
+    operationCallbacks[OPERATION_REFRESH] = operationCallback;
+}
+
 - (void)doRefreshOperation:(TaskQueue *)taskQueue
 {
 }
@@ -72,6 +79,12 @@
         tasks[OPERATION_GET_MORE].delegate = self;
         [tasks[OPERATION_GET_MORE] start:nil];
     }
+}
+
+- (void)getMore:(listDataOperationCallback)operationCallback
+{
+    [self getMore];
+    operationCallbacks[OPERATION_GET_MORE] = operationCallback;
 }
 
 - (void)doGetMoreOperation:(TaskQueue *)taskQueue
@@ -125,6 +138,12 @@
     return NO;
 }
 
+- (BOOL)addItem:(id)item at:(NSInteger)index block:(listDataOperationCallback)operationCallback
+{
+    operationCallbacks[OPERATION_ADD_ITEM] = operationCallback;
+    return [self addItem:item at:index];
+}
+
 - (void)doAddItemOperation:(TaskQueue *)taskQueue at:(NSInteger)index
 {
 }
@@ -168,6 +187,12 @@
     return NO;
 }
 
+- (BOOL)removeItem:(NSInteger)index block:(listDataOperationCallback)operationCallback
+{
+    operationCallbacks[OPERATION_REMOVE_ITEM] = operationCallback;
+    return [self removeItem:index];
+}
+
 - (void)doRemoveItemOperation:(TaskQueue *)taskQueue at:(NSInteger)index
 {
 }
@@ -208,6 +233,12 @@
         return YES;
     }
     return NO;
+}
+
+- (BOOL)saveItem:(NSInteger)index block:(listDataOperationCallback)operationCallback
+{
+    operationCallbacks[OPERATION_SAVE_ITEM] = operationCallback;
+    return [self saveItem:index];
 }
 
 - (void)doSaveItemOperation:(TaskQueue *)taskQueue at:(NSInteger)index
@@ -353,6 +384,11 @@
         }
     }
     [self invokeDelegateWithError:error ope:OPERATION_REFRESH error_message:[result getError] params:nil];
+    
+    if (operationCallbacks[OPERATION_REFRESH] != nil)
+    {
+        operationCallbacks[OPERATION_REFRESH](self, error, OPERATION_REFRESH, result);
+    }
 }
 
 - (void)getMoreCallback:(TaskQueue *)taskQueue param:(id)param error:(int)error
@@ -374,6 +410,10 @@
     }
     [self invokeDelegateWithError:error ope:OPERATION_GET_MORE error_message:[result getError] params:nil];
     
+    if (operationCallbacks[OPERATION_GET_MORE] != nil)
+    {
+        operationCallbacks[OPERATION_GET_MORE](self, error, OPERATION_GET_MORE, result);
+    }
 }
 
 - (void)addItemCallback:(TaskQueue *)taskQueue param:(id)param error:(int)error
@@ -384,6 +424,11 @@
         [self saveCache];
     }
     [self invokeDelegateWithError:error ope:OPERATION_ADD_ITEM error_message:[result getError] params:nil];
+    
+    if (operationCallbacks[OPERATION_ADD_ITEM] != nil)
+    {
+        operationCallbacks[OPERATION_ADD_ITEM](self, error, OPERATION_ADD_ITEM, result);
+    }
 }
 
 - (void)removeItemCallback:(TaskQueue *)taskQueue param:(id)param error:(int)error
@@ -400,6 +445,11 @@
         [self saveCache];
     }
     [self invokeDelegateWithError:error ope:OPERATION_REMOVE_ITEM error_message:[result getError] params:nil];
+    
+    if (operationCallbacks[OPERATION_REMOVE_ITEM] != nil)
+    {
+        operationCallbacks[OPERATION_REMOVE_ITEM](self, error, OPERATION_REMOVE_ITEM, result);
+    }
 }
 
 - (void)saveItemCallback:(TaskQueue *)taskQueue param:(id)param error:(int)error
@@ -410,6 +460,11 @@
         [self saveCache];
     }
     [self invokeDelegateWithError:error ope:OPERATION_SAVE_ITEM error_message:[result getError] params:nil];
+    
+    if (operationCallbacks[OPERATION_SAVE_ITEM] != nil)
+    {
+        operationCallbacks[OPERATION_SAVE_ITEM](self, error, OPERATION_SAVE_ITEM, result);
+    }
 }
 
 - (void)taskQueueFinished:(TaskQueue *)taskQueue param:(id)param error:(int)error
@@ -446,6 +501,8 @@
     
     [tasks[ope] cleanQueue];
     tasks[ope] = nil;
+    
+    operationCallbacks[ope] = nil;
 }
 
 @end

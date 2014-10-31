@@ -112,14 +112,14 @@
     SecondViewController *second = [[SecondViewController alloc] init];
     [self.navigationController pushViewController:second animated:YES];
 
-//    NSDictionary *param = [NSDictionary dictionaryWithObjectsAndKeys:@"18611579546",@"value", @"123456", @"password", nil];
-//    NSInteger taskId = [[APIManager shareInstance] requestAPIWithPost:@"/auth/teacherLogin" postBody:param callback:^(HTTPRequest *request, HTTPResult *result) {
-//        NSDictionary *_result = [result.data dictionaryValueForKey:@"result"];
-//        NSLog(@"result : %@", _result);
-//        NSString *token = [_result stringValueForKey:@"auth_token" defaultValue:nil];
-//        NSDictionary *person = [_result dictionaryValueForKey:@"person"];
-//        [CommonInstance.mainAccount loginWithPerson:[person longLongValueForKey:@"id" defalutValue:0] token:token];
-//    }];
+    NSDictionary *param = [NSDictionary dictionaryWithObjectsAndKeys:@"18611579546",@"value", @"123456", @"password", nil];
+    NSInteger taskId = [[APIManager shareInstance] requestAPIWithPost:@"/auth/teacherLogin>&value=1999&password=123456" postBody:nil  callback:^(HTTPRequest *request, HTTPResult *result) {
+        NSDictionary *_result = [result.data dictionaryValueForKey:@"result"];
+        NSLog(@"result : %@", _result);
+        NSString *token = [_result stringValueForKey:@"auth_token" defaultValue:nil];
+        NSDictionary *person = [_result dictionaryValueForKey:@"person"];
+        [CommonInstance.mainAccount loginWithPerson:[person longLongValueForKey:@"id" defalutValue:0] token:token];
+    }];
 //    [caseList refresh];
 //    subjects = [[SubjectData alloc] init];
 //    [subjects addDelegate:self];

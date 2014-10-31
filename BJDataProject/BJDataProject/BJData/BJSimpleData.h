@@ -9,6 +9,9 @@
 #import "BJData.h"
 #import "TaskQueue.h"
 
+@class BJSimpleData;
+typedef void (^simpleDataOperationCallback)(BJSimpleData *simpleData, int error, int ope, id result);
+
 /**
  *  使用 Dictionary 的数据类型w 
  */
@@ -26,6 +29,8 @@
     开启刷新数据操作
  */
 - (void)refresh;
+
+- (void)refresh:(simpleDataOperationCallback)operationCallback;
 
 /**
  *  取消刷新操作
